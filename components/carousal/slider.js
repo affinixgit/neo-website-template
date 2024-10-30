@@ -1,81 +1,58 @@
-"use client";
-import React, { Component, useEffect, useState } from "react";
-import Link from "next/link";
+'use client'
+import { slider } from "@/lib/dummydata";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 import Image from "next/image";
 
-const Slider1 = (props) => {
-  const settings = {
-    dots: false,
-    arrows: true,
-    autoplay: false,
-    autoplaySpeed: 2000,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
 
-  };
+export default function Slider1() {
 
-  const [state, setState] = useState({});
-  const [slider, setSlider] = useState([]);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
+    return (
 
-
-
-  useEffect(() => {
-    debugger
-    if (props.Slider) setSlider(props.Slider);
-   
-  }, [props]);
-
-
- 
-  // console.log("props in slider==>", props)
-  return (
-    <>
-      <Slider {...settings} className="tt-slider slider-one slider-sp0">
-        {slider?.map((item, idx) => (
-          <div className="slider-item" key={item.idGallery + idx}>
-            <div className=" ovbl-light">
-              {/* <div className="slider-thumb ovbl-dark"> */}
-              <img
-                src={item.galleryImage}
-                alt=""
-                // height={700}
-                // width={1920}
+        <Slider {...settings} className="tt-slider slider-one slider-sp0">
+        {slider.map((item, index) => (
+          <div className="slider-item" key={index}>
+            <div className="ovbl-light" style={{ position: "relative", width: "100%", height: "640px" }}>
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
                 style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  width: "100%",
-                  height: "640px"
+                  objectFit: "cover", // Ensure the image covers the entire area
+                  objectPosition: "center"
                 }}
-
               />
             </div>
-
+      
             <div className="slider-content text-white">
               <div className="container d-flex">
                 <div className="content-inner">
                   <h6 className="sub-title">{item.title}</h6>
-                  <h2 className="title">{item.title1}</h2>
-            
-                  <Link
-                    className="btn radius-xl  m-b50  m-r15 button-md white"
-                    href="/contact"
-                  >
+                  <h2 className="title">{item.description}</h2>
+                  <br />
+                  <br />
+                  <Link className="btn radius-xl m-b50 m-r15 button-md white" href="/contact">
                     Contact Us
                   </Link>
-                  <Link className="btn radius-xl m-b50  button-md" href="/about">
+                  <Link className="btn radius-xl m-b50 button-md" href="/about">
                     Read More
                   </Link>
                 </div>
-               
               </div>
             </div>
           </div>
         ))}
       </Slider>
-    </>
-  );
-};
+      
 
-export default Slider1;
+    )
+}
