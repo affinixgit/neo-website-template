@@ -47,10 +47,9 @@
 
 
 import Link from "next/link";
-import Sticky from "react-stickynode";
 
 
-const Header = (props) => {
+const MainHeader = (props) => {
 
 
 
@@ -96,7 +95,7 @@ const Header = (props) => {
               <div className="topbar-right">
                 <ul>
                   <li>
-                    <Link>
+                    <Link  href="#">
                       Student Login
                     </Link>
                   </li>
@@ -116,7 +115,7 @@ const Header = (props) => {
             </div>
           </div>
         </div>
-        <Sticky enabled={true} className="sticky-header navbar-expand-lg">
+        
           <div className="menu-bar clearfix">
             <div className="container clearfix">
               {/* <!-- Header Logo ==== --> */}
@@ -226,7 +225,7 @@ const Header = (props) => {
                   <div className="nav-social-link">
                    
                       <Link
-                        target="_blank"                        
+                       href='#'                 
                       >
                         <i className="fa fa-facebook"></i>
                       </Link>
@@ -239,10 +238,10 @@ const Header = (props) => {
               {/* <!-- Navigation Menu END ==== --> */}
             </div>
           </div>
-        </Sticky>
+        
       </header>
     </>
   );
 };
 
-export default Header;
+export default MainHeader;
