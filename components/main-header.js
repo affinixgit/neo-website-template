@@ -17,7 +17,7 @@ const MainHeader = (props) => {
         <p>Hello world</p>
       </div>
 
-      <header className="header rs-nav header-transparent">
+      <header className="sticky-top header rs-nav header-transparent">
        
 
         <div className="menu-bar clearfix">
