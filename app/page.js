@@ -3,14 +3,13 @@ import "./globals.css";
 
 export default function Home() {
   return (
-    
-      <main>
+
+    <main>
       <div className="page-content bg-white">
-Hello
+        Hello
       </div>
-       
-      </main>
-      
-    
+    </main>
+
+
   );
 }
