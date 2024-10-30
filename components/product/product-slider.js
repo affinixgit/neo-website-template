@@ -110,8 +110,8 @@ const ProductSlider = (props) => {
                 {/* <div className="action-box course-imgbox"> */}
                 <div className="action-box course-imgbox">
                     <img
-                        src={item?.eventImage}
-                        alt={item?.eventTitle}
+                        src={item?.productImage}
+                        alt={item?.productTitle}
                         height={400}
                         width={500}
                         optimize={75}
@@ -123,7 +123,7 @@ const ProductSlider = (props) => {
                 <div className="info-bx">
                     <h6>
                         <Link href={`/products/${item?.productId}`}>
-                            {item?.eventTitle}
+                            {item?.productTitle}
                         </Link>
                     </h6>
                     <span>{trimText(getText(item?.description))}</span>
