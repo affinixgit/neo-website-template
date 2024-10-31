@@ -11158,6 +11158,9 @@ button.back-to-top:hover {
   color: #0056b3;             /* Darken color slightly on hover */
 }
 
+
+
+
 .product-tags {
   display: flex;              /* Display tags in a row */
   flex-wrap: wrap;            /* Allow tags to wrap to the next line if they don’t fit */
@@ -11168,5 +11171,31 @@ button.back-to-top:hover {
 }
 
 
+/* CSS for the category-tags container */
+.category-tags {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap into multiple rows */
+  gap: 10px; /* Provides space between each category */
+  margin-top: 1.5rem;
+  justify-content: center; /* Centers the categories horizontally */
+}
+
+/* CSS for the category-link with border and padding */
+.category-link {
+  color: #0070f3;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap; /* Prevents text from wrapping within each link */
+}
+
+.category-link:hover {
+  color: #005bb5;
+  background-color: #e0e0e0;
+  text-decoration: underline;
+}
 
 
