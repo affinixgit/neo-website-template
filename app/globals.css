@@ -8373,6 +8373,10 @@ footer .pt-social-link ul li {
   padding-bottom: 100px;
 }
 
+.section-sp5 {
+  padding-top: 40px;
+}
+
 .ovpr-dark:after {
   background: #ff5e14;
   background: linear-gradient(45deg, #ff5e14, #ff8e14);
@@ -11162,3 +11166,7 @@ button.back-to-top:hover {
   font-size: 0.9rem;          /* Smaller font size for tags */
   color: #333;                /* Text color for the tag wrapper */
 }
+
+
+
+
