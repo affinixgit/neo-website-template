@@ -1,9 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { events } from "@/lib/dummydata";
-
-
+import { productList } from "@/lib/dummydata";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 
 function trimText(text) {
@@ -19,7 +17,7 @@ function getText(text) {
 
 const Products = () => {
 
-
+console.log(productList)
 
   return (
     <div className="page-content">
@@ -50,8 +48,7 @@ const Products = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  {events.map((item, idx) =>
-                    item.enabled === 1 ? (
+                  {productList.map((item, idx) =>                    
                       <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
                         <div className="cours-bx">
                           <div className="action-box course-imgbox">
@@ -62,21 +59,20 @@ const Products = () => {
                               src={`${item?.productImage}`}
                               alt={item?.productTitle}
                             />
-                            <Link href={`/products/${item?.productId}`} className="btn">
+                            <Link href={`/products/${item?.slug}`} className="btn">
                               Read More
                             </Link>
                           </div>
                           <div className="info-bx">
                             <h6>
-                              <Link href={`/products/${item?.productId}`}>
+                              <Link href={`/products/${item?.slug}`}>
                                 {item?.productTitle}
                               </Link>
                             </h6>
                             <span>{trimText(getText(item?.description))}</span>
                           </div>
                         </div>
-                      </div>
-                    ) : null
+                      </div>                   
                   )}
                 </div>
               </div>

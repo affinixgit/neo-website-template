@@ -14,7 +14,7 @@ const MainHeader = (props) => {
   return (
     <>
       <div className="offer-banner">
-        <p>Hello world</p>
+        <p>Contact Us | 8390502610</p>
       </div>
 
       <header className="sticky-top header rs-nav header-transparent">
@@ -47,11 +47,8 @@ const MainHeader = (props) => {
                   <Link href="/about-1">About</Link>
                 </li>
                 <li className=" active add-mega-menu">
-                  <Link href="/courses">Courses</Link>
-                </li>
-                <li className=" active add-mega-menu">
-                  <Link href="/e-learning">E-learning</Link>
-                </li>
+                  <Link href="/products">Products</Link>
+                </li>               
                 <li className=" active add-mega-menu">
                   <Link href="/portfolio">Gallery</Link>
                 </li>

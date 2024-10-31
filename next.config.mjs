@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       "images.ctfassets.net",
       "placeholder.com",
-      "bucket-chat-classhub.s3.ap-south-1.amazonaws.com"
+      "bucket-chat-classhub.s3.ap-south-1.amazonaws.com",
+      "tbs-website-live.s3.ap-south-1.amazonaws.com"
     ],
   },
 };

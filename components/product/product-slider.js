@@ -3,14 +3,12 @@ import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import throttle from "lodash.throttle";
-import Image from "next/image";
-import { slider } from "@/lib/dummydata";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 const ProductSlider = (props) => {
-    console.log("props for offline course==>", props)
+ debugger
     const [state, setState] = useState({ data: [] });
     const [visible, setVisible] = useState("slider");
 
@@ -116,13 +114,13 @@ const ProductSlider = (props) => {
                         width={500}
                         optimize={75}
                     />
-                    <Link href={`/products/${item?.productId}`} className="btn">
+                    <Link href={`/products/${item?.slug}`} className="btn">
                         Read More
                     </Link>
                 </div>
                 <div className="info-bx">
                     <h6>
-                        <Link href={`/products/${item?.productId}`}>
+                        <Link href={`/products/${item?.slug}`}>
                             {item?.productTitle}
                         </Link>
                     </h6>
