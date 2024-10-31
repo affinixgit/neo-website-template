@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const ProductSlider = (props) => {
- debugger
+
     const [state, setState] = useState({ data: [] });
     const [visible, setVisible] = useState("slider");
 
