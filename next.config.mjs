@@ -8,6 +8,14 @@ const nextConfig = {
       "tbs-website-live.s3.ap-south-1.amazonaws.com"
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/cars',
+        destination: '/products',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

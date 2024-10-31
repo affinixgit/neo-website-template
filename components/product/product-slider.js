@@ -108,7 +108,7 @@ const ProductSlider = (props) => {
                 {/* <div className="action-box course-imgbox"> */}
                 <div className="action-box course-imgbox">
                     <img
-                        src={item?.productImage}
+                        src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
                         alt={item?.productTitle}
                         height={400}
                         width={500}
