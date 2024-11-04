@@ -10,15 +10,12 @@ export default async function ProductDetailPage({ params }) {
     };
 
     const response = await fetch(`http://localhost:3006/api/v1/products/${productSlug}`, requestOptions);
-    if (!response.ok) {
-        if (response.status === 404) {
-            notFound();
-        } else {
-            throw new Error(`Failed to fetch product ${productSlug}`);
-        }
-    }
 
+    if (!response.ok) {
+        throw new Error(`Failed to fetch product ${productSlug}`);
+    }
     const productItem = await response.json();
+
     const bannerImg = "/images/banner/banner2.jpg";
 
   
