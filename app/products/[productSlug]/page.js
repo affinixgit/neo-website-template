@@ -5,14 +5,28 @@ import HTMLReactParser from "html-react-parser";
 import { getProductItem } from '@/lib/product';
 import ProductDescription from '@/components/product/productDescription';
 
+
+
+
 export default async function ProductDetailPage({ params }) {
-    const { productId } = await params;
-    const productItem = await getProductItem(productId);
+    const { productSlug } = await params;
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    const response = await fetch(`http://localhost:3006/api/v1/products/${productSlug}`, requestOptions);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch product ${productSlug}`);
+    }
+    const productItem = await response.json();
+
     const bannerImg = "/images/banner/banner2.jpg";
 
-    if (!productItem) {
-        notFound();
-    }
+    // if (!productItem) {
+    //     notFound();
+    // }
 
     return (
         <>

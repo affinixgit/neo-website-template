@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { productList, productTags } from "@/lib/dummydata";
+import { productTags } from "@/lib/dummydata";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 
 function trimText(text) {
@@ -14,6 +14,54 @@ function trimText(text) {
 function getText(text) {
   return text?.replace(/<[^>]+>/g, "") || "";
 }
+
+
+async function ProductList() {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+
+  const response = await fetch("http://localhost:3006/api/v1/products?pageNumber=1&pageSize=5", requestOptions);
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+
+  const productResponse = await response.json();
+  
+  return (
+    <>
+      {productResponse.products.map((item, idx) =>
+        <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
+          <div className="cours-bx">
+            <div className="action-box course-imgbox">
+              <Image
+                className="img-fluid"
+                width={450}
+                height={300}
+                src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
+                alt={item?.productTitle}
+              />
+              <Link href={`/products/${item?.slug}`} className="btn">
+                Read More
+              </Link>
+            </div>
+            <div className="info-bx">
+              <h6>
+                <Link href={`/products/${item?.slug}`}>
+                  {item?.productTitle}
+                </Link>
+              </h6>
+              <span>{trimText(getText(item?.description))}</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 
 const Products = () => {
 
@@ -47,32 +95,7 @@ const Products = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  {productList.map((item, idx) =>
-                    <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
-                      <div className="cours-bx">
-                        <div className="action-box course-imgbox">
-                          <Image
-                            className="img-fluid"
-                            width={450}
-                            height={300}
-                            src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                            alt={item?.productTitle}
-                          />
-                          <Link href={`/products/${item?.slug}`} className="btn">
-                            Read More
-                          </Link>
-                        </div>
-                        <div className="info-bx">
-                          <h6>
-                            <Link href={`/products/${item?.slug}`}>
-                              {item?.productTitle}
-                            </Link>
-                          </h6>
-                          <span>{trimText(getText(item?.description))}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  <ProductList></ProductList>
                 </div>
                 <h3>Filter Products</h3>
                 <div className="product-tags" >
