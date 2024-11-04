@@ -7,13 +7,23 @@ import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image impo
 
 export default async function ProductCategoriesPage({ params }) {
     const { slug } = await params;
-    const productList = await getProductsByCategory(slug);
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
 
-
-    if (!productList) {
-        notFound();
+    const response = await fetch(`http://localhost:3006/api/v1/categories/product/${slug}`, requestOptions);
+    if (!response.ok) {
+        if (response.status === 404) {
+            notFound();
+        } else {
+            throw new Error(`Failed to fetch product ${slug}`);
+        }
     }
 
+    const categoryItem = await response.json();
+    const productList = categoryItem.products;
+    
     function trimText(text) {
         if (text && text.length > 200) {
             return text.substring(0, 200) + "...";
@@ -33,7 +43,7 @@ export default async function ProductCategoriesPage({ params }) {
             >
                 <div className="container">
                     <div className="page-banner-entry">
-                        <h1 className="text-white">Our Category</h1>
+                        <h1 className="text-white">Category</h1>
                     </div>
                 </div>
             </div>
@@ -43,7 +53,7 @@ export default async function ProductCategoriesPage({ params }) {
                         <li>
                             <Link href="/">Home</Link>
                         </li>
-                        <li>Our Products</li>
+                        <li>Category</li>
                     </ul>
                 </div>
             </div>
@@ -81,8 +91,6 @@ export default async function ProductCategoriesPage({ params }) {
                                         </div>
                                     )}
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

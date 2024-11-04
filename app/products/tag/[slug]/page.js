@@ -64,7 +64,7 @@ async function ProductList({products}) {
 }
 
 
-const Products = () => {
+const ProductsTags = () => {
 
 
   return (
@@ -124,4 +124,4 @@ const Products = () => {
 
 
 
-export default Products;
+export default ProductsTags;
