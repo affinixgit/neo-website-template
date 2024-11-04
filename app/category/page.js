@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
-import { getCategories } from "@/lib/category";
-import { categories } from "@/lib/dummydata";
+
 
 export default async function CategoriesPage() {
 

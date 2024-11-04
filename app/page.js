@@ -4,6 +4,7 @@ import { productList } from "@/lib/dummydata";
 
 export default function Home() {
 
+  
 
   return (
     <>
