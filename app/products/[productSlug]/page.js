@@ -1,11 +1,5 @@
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
-import HTMLReactParser from "html-react-parser";
-import { getProductItem } from '@/lib/product';
 import ProductDescription from '@/components/product/productDescription';
-
-
 
 
 export default async function ProductDetailPage({ params }) {
@@ -16,17 +10,18 @@ export default async function ProductDetailPage({ params }) {
     };
 
     const response = await fetch(`http://localhost:3006/api/v1/products/${productSlug}`, requestOptions);
-
     if (!response.ok) {
-        throw new Error(`Failed to fetch product ${productSlug}`);
+        if (response.status === 404) {
+            notFound();
+        } else {
+            throw new Error(`Failed to fetch product ${productSlug}`);
+        }
     }
-    const productItem = await response.json();
 
+    const productItem = await response.json();
     const bannerImg = "/images/banner/banner2.jpg";
 
-    // if (!productItem) {
-    //     notFound();
-    // }
+  
 
     return (
         <>
@@ -60,20 +55,31 @@ export default async function ProductDetailPage({ params }) {
 
                 <ProductDescription productItem={productItem}></ProductDescription>
 
-                <div className="container">
-                    <h4>Filter Products</h4>
-                    <div className="product-tags" >
-                        {productItem.tags
-                            .map((tag, tagIdx, arr) => (
-                                <span key={tagIdx}>
-                                    <Link href={`/tags/${tag.slug}/${productItem.slug}`} className="tag-link">
-                                        {tag.tagName}
-                                    </Link>
-                                    {tagIdx < arr.length - 1 && " | "}
-                                </span>
-                            ))}
+                <div className="content-block">
+                    <div className="section-area section-sp5">
+                        <div className="container">
+                            <div className="row d-flex flex-row">
+
+                                <h4>Filter Products</h4>
+                                <div className="product-tags" >
+                                    {productItem.tags
+                                        .map((tag, tagIdx, arr) => (
+                                            <span key={tagIdx}>
+                                                <Link href={`/tags/${tag.slug}/${productItem.slug}`} className="tag-link">
+                                                    {tag.tagName}
+                                                </Link>
+                                                {tagIdx < arr.length - 1 && " | "}
+                                            </span>
+                                        ))}
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+
             </div>
         </>
     );
