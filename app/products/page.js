@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { productTags } from "@/lib/dummydata";
+
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 
 function trimText(text) {
@@ -15,24 +15,25 @@ function getText(text) {
   return text?.replace(/<[^>]+>/g, "") || "";
 }
 
+const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
 
-async function ProductList() {
-  const requestOptions = {
-    method: "GET",
-    redirect: "follow"
-  };
+const response = await fetch("http://localhost:3006/api/v1/products?pageNumber=1&pageSize=5", requestOptions);
 
-  const response = await fetch("http://localhost:3006/api/v1/products?pageNumber=1&pageSize=5", requestOptions);
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
-  }
+if (!response.ok) {
+  throw new Error('Failed to fetch products');
+}
 
-  const productResponse = await response.json();
-  
+const productResponse = await response.json();
+
+
+async function ProductList({products}) {
+ 
   return (
     <>
-      {productResponse.products.map((item, idx) =>
+      {products.map((item, idx) =>
         <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
           <div className="cours-bx">
             <div className="action-box course-imgbox">
@@ -95,11 +96,11 @@ const Products = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  <ProductList></ProductList>
+                  <ProductList products={productResponse.products}></ProductList>
                 </div>
                 <h3>Filter Products</h3>
                 <div className="product-tags" >
-                  {productTags
+                  {productResponse.tags
                     .map((tag, tagIdx, arr) => (
                       <span key={tagIdx}>
                         <Link href={`/tags/${tag.slug}/${tag.productSlug}`} className="tag-link">
