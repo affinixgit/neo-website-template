@@ -37,27 +37,22 @@ export default async function CategoriesPage() {
             <div className="content-block">
                 <div className="section-area section-sp5">
                     <div className="container">
-                       
+                        <div className="category-tags" >
+                            {categories
+                                .map((category, idx, arr) => (
 
-                                <div className="category-tags" >
-                                    {categories
-                                        .map((category, idx, arr) => (
-                                           
-                                                <span key={category.idCategory}>
-                                                    <Link href={`/category/${category.slug}`} className="category-link">
-                                                        {category.categoryTitle}
-                                                    </Link>                                                
-                                                </span>
-                                     
-                                        ))}
-                            
+                                    <span key={category.idCategory}>
+                                        <Link href={`/category/${category.slug}`} className="category-link">
+                                            {category.categoryTitle}
+                                        </Link>
+                                    </span>
+
+                                ))}
+
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     );
 };
