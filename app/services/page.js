@@ -10,7 +10,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-const response = await fetch("http://localhost:3006/api/v1/Service?pageNumber=1&pageSize=5", requestOptions);
+const response = await fetch("http://localhost:3006/api/v1/service?pageNumber=1&pageSize=5", requestOptions);
 
 if (!response.ok) {
   throw new Error('Failed to fetch products');
@@ -84,7 +84,7 @@ const Products = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  <ProductList products={productResponse.products}></ProductList>
+                  <ProductList products={productResponse.service}></ProductList>
                 </div>
                 <h3>Filter Products</h3>
                 <div className="product-tags" >
