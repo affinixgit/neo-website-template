@@ -38,6 +38,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <MainHeader menuData={menuData}></MainHeader>
         <main>{children}</main>
+        
       </body>
     </html>
   );
