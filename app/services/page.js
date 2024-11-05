@@ -18,7 +18,7 @@ if (!response.ok) {
 
 const productResponse = await response.json();
 
-async function ProductList({products}) {
+async function ServiceList({products}) {
  
   return (
     <>
@@ -31,7 +31,8 @@ async function ProductList({products}) {
                 width={450}
                 height={300}
                 src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                alt={item?.productTitle}
+                alt={`Image of ${item?.altText}`}
+                title={`Image of ${item?.productTitle}`}
               />
               <Link href={`/products/${item?.slug}`} className="btn">
                 Read More
@@ -52,7 +53,8 @@ async function ProductList({products}) {
   );
 }
 
-const Products = () => {
+const Services = () => {
+  const jsonLd = productResponse.jsonLd ? productResponse.jsonLd : '{}'; // Safeguard against undefined
 
 
   return (
@@ -63,7 +65,7 @@ const Products = () => {
       >
         <div className="container">
           <div className="page-banner-entry">
-            <h1 className="text-white">Our Products</h1>
+            <h1 className="text-white">Our Services</h1>
           </div>
         </div>
       </div>
@@ -73,7 +75,7 @@ const Products = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>Our Products</li>
+            <li>Our Services</li>
           </ul>
         </div>
       </div>
@@ -84,14 +86,14 @@ const Products = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  <ProductList products={productResponse.service}></ProductList>
+                  <ServiceList products={productResponse.service}></ServiceList>
                 </div>
-                <h3>Filter Products</h3>
+                <h3>Filter Services</h3>
                 <div className="product-tags" >
                   {productResponse.tags
                     .map((tag, tagIdx, arr) => (
                       <span key={tagIdx}>
-                        <Link href={`products/tag/${tag.slug}`} className="tag-link">
+                        <Link href={`services/tag/${tag.slug}`} className="tag-link">
                           {tag.tagName}
                         </Link>
                         {tagIdx < arr.length - 1 && " | "}
@@ -105,9 +107,11 @@ const Products = () => {
       </div>
 
 
+  {/* JSON-LD Script Tag */}
+  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
     </div>
   );
 };
 
-export default Products;
+export default Services;
