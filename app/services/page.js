@@ -34,13 +34,13 @@ async function ServiceList({products}) {
                 alt={`Image of ${item?.altText}`}
                 title={`Image of ${item?.productTitle}`}
               />
-              <Link href={`/products/${item?.slug}`} className="btn">
+              <Link href={`/services/${item?.slug}`} className="btn">
                 Read More
               </Link>
             </div>
             <div className="info-bx">
               <h6>
-                <Link href={`/products/${item?.slug}`}>
+                <Link href={`/services/${item?.slug}`}>
                   {item?.productTitle}
                 </Link>
               </h6>
