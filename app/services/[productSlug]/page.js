@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import ServiceDescription from '@/components/service/ServiceDescription';
+import ServiceDescription from '@/components/service/serviceDescription';
+
 
 
 export async function generateMetadata({params}) {
