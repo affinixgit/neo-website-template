@@ -1,22 +1,33 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
-import { trimText , getText } from "@/lib/common";
 
+import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
+
+function trimText(text) {
+  if (text && text.length > 200) {
+    return text.substring(0, 200) + "...";
+  }
+  return text;
+}
+
+function getText(text) {
+  return text?.replace(/<[^>]+>/g, "") || "";
+}
 
 const requestOptions = {
   method: "GET",
   redirect: "follow"
 };
 
-const response = await fetch("http://localhost:3006/api/v1/products?pageNumber=1&pageSize=5", requestOptions);
+const response = await fetch("http://localhost:3006/api/v1/Service?pageNumber=1&pageSize=5", requestOptions);
 
 if (!response.ok) {
   throw new Error('Failed to fetch products');
 }
 
 const productResponse = await response.json();
+
 
 async function ProductList({products}) {
  
@@ -52,7 +63,8 @@ async function ProductList({products}) {
   );
 }
 
-const Products = () => {
+
+const ProductsTags = () => {
 
 
   return (
@@ -110,4 +122,6 @@ const Products = () => {
   );
 };
 
-export default Products;
+
+
+export default ProductsTags;
