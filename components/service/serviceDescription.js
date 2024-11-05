@@ -22,8 +22,8 @@ const ServiceDescription = ({ serviceItem }) => {
                                         <Image
                                             src={`${serviceItem?.media.mediaBaseUrl}/${serviceItem?.media.fileSlug}`}
                                             alt={serviceItem.altText}
-                                            width={400}
-                                            height={300}
+                                            width={200}
+                                            height={150}
                                             loading="lazy" // Optimize loading
                                         />
                                     </div>
