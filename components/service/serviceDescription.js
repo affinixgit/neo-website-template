@@ -2,8 +2,12 @@ import React from "react";
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import ServiceSocialShare from "./ServiceSocialSharing";
 
 const ServiceDescription = ({ serviceItem }) => {
+
+
+
     return (
         <>
             {/* Content Block */}
@@ -38,16 +42,17 @@ const ServiceDescription = ({ serviceItem }) => {
                                     <div className="ttr-post-text">
                                         <p>{serviceItem.description}</p>
                                     </div>
+                                    {/* <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("localhost:3000/services/service-one")}&quote=${encodeURIComponent("share social")}`} passHref>
+                                        Facebook
+                                    </Link> */}
 
-
-                                    {/* Brochure Link */}
-                                    {serviceItem.brochureLink && (
-                                        <Link href={serviceItem.brochureLink} target="_blank" rel="noopener noreferrer" className="product-btn">
-                                            DOWNLOAD BROCHURE
-                                        </Link>
-                                    )}
+                                    <ServiceSocialShare title={serviceItem.title} description={serviceItem.description}></ServiceSocialShare>
                                 </div>
+
                             </div>
+
+
+
                         </div>
                         <div className="section-area section-sp5">
                             <div className="row d-flex flex-row">
