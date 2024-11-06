@@ -3,9 +3,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import HTMLReactParser from "html-react-parser";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
+import Breadcrumbs from '@/components/Breadcrumbs/breadcrumbs';
+import { generateBreadcrumbSchema } from '@/lib/common';
 
 export default async function ProductCategoriesPage({ params }) {
     const { slug } = await params;
+    const categoryName = slug.replace(/-/g, ' ')
+    const breadcrumbs = [
+        { name: "Home", url: "/" },
+        { name: "Categories", url: "/category" },
+        { name: categoryName },
+
+    ];
+
+    const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
     const requestOptions = {
         method: "GET",
         redirect: "follow"
@@ -22,7 +33,7 @@ export default async function ProductCategoriesPage({ params }) {
 
     const categoryItem = await response.json();
     const services = categoryItem.service;
-    
+
     function trimText(text) {
         if (text && text.length > 200) {
             return text.substring(0, 200) + "...";
@@ -33,6 +44,8 @@ export default async function ProductCategoriesPage({ params }) {
     function getText(text) {
         return text?.replace(/<[^>]+>/g, "") || "";
     }
+
+
 
     return (
         <div className="page-content">
@@ -46,19 +59,8 @@ export default async function ProductCategoriesPage({ params }) {
                     </div>
                 </div>
             </div>
-            <div className="breadcrumb-row">
-                <div className="container">
-                    <ul className="list-inline">
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link href="/category">Category</Link>
-                        </li>
-                        <li>{slug.replace(/-/g, ' ')}</li>
-                    </ul>
-                </div>
-            </div>
+            <Breadcrumbs breadcrumbs={breadcrumbs}></Breadcrumbs>
+
 
             <div className="content-block">
                 <div className="section-area section-sp1">
@@ -100,7 +102,12 @@ export default async function ProductCategoriesPage({ params }) {
             </div>
 
 
-
+              {/* Render JSON-LD for Breadcrumbs */}
+      
+              <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
         </div>
     );
 };

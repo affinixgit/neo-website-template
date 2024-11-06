@@ -2,9 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import { trimText, getText } from "@/lib/common";
+import Breadcrumbs from "@/components/Breadcrumbs/breadcrumbs";
 
 
 export default async function CategoriesPage() {
+
+    const breadcrumbs = [
+        { name: "Home", url: "/" },
+        { name: "Categories"},
+      ];
 
     const requestOptions = {
         method: "GET",
@@ -29,7 +35,7 @@ export default async function CategoriesPage() {
                     </div>
                 </div>
             </div>
-            <div className="breadcrumb-row">
+            {/* <div className="breadcrumb-row">
                 <div className="container">
                     <ul className="list-inline">
                         <li className="list-inline-item">
@@ -38,8 +44,8 @@ export default async function CategoriesPage() {
                         <li className="list-inline-item">Categories</li>
                     </ul>
                 </div>
-            </div>
-
+            </div> */}
+ <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className="content-block">
                 <div className="section-area section-sp5">
                     <div className="container">
