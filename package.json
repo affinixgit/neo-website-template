@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.10.5",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-slick": "^0.30.2",
+    "react-stickynode": "^4.1.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

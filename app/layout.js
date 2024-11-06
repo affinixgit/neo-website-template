@@ -3,7 +3,7 @@ import "./globals.css";
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Font Awesome CSS
 import '../lib/fontawesome'; // Your Font Awesome configuration
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MainHeader from "@/components/main-header";
+import Header from "@/components/main-header";
 import { menuData } from "@/lib/menuData";
 
 
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <MainHeader menuData={menuData}></MainHeader>
+      <Header menuData={menuData}></Header>
         <main>{children}</main>
         
       </body>
