@@ -120,7 +120,7 @@ const ServiceSlider = (props) => {
                 </div>
                 <div className="info-bx">
                     <h6>
-                        <Link href={`/products/${item?.slug}`}>
+                        <Link href={`/services/${item?.slug}`}>
                             {item?.productTitle}
                         </Link>
                     </h6>
