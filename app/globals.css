@@ -11461,3 +11461,28 @@ button.back-to-top:hover {
     transform: rotate(-45deg) translate(5px, -5px);
   }
 }
+
+
+.list-inline {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-inline > li {
+  display: inline; /* Ensures items are inline */
+  margin-right: 10px; /* Adds spacing between items */
+}
+
+.list-inline > li:last-child {
+  margin-right: 0; /* Removes margin from the last item */
+}
+
+.breadcrumb-row ul li:after {
+  content: "\203A"; /* Single right-pointing angle quotation mark */
+  margin-left: 10px;
+}
+
+.breadcrumb-row ul li:last-child:after {
+  content: ""; /* Remove the arrow from the last item */
+}
