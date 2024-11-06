@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import HTMLReactParser from "html-react-parser";
-import { getProductsByCategory } from '@/lib/product';
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 
 export default async function ProductCategoriesPage({ params }) {
@@ -12,7 +11,7 @@ export default async function ProductCategoriesPage({ params }) {
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/categories/product/${slug}`, requestOptions);
+    const response = await fetch(`http://localhost:3006/api/v1/categories/services/${slug}`, requestOptions);
     if (!response.ok) {
         if (response.status === 404) {
             notFound();
@@ -22,7 +21,7 @@ export default async function ProductCategoriesPage({ params }) {
     }
 
     const categoryItem = await response.json();
-    const productList = categoryItem.products;
+    const services = categoryItem.service;
     
     function trimText(text) {
         if (text && text.length > 200) {
@@ -53,7 +52,10 @@ export default async function ProductCategoriesPage({ params }) {
                         <li>
                             <Link href="/">Home</Link>
                         </li>
-                        <li>Category</li>
+                        <li>
+                            <Link href="/category">Category</Link>
+                        </li>
+                        <li>{slug.replace(/-/g, ' ')}</li>
                     </ul>
                 </div>
             </div>
@@ -64,7 +66,7 @@ export default async function ProductCategoriesPage({ params }) {
                         <div className="row">
                             <div className="col">
                                 <div className="row">
-                                    {productList.map((item, idx) =>
+                                    {services.map((item, idx) =>
                                         <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
                                             <div className="cours-bx">
                                                 <div className="action-box course-imgbox">
@@ -73,16 +75,16 @@ export default async function ProductCategoriesPage({ params }) {
                                                         width={450}
                                                         height={300}
                                                         src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                                                        alt={item?.productTitle}
+                                                        alt={item?.serviceTitle}
                                                     />
-                                                    <Link href={`/products/${item?.slug}`} className="btn">
+                                                    <Link href={`/services/${item?.slug}`} className="btn">
                                                         Read More
                                                     </Link>
                                                 </div>
                                                 <div className="info-bx">
                                                     <h6>
-                                                        <Link href={`/products/${item?.slug}`}>
-                                                            {item?.productTitle}
+                                                        <Link href={`/services/${item?.slug}`}>
+                                                            {item?.serviceTitle}
                                                         </Link>
                                                     </h6>
                                                     <span>{trimText(getText(item?.description))}</span>
