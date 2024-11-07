@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'; // Font Awesome CSS
 import '../lib/fontawesome'; // Your Font Awesome configuration
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainHeader from "@/components/Header/main-header";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/Footer/main-footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
