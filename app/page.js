@@ -1,6 +1,6 @@
 import Slider1 from "@/components/carousal/slider";
 import ServiceSlider from "@/components/service/serviceSlider";
-import Head from "next/head";
+import CallToAction from "@/components/Home/CallToAction";
 
 
  function FeaturedProducts() {
@@ -68,6 +68,7 @@ import Head from "next/head";
 }
 
 
+ 
 
 
 export default async function Home() {
@@ -101,6 +102,7 @@ export default async function Home() {
         <Slider1></Slider1>
 
         <FeaturedProducts />
+       <CallToAction></CallToAction>
         <div className="section-area section-sp5">
           <div className="container-fluid">
            <ServiceSlider  products={productResponse.service} />              

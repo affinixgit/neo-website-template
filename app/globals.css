@@ -11545,3 +11545,106 @@ button.back-to-top:hover {
   font-weight: bold;
   color: #000;
 }
+
+.cta-section {
+  background: linear-gradient(135deg, #f5f7fa, #ffffff); /* Subtle gradient */
+  color: #333; /* Dark text for readability */
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+.cta-content {
+  flex: 1;
+  max-width: 500px; /* Keep text compact */
+  text-align: left;
+}
+
+.cta-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #222; /* Stronger contrast */
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.6; /* Easier to read */
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* Stacks buttons if needed */
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.cta-button.primary {
+  background-color: var(--primary); /* Teal for trust */
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 121, 107, 0.3);
+}
+
+.cta-button.primary:hover {
+  background-color: var(--primary); /* Darker teal */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 121, 107, 0.5);
+}
+
+.cta-button.secondary {
+  background-color: var(--secondary); /* Neutral background */
+  color: #e0f2f1;
+  border: 2px solid --secondary
+}
+
+.cta-button.secondary:hover {
+  background-color: #e0f2f1; /* Light teal hover */
+  color: var(--primary);
+}
+
+.cta-image {
+  flex: 1;
+  max-width: 400px; /* Keep the image contained */
+}
+
+.cta-image img {
+  width: 100%;
+  border-radius: 12px; /* Matches section styling */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    flex-direction: column; /* Stack text and image */
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 100%; /* Full width for smaller screens */
+  }
+
+  .cta-image {
+    max-width: 100%;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
+}
