@@ -39,14 +39,11 @@ export default async function Home() {
       <div className="page-content bg-white">
         {websiteData.slider.length > 1 ? <Slider1 data={websiteData}></Slider1> : null}
         <HomeAboutUs></HomeAboutUs>
-
         <HeroSection></HeroSection>
         <FeaturedServices services={productResponse.service} />
         <Testimonials></Testimonials>
         <HomeBlogSection posts={blogPosts} ></HomeBlogSection>
         <CallToAction></CallToAction>
-
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: websiteData.jsonLd }}
