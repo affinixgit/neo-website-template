@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import HomeAboutUs from "@/components/AboutUs/home-about-us";
 import HomeBlogSection from "@/components/Blogs/homeBlogs";
 import { blogPosts } from "@/lib/dummydata";
+import SliderItem from "@/components/carousal/sliderItem";
 
 
 export default async function Home() {
@@ -34,7 +35,14 @@ export default async function Home() {
     <>
 
       <div className="page-content bg-white">
-        {commonData.slider.length > 1 ? <Slider1 data={commonData}></Slider1> : null}
+        {commonData.slider.length > 1 ? <Slider1 data={commonData}></Slider1> : <SliderItem key={0} item={{
+          image: commonData.slider[0].sliderImage.mediaBaseUrl + '/' + commonData.slider[0].sliderImage.fileSlug,
+          alt: commonData.slider[0].websiteData.title,
+          title: commonData.slider[0].websiteData.title,
+          description: commonData.slider[0].websiteData.description,
+          catButtonTitle: commonData.slider[0].websiteData.catButtonTitle,
+          catLink: commonData.slider[0].websiteData.catLink,
+        }}></SliderItem>}
         <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
@@ -44,7 +52,7 @@ export default async function Home() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: commonData.jsonLd }}
-        /> 
+        />
       </div>
     </>
   );
