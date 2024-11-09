@@ -28,26 +28,23 @@ export default async function Home() {
   if (!response.ok) {
     throw new Error('Failed to fetch website Data');
   }
-  const websiteData = await websiteResponse.json();
-
-  console.log(websiteData)
-
+  const commonData = await websiteResponse.json();
 
   return (
     <>
 
       <div className="page-content bg-white">
-        {websiteData.slider.length > 1 ? <Slider1 data={websiteData}></Slider1> : null}
-        <HomeAboutUs></HomeAboutUs>
-        <HeroSection></HeroSection>
+        {commonData.slider.length > 1 ? <Slider1 data={commonData}></Slider1> : null}
+        <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
+        <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
-        <Testimonials></Testimonials>
+        {/* <Testimonials></Testimonials> */}
         <HomeBlogSection posts={blogPosts} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: websiteData.jsonLd }}
-        />
+          dangerouslySetInnerHTML={{ __html: commonData.jsonLd }}
+        /> 
       </div>
     </>
   );
