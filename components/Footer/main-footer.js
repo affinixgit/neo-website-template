@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Font Awesom
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer({ footerData }) {
-  const { navMenu, businessInfo, footer, footerColumn } = footerData;
+  const { businessInfo, footer, footerColumn } = footerData;
 
   // Associate items with their respective columns
   const columns = footerColumn.map(column => ({
@@ -23,8 +23,34 @@ export default function Footer({ footerData }) {
       <div className="container">
         {/* Footer Columns */}
         <div className="row">
+          {/* Contact and Business Details Column */}
+          <div className="col-md-3 mb-3">
+            <h5 className="mb-3">Contact & Business Details</h5>
+            <ul className="list-unstyled">
+              <li>
+                Name: {businessInfo.businessName}
+              </li>
+              <li>
+                Email:{' '}
+                <a href={`mailto:${businessInfo.email}`} className="text-light text-decoration-none">
+                  {businessInfo.email}
+                </a>
+              </li>
+              <li>
+                Phone:{' '}
+                <a href={`tel:${businessInfo.contactNo}`} className="text-light text-decoration-none">
+                  {businessInfo.contactNo}
+                </a>
+              </li>
+              <li>
+                Working Hours: {businessInfo.openingHours}
+              </li>
+            </ul>
+          </div>
+
+          {/* Dynamic Columns */}
           {columns.map((column) => (
-            <div key={column.id} className="col-md-4 mb-3">
+            <div key={column.id} className="col-md-3 mb-3">
               <h5 className="mb-3">{column.columnName}</h5>
               <ul className="list-unstyled">
                 {column.items.map((item) => (
