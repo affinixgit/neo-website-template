@@ -17,10 +17,12 @@ export default function FeaturedSection({ blogs }) {
         </div>
       </div>
 
-      {/* Three Blogs in Row */}
-      <div className="featured-blogs-row">
-        {featuredBlogsRow.slice(0, 3).map((blog) => (
-          <BlogCard key={blog.slug} blog={blog} />
+      {/* Three Blogs in Column */}
+      <div className="featured-blogs-column">
+        {featuredBlogsRow.map((blog, index) => (
+          <div key={blog.slug} className="featured-blog-item">
+            <BlogCard blog={blog} />
+          </div>
         ))}
       </div>
     </div>
