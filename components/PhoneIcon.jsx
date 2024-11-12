@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
-const PhoneIcon = () => {
+const PhoneIcon = ({contactNumber}) => {
     const [showNumber, setShowNumber] = useState(false);
 
     const toggleNumberVisibility = () => {
@@ -15,7 +15,7 @@ const PhoneIcon = () => {
         <div className="phone-container">
             {/* Phone Icon */}
             <button
-                className="phone-icon-btn"
+                className="rounded-btn"
                 onClick={toggleNumberVisibility}
                 aria-label="Toggle Phone Number"
             >
@@ -25,7 +25,7 @@ const PhoneIcon = () => {
             {/* Phone Number */}
             {showNumber && (
                 <span className="phone-number">
-                    <a href="tel:08048036095">08048036095</a>
+                    <a href={`tel:${contactNumber}`}>{contactNumber}</a>
                 </span>
             )}
         </div>

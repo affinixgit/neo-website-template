@@ -33,7 +33,7 @@ const MainHeader = ({headerData}) => {
                 />
               </Link>
             </div>
-            <NavMenu businessInfo={headerData.businessInfo} menuData={headerData.navMenu}></NavMenu>
+            <NavMenu subMenu ={headerData.subMenu} businessInfo={headerData.businessInfo} menuData={headerData.navMenu}></NavMenu>
           </div>
         </nav>
       </header>
