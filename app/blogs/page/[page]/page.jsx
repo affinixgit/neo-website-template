@@ -2,9 +2,11 @@ import { fetchBlogs } from '@/lib/fetchBlogs';
 import Link from 'next/link';
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import Image from 'next/image';
+import Pagination from '@/components/Pagination';
 
 export const generateMetadata = async ({ params }) => {
-  const page = parseInt(params.page, 10) || 1;
+  const param =await params;
+  const page = parseInt(param.page, 10) || 1;
 
   return {
     title: `Blog Posts - Page ${page}`,
@@ -12,7 +14,7 @@ export const generateMetadata = async ({ params }) => {
     openGraph: {
       title: `Blog Posts - Page ${page}`,
       description: `Explore our latest blog posts on page ${page}. Stay updated with our articles.`,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${page}`,
+      url: `http:localhost:3000/blogs/page/${page}`,
       type: 'website',
     },
   };
@@ -23,7 +25,7 @@ export default async function PaginatedBlogs({ params }) {
   var pageDetails = await params;
   const currentPage = pageDetails.page;
   const page = parseInt(currentPage, 10) || 1;
-  const pageSize = 6;
+  const pageSize = 12;
 
   // Fetch blogs from API
   const data = await fetchBlogs(page, pageSize);
@@ -97,32 +99,7 @@ export default async function PaginatedBlogs({ params }) {
      {/* Pagination */}
      <div className="container">
         <div className="d-flex justify-content-center mt-4 pagination-sp1">
-          {page > 1 && (
-            <Link
-              href={`/blog/${page - 1}`}
-              className="btn btn-primary mx-2"
-              style={{
-                backgroundColor: 'var(--primary)',
-                border: 'none',
-                color: '#fff',
-              }}
-            >
-              Previous
-            </Link>
-          )}
-          {page < totalPages && (
-            <Link
-              href={`/blog/${page + 1}`}
-              className="btn btn-primary mx-2"
-              style={{
-                backgroundColor: 'var(--primary)',
-                border: 'none',
-                color: '#fff',
-              }}
-            >
-              Next
-            </Link>
-          )}
+        <Pagination currentPage={currentPage} totalPages={totalPages}></Pagination>
         </div>
       </div>
     </div>
