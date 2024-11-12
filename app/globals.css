@@ -11896,3 +11896,53 @@ button.back-to-top:hover {
     cursor: default;
     pointer-events: none;
 }
+
+/* phone number */
+
+
+/* Container for alignment */
+.phone-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between the icon and phone number */
+}
+
+/* Phone icon styling */
+.phone-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; /* Ensures a square button */
+  height: 38px;
+  border: 2px solid var(--primary); /* Primary color border */
+  border-radius: 50%; /* Makes it circular */
+  background: none;
+  color: var(--primary); /* FontAwesome icon color */
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for icon */
+.phone-icon-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Phone number styling */
+.phone-number {
+  font-size: 16px;
+  color: #333;
+}
+
+.phone-number a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.phone-number a:hover {
+  text-decoration: underline;
+}
+
+
