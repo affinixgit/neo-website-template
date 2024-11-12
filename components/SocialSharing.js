@@ -38,7 +38,9 @@ const SocialShare = ({ title, description }) => {
 
     return (
         <div className="social-share">
-            <h3 className="mb-3">Share This Blog</h3>
+           <p style={{ fontSize: "1rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                      Share this post:
+                    </p>
             <div className="d-flex flex-wrap gap-2">
                 {shareLinks.map((link) => (
                     <button

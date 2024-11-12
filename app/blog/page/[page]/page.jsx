@@ -3,6 +3,21 @@ import Link from 'next/link';
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import Image from 'next/image';
 
+export const generateMetadata = async ({ params }) => {
+  const page = parseInt(params.page, 10) || 1;
+
+  return {
+    title: `Blog Posts - Page ${page}`,
+    description: `Explore our latest blog posts on page ${page}. Stay updated with our articles.`,
+    openGraph: {
+      title: `Blog Posts - Page ${page}`,
+      description: `Explore our latest blog posts on page ${page}. Stay updated with our articles.`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${page}`,
+      type: 'website',
+    },
+  };
+};
+
 
 export default async function PaginatedBlogs({ params }) {
   var pageDetails = await params;
