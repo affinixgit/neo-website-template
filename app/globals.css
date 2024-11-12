@@ -10374,17 +10374,17 @@ object-fit: cover;
   background-color: transparent;
 }
 
-.tt-slider .slick-arrow.slick-prev:before {
+/* .tt-slider .slick-arrow.slick-prev:before {
   content: "\f104";
-}
+} */
 
 .tt-slider .slick-arrow.slick-prev {
   left: 15px;
 }
 
-.tt-slider .slick-arrow.slick-next:before {
+/* .tt-slider .slick-arrow.slick-next:before {
   content: "\f105";
-}
+} */
 
 .tt-slider .slick-arrow.slick-next {
   right: 15px;
