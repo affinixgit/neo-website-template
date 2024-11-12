@@ -8377,6 +8377,8 @@ footer .pt-social-link ul li {
   padding-top: 40px;
 }
 
+
+
 .ovpr-dark:after {
   background: #ff5e14;
   background: linear-gradient(45deg, #ff5e14, #ff8e14);
@@ -11726,4 +11728,171 @@ button.back-to-top:hover {
 
 .form-support a:hover {
   text-decoration: underline;
+}
+
+/* Featured Section */
+.featured-section {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.featured-blog {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-blog img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.featured-blog-content {
+  padding: 15px;
+}
+
+.featured-blog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.featured-blog-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.featured-blog a {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.featured-blogs-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.featured-blogs-row .blog-card {
+  height: 100%;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.blog-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.blog-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.blog-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.blog-meta {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.blog-meta span {
+  margin-right: 1rem;
+}
+
+.blog-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.blog-content {
+  margin-bottom: 2rem;
+}
+
+.blog-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.btn-primary-custom {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--sc-primary);
+}
+
+.pagination-sp1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pageLink {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--primary);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.pageLink:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.pageLink.active {
+    background-color: var(--primary);
+    color: #fff;
+    cursor: default;
+    pointer-events: none;
 }

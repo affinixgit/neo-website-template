@@ -46,7 +46,7 @@ export default async function Home() {
         <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
-        {/* <Testimonials></Testimonials> */}
+        <Testimonials></Testimonials>
         <HomeBlogSection posts={blogPosts} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
