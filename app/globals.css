@@ -8377,6 +8377,8 @@ footer .pt-social-link ul li {
   padding-top: 40px;
 }
 
+
+
 .ovpr-dark:after {
   background: #ff5e14;
   background: linear-gradient(45deg, #ff5e14, #ff8e14);
@@ -11787,4 +11789,69 @@ button.back-to-top:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+}
+
+.blog-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.blog-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.blog-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.blog-meta {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.blog-meta span {
+  margin-right: 1rem;
+}
+
+.blog-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.blog-content {
+  margin-bottom: 2rem;
+}
+
+.blog-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.btn-primary-custom {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--sc-primary);
+}
+
+.pagination-sp1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
