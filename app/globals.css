@@ -11896,3 +11896,172 @@ button.back-to-top:hover {
     cursor: default;
     pointer-events: none;
 }
+
+/* phone number */
+
+
+/* Container for alignment */
+.phone-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between the icon and phone number */
+}
+
+/* Phone icon styling */
+.phone-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; /* Ensures a square button */
+  height: 38px;
+  border: 2px solid var(--primary); /* Primary color border */
+  border-radius: 50%; /* Makes it circular */
+  background: none;
+  color: var(--primary); /* FontAwesome icon color */
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for icon */
+.phone-icon-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Phone number styling */
+.phone-number {
+  font-size: 16px;
+  color: #333;
+}
+
+.phone-number a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.phone-number a:hover {
+  text-decoration: underline;
+}
+
+
+/* booking nav bar button */
+
+/* Navbar */
+/* .navbar {
+  
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+} */
+
+
+
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.contact-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff !important;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #0056b3;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+.rounded-btn {
+  display: inline-block; /* Ensures proper alignment */
+  margin: 0 auto; /* Centers the button in a flex or block container */
+  background-color: transparent; /* Transparent background for focus on border */
+  color: var(--primary); /* Primary color for text */
+  border: 1px solid var(--primary); /* Primary color border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Adds margin inside the text */
+  font-size: 13px !important;
+  text-align: center; /* Centers the text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth hover effects */
+}
+
+.rounded-btn:hover {
+  background-color: var(--primary); /* Primary color on hover */
+  color: #fff; /* White text on hover */
+}
+
+

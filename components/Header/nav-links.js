@@ -1,20 +1,21 @@
-// components/MainHeader.js
 "use client";
 
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
 import { useState, useEffect } from 'react'; // Adjust the import path as necessary
+import PhoneIcon from '../PhoneIcon';
+import ContactModal from '../ContactModal';
 
-// data/menuData.js
-
-
-
-
-const NavMenu = ({menuData}) => {
-
+const NavMenu = ({ menuData, businessInfo, subMenu }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const pathname = usePathname();
+
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+    const toggleContactModal = () => {
+        setIsContactModalOpen(!isContactModalOpen);
+    };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -31,7 +32,6 @@ const NavMenu = ({menuData}) => {
 
     return (
         <>
-
             <button
                 className={`mobile-toggle ${isMenuOpen ? 'active' : ''}`}
                 onClick={toggleMenu}
@@ -45,7 +45,7 @@ const NavMenu = ({menuData}) => {
                 <ul className="nav-list">
                     {menuData.map((item, index) => (
                         <li key={index} className={pathname === item.path ? 'active' : ''}>
-                            {item.dropdown.length!=0 ? (
+                            {item.dropdown.length !== 0 ? (
                                 <div className={`nav-item-dropdown ${activeDropdown === item.name ? 'active' : ''}`}>
                                     <button
                                         className="dropdown-toggle"
@@ -66,9 +66,27 @@ const NavMenu = ({menuData}) => {
                             )}
                         </li>
                     ))}
-                </ul>
-            </div>
+                    {subMenu.showBookCallButton && (
+                        <li className="nav-item">
+                            <button className=" rounded-btn" onClick={toggleContactModal}>
+                                {subMenu.bookCallTitle}
+                            </button>
+                        </li>
+                    )}
+                    {subMenu.showContactButton && (
+                        <li className={'nav-item'}>
+                            <PhoneIcon contactNumber={businessInfo.contactNo} ></PhoneIcon>
+                        </li>
+                    )}
 
+                </ul>
+                {/* Contact Modal */}
+                <ContactModal
+                    isOpen={isContactModalOpen}
+                    onClose={() => setIsContactModalOpen(false)}
+                />
+
+            </div>
         </>
     );
 };

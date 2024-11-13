@@ -21,16 +21,16 @@ const HomeBlogSection = ({ posts }) => {
                 <div className="card shadow-sm h-100">
                   {/* Blog Post Image */}
                   <img
-                    src={post.image || "https://via.placeholder.com/400x250"}
-                    alt={post.title}
+                     src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+                     alt={post.altText || "Default Blog Image"}
                     className="card-img-top"
                   />
                   <div className="card-body d-flex flex-column">
                     {/* Blog Title */}
-                    <h5 className="card-title">{post.title}</h5>
+                    <h5 className="card-title">{post.blogTitle}</h5>
                     {/* Blog Excerpt */}
                     <p className="card-text text-muted">
-                      {post.excerpt || "An insightful article on the latest trends."}
+                      {post.description || "An insightful article on the latest trends."}
                     </p>
                     {/* Blog Tags */}
                     <div className="mt-auto">
@@ -39,14 +39,14 @@ const HomeBlogSection = ({ posts }) => {
                           key={idx}
                           className="badge bg-secondary me-1"
                         >
-                          {tag}
+                          {tag.tagName}
                         </span>
                       ))}
                     </div>
                   </div>
                   {/* CTA Link */}
                   <div className="card-footer text-center">
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={`/blogs/${post.slug}`}>
                      Read More
                     </Link>
                   </div>
