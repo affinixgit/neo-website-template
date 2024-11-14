@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
-const SocialShare = ({ title, description }) => {
+const SocialShare = ({ title, description , socialCta }) => {
     const router = useRouter();
     const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`; // Construct the full URL dynamically
 
@@ -39,7 +39,7 @@ const SocialShare = ({ title, description }) => {
     return (
         <div className="social-share">
            <p style={{ fontSize: "1rem", fontWeight: "bold", marginBottom: "1rem" }}>
-                      Share this post:
+                      {socialCta}
                     </p>
             <div className="d-flex flex-wrap gap-2">
                 {shareLinks.map((link) => (

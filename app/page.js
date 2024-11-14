@@ -6,9 +6,8 @@ import HeroSection from "@/components/Hero/heroSection";
 import Testimonials from "@/components/Testimonials";
 import HomeAboutUs from "@/components/AboutUs/home-about-us";
 import HomeBlogSection from "@/components/Blogs/homeBlogs";
-import { blogPosts } from "@/lib/dummydata";
 import SliderItem from "@/components/carousal/sliderItem";
-import { fetchFeatureBlogs } from "@/lib/fetchBlogs";
+// import { fetchFeatureBlogs } from "@/lib/fetchBlogs";
 
 
 export default async function Home() {
@@ -32,7 +31,7 @@ export default async function Home() {
   }
   const commonData = await websiteResponse.json();
 
-  const featuredBlogsResponse = await fetchFeatureBlogs();
+  // const featuredBlogsResponse = await fetchFeatureBlogs();
 
 
 
@@ -52,7 +51,7 @@ export default async function Home() {
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
         <Testimonials></Testimonials>
-        <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection>
+        {/* <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection> */}
         <CallToAction></CallToAction>
         <script
           type="application/ld+json"

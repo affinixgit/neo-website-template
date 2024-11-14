@@ -62,6 +62,7 @@ const BlogDescription = ({ blogItem }) => {
                     <SocialShare
                       title={blogItem.blogTitle}
                       description={blogItem.description}
+                      socialCta={"Share this post:"}
                     />
                   
                 </article>

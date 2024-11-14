@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import SocialShare from "@/components/SocialSharing";
+import Link from "next/link";
+import { fetchBusinessContact } from "@/lib/contact";
 
-export default function DemoPage() {
+export  default  function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
     contact: "",
@@ -11,11 +14,7 @@ export default function DemoPage() {
     notes: "",
   });
 
-  const services = [
-    { id: 1, serviceTitle: "Service One" },
-    { id: 2, serviceTitle: "Service Two" },
-    { id: 3, serviceTitle: "Service Three" },
-  ];
+  const businessInfo =  fetchBusinessContact();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,11 +23,17 @@ export default function DemoPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Front-end validation for required fields
+    if (!formData.firstName.trim() || !formData.contact.trim()) {
+      alert("Please fill out both the Name and Contact fields.");
+      return;
+    }
+  
     const myHeaders = new Headers();
-    myHeaders.append("x-api-key", "358a04e9-7919-494b-b191-668c0ff3fb56");
+    myHeaders.append("x-api-key", process.env.NEXT_PUBLIC_API_KEY);
     myHeaders.append("Accept", "text/plain");
-
+  
     const raw = JSON.stringify({
       fullName: formData.firstName,
       subject: formData.selectedService || "General Inquiry",
@@ -36,14 +41,14 @@ export default function DemoPage() {
       email: formData.email,
       leadMessage: formData.notes || "No additional notes provided.",
     });
-
+  
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
+  
     try {
       const response = await fetch("http://localhost:3006/api/v1/NeoLeadAdmin", requestOptions);
       const result = await response.text();
@@ -54,29 +59,66 @@ export default function DemoPage() {
       alert("Failed to submit the form. Please try again.");
     }
   };
-
+  
   return (
     <main className="demo-page">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="breadcrumb-row">
+          <div className="container">
+            <ul className="list-inline">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>blogs</li>
+            </ul>
+          </div>
+        </div>
+        <div className="row align-items-center section-area section-sp5">
           {/* Left Column: Description */}
           <div className="col-md-6">
-            <h1 className="demo-title">The #1 Digital SEO Platform</h1>
-            <p className="demo-subtitle">
-              Uncover real-time insights that enable you to unlock more business growth today.
-            </p>
-            <ul className="demo-list">
-              <li>Analyze market and consumer trends to stay on top of opportunities and threats</li>
-              <li>Benchmark performance against your competition to find new growth opportunities</li>
-              <li>Understand audience and search behavior to capture more consumer demand</li>
-            </ul>
+
+            <div className="business-contact">
+              <h4 className="demo-title">{businessInfo.businessName}</h4>
+              <p className="demo-description">{businessInfo.businessDescription}</p>
+              <p>
+                <strong>Address:</strong> {businessInfo.address ? `${businessInfo.address.street}, ${businessInfo.address.city}, ${businessInfo.address.state} ${businessInfo.address.postalCode}, ${businessInfo.address.country}` : 'Not available'}
+              </p>
+              <p>
+                <strong>Phone:</strong> <a href={`tel:${businessInfo.contactNo}`} style={{ color: 'var(--primary)' }}> {businessInfo.contactNo}</a>
+              </p>
+
+              <SocialShare
+                title={businessInfo.businessName}
+                description={businessInfo.businessDescription}
+                socialCta={" "}
+              />
+              <br></br>
+              <div className="d-flex justify-content-start align-items-center gap-3">
+                <Link
+                  href={`https://www.google.com/maps?q=${businessInfo.geoLocationLat},${businessInfo.geoLocationLong}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="redirect-link"
+                >
+                  View on Google Maps
+                </Link>
+                <Link
+                  href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${businessInfo.geoLocationLat},${businessInfo.geoLocationLong}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="redirect-link"
+                >
+                  Get Directions
+                </Link>
+              </div>
+
+            </div>
           </div>
 
           {/* Right Column: Form */}
           <div className="col-md-6">
             <div className="demo-form-container">
               <h2 className="form-title text-center">Talk to us</h2>
-              <p className="form-subtitle text-center">Unlock Your Business Growth</p>
               <form className="demo-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="firstName">Name</label>
@@ -117,7 +159,7 @@ export default function DemoPage() {
                     className="form-control"
                   />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="selectedService">Select a Service</label>
                   <select
                     id="selectedService"
@@ -136,7 +178,7 @@ export default function DemoPage() {
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
                 <div className="form-group">
                   <label htmlFor="notes">Notes</label>
                   <textarea
@@ -152,14 +194,24 @@ export default function DemoPage() {
                 <button type="submit" className="btn btn-primary w-100">
                   Talk to us
                 </button>
-                <p className="form-support">
-                  Looking for support?{" "}
-                  <a href="https://affinixdigital.com/" target="_blank" rel="noreferrer">
-                    Click here
-                  </a>
-                </p>
               </form>
             </div>
+          </div>
+        </div>
+
+        {/* Google Map */}
+        <div className="row mt-5">
+          <div className="col-12">
+            <h3>Find Us Here</h3>
+            <iframe
+              src={`https://www.google.com/maps?q=${businessInfo.geoLocationLat},${businessInfo.geoLocationLong}&z=15&output=embed`}
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              title="Google Map"
+            ></iframe>
           </div>
         </div>
       </div>
