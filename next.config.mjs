@@ -6,7 +6,8 @@ const nextConfig = {
       "placeholder.com",
       "bucket-chat-classhub.s3.ap-south-1.amazonaws.com",
       "tbs-website-live.s3.ap-south-1.amazonaws.com",
-      "static-us-west-2.similarcdn.com"
+      "static-us-west-2.similarcdn.com",
+      
     ],
   },
   async rewrites() {

@@ -30,8 +30,9 @@ export default async function Home() {
     throw new Error('Failed to fetch website Data');
   }
   const commonData = await websiteResponse.json();
+  sessionStorage.setItem('nbi', JSON.stringify(commonData.businessInfo));
 
-  // const featuredBlogsResponse = await fetchFeatureBlogs();
+  const featuredBlogsResponse = await fetchFeatureBlogs();
 
 
 
@@ -51,7 +52,7 @@ export default async function Home() {
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
         <Testimonials></Testimonials>
-        {/* <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection> */}
+        <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
           type="application/ld+json"

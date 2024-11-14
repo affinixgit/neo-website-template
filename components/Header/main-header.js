@@ -2,12 +2,6 @@
 import Link from "next/link";
 import NavMenu from "./nav-links";
 
-
-// data/menuData.js
-
-
-
-
 const MainHeader = ({headerData}) => {
 
 
