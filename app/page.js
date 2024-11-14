@@ -18,14 +18,14 @@ export default async function Home() {
     redirect: "follow"
   };
 
-  const response = await fetch("http://localhost:3006/api/v1/service?pageNumber=1&pageSize=5", requestOptions);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/service?pageNumber=1&pageSize=5`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch services');
   }
 
   const productResponse = await response.json();
 
-  const websiteResponse = await fetch("http://localhost:3006/api/v1/website", requestOptions);
+  const websiteResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/website`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch website Data');
   }

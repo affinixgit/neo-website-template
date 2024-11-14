@@ -31,7 +31,7 @@ const ContactModal = ({ isOpen, onClose }) => {
 
         try {
             const response = await fetch(
-                "http://localhost:3006/api/v1/NeoLeadAdmin",
+                process.env.NEXT_PUBLIC_API_URL,
                 requestOptions
             );
             const result = await response.text();

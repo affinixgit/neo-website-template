@@ -12,7 +12,7 @@ export async function generateMetadata({params}) {
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/Service/${productSlug}`, requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/Service/${productSlug}`, requestOptions);
     if (!response.ok) {
         throw new Error(`Failed to fetch product ${productSlug}`);
     }
@@ -52,7 +52,7 @@ export default async function ServiceDetailPage({ params }) {
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/Service/${productSlug}`, requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/Service/${productSlug}`, requestOptions);
     if (!response.ok) {
         throw new Error(`Failed to fetch product ${productSlug}`);
     }

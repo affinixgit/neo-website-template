@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
-import { trimText , getText } from "@/lib/common";
+import { trimText, getText } from "@/lib/common";
 
 
 const requestOptions = {
@@ -10,7 +10,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-const response = await fetch("http://localhost:3006/api/v1/service?pageNumber=1&pageSize=5", requestOptions);
+const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/service?pageNumber=1&pageSize=5`, requestOptions);
 
 if (!response.ok) {
   throw new Error('Failed to fetch products');
@@ -18,8 +18,8 @@ if (!response.ok) {
 
 const productResponse = await response.json();
 
-async function ServiceList({products}) {
- 
+async function ServiceList({ products }) {
+
   return (
     <>
       {products.map((item, idx) =>
@@ -107,8 +107,8 @@ const Services = () => {
       </div>
 
 
-  {/* JSON-LD Script Tag */}
-  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      {/* JSON-LD Script Tag */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
     </div>
   );

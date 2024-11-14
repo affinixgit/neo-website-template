@@ -6,7 +6,7 @@ import BlogDescription from "@/components/Blogs/BlogDetails";
 
 export const generateMetadata = async ({ params }) => {
     var param = await params;
-    const response = await fetch(`http://localhost:3006/api/v1/blogs/metadata/${param.slug}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blogs/metadata/${param.slug}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ async function fetchBlogDetails(slug) {
         redirect: 'follow',
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/blogs/${slug}`, requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${slug}`, requestOptions);
 
     if (!response.ok) {
         throw new Error('Failed to fetch blog details');
