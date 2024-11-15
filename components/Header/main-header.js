@@ -1,11 +1,10 @@
 // components/MainHeader.js
 import Link from "next/link";
 import NavMenu from "./nav-links";
-
+import Image  from "next/image";
 const MainHeader = ({headerData}) => {
 
-
-
+const logo =`${headerData?.businessInfo.logo.mediaBaseUrl}/${headerData?.businessInfo.logo.fileSlug}`
   return (
     <>
       {headerData.banner.bannerEnabled && (
@@ -19,8 +18,8 @@ const MainHeader = ({headerData}) => {
           <div className="container">
             <div className="logo">
               <Link href="/">
-                <img
-                  src="https://classhub-live-data.s3.ap-south-1.amazonaws.com/16dd3244-fe27-4556-baad-ccc28295f9c4/cms/instituteinfo/4bf686fd-7ef8-4bda-8536-d0db099acc32.jpg"
+                <Image
+                  src={logo}
                   alt={headerData.businessInfo.altText}
                   width={150}
                   height={50}

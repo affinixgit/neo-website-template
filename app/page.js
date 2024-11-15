@@ -7,33 +7,44 @@ import Testimonials from "@/components/Testimonials";
 import HomeAboutUs from "@/components/AboutUs/home-about-us";
 import HomeBlogSection from "@/components/Blogs/homeBlogs";
 import SliderItem from "@/components/carousal/sliderItem";
-// import { fetchFeatureBlogs } from "@/lib/fetchBlogs";
 
+import config from "@/config/config";
 
 export default async function Home() {
 
 
+  const myHeaders = new Headers();
+  myHeaders.append("x-api-key", config.subscriptionId);
+  
   const requestOptions = {
     method: "GET",
+    headers: myHeaders,
     redirect: "follow"
   };
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/service?pageNumber=1&pageSize=5`, requestOptions);
+  const response = await fetch(`${config.apiBaseUrl}/service?pageNumber=1&pageSize=5`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch services');
   }
 
   const productResponse = await response.json();
 
-  const websiteResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/website`, requestOptions);
+  const websiteResponse = await fetch(`${config.apiBaseUrl}/website`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch website Data');
   }
   const commonData = await websiteResponse.json();
-  sessionStorage.setItem('nbi', JSON.stringify(commonData.businessInfo));
 
-  const featuredBlogsResponse = await fetchFeatureBlogs();
 
+  const featuredBLogResponse = await fetch(
+    `${config.apiBaseUrl}/blogs/featured?pageNumber=1&pageSize=6`,
+    requestOptions
+  );
+  if (!featuredBLogResponse.ok) {
+    throw new Error('Failed to fetch website Data');
+  }
+
+  const featuredData = await featuredBLogResponse.json();
 
 
   return (
@@ -52,7 +63,7 @@ export default async function Home() {
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
         <Testimonials></Testimonials>
-        <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection>
+        <HomeBlogSection posts={featuredData.blogs} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
           type="application/ld+json"

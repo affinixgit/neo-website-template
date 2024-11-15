@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainHeader from "@/components/Header/main-header";
 import Footer from "@/components/Footer/main-footer";
 import WhatsApp from "@/components/WhatsApp/WhatsApp";
+import config from "@/config/config";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,12 +19,16 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const myHeaders = new Headers();
+myHeaders.append("x-api-key", config.subscriptionId);
+
 const requestOptions = {
   method: "GET",
-  redirect: "follow",
+  headers: myHeaders,
+  redirect: "follow"
 };
 
-const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/website/nav`, requestOptions);
+const response = await fetch(`${config.apiBaseUrl}/website/nav`, requestOptions);
 
 if (!response.ok) {
   throw new Error("Failed to fetch services");
