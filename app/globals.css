@@ -12142,3 +12142,28 @@ button.back-to-top:hover {
 .redirect-link {
   color: var(--primary);
 }
+
+.testimonials-section {
+  background-color: #f8f9fa; /* Light gray background */
+}
+
+.testimonials-section h2 {
+  font-size: 2.5rem;
+  color: #343a40; /* Dark text */
+}
+
+.testimonials-section .carousel-item {
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.testimonials-section .rounded-circle {
+  border: 3px solid #e9ecef;
+}
+
+.testimonials-section .carousel-control-prev-icon,
+.testimonials-section .carousel-control-next-icon {
+  background-color: #343a40; /* Dark color for controls */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}

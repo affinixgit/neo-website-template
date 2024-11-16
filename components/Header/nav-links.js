@@ -10,7 +10,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const pathname = usePathname();
-    sessionStorage.setItem('nbi', JSON.stringify(businessInfo));
+   
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     const toggleContactModal = () => {

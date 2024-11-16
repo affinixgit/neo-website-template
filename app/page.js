@@ -47,6 +47,16 @@ export default async function Home() {
   const featuredData = await featuredBLogResponse.json();
 
 
+  const tResponse = await fetch(
+    `${config.apiBaseUrl}/testimonial?pageNumber=1&pageSize=6`,
+    requestOptions
+  );
+  if (!tResponse.ok) {
+    throw new Error('Failed to fetch website Data');
+  }
+
+  const testimonialData = await tResponse.json();
+
   return (
     <>
 
@@ -62,7 +72,7 @@ export default async function Home() {
         <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
-        <Testimonials></Testimonials>
+        <Testimonials data={testimonialData.testimonials} ></Testimonials>
         <HomeBlogSection posts={featuredData.blogs} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
