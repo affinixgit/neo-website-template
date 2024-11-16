@@ -7,6 +7,7 @@ import MainHeader from "@/components/Header/main-header";
 import Footer from "@/components/Footer/main-footer";
 import WhatsApp from "@/components/WhatsApp/WhatsApp";
 import config from "@/config/config";
+import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,6 +45,9 @@ export const metadata = {
   alternates: {
     canonical:headerData.businessInfo.websiteUrl ,
 },
+icons: {
+  icon: 'https://affinix-website-dev.s3.ap-south-1.amazonaws.com/a990fb30-7621-4cea-926a-b5ad5d6ea5ef/website/business/neo-main-favicon',
+},
 };
 
 
@@ -60,6 +64,7 @@ export default function RootLayout({ children }) {
         <MainHeader headerData={headerData} />
         <main>{children}</main>
         <WhatsApp />
+        <CookieConsent></CookieConsent>
         <Footer footerData={headerData} /> {/* Footer with data */}
       </body>
     </html>
