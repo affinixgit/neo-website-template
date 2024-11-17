@@ -17,7 +17,7 @@ export default async function CategoriesPage() {
         redirect: "follow"
     };
 
-    const response = await fetch("http://localhost:3006/api/v1/categories?pageNumber=1&pageSize=5", requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories?pageNumber=1&pageSize=5`, requestOptions);
     if (!response.ok) {
         throw new Error('Failed to fetch categories');
     }

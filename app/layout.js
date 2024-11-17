@@ -5,6 +5,9 @@ import '../lib/fontawesome'; // Your Font Awesome configuration
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainHeader from "@/components/Header/main-header";
 import Footer from "@/components/Footer/main-footer";
+import WhatsApp from "@/components/WhatsApp/WhatsApp";
+import config from "@/config/config";
+import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,12 +20,16 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const myHeaders = new Headers();
+myHeaders.append("x-api-key", config.subscriptionId);
+
 const requestOptions = {
   method: "GET",
-  redirect: "follow",
+  headers: myHeaders,
+  redirect: "follow"
 };
 
-const response = await fetch("http://localhost:3006/api/v1/website/nav", requestOptions);
+const response = await fetch(`${config.apiBaseUrl}/website/nav`, requestOptions);
 
 if (!response.ok) {
   throw new Error("Failed to fetch services");
@@ -37,6 +44,9 @@ export const metadata = {
   ogTitle: headerData.businessInfo.businessName,
   alternates: {
     canonical:headerData.businessInfo.websiteUrl ,
+},
+icons: {
+  icon: 'https://affinix-website-dev.s3.ap-south-1.amazonaws.com/a990fb30-7621-4cea-926a-b5ad5d6ea5ef/website/business/neo-main-favicon',
 },
 };
 
@@ -53,6 +63,8 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MainHeader headerData={headerData} />
         <main>{children}</main>
+        <WhatsApp />
+        <CookieConsent></CookieConsent>
         <Footer footerData={headerData} /> {/* Footer with data */}
       </body>
     </html>

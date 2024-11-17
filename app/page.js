@@ -7,33 +7,55 @@ import Testimonials from "@/components/Testimonials";
 import HomeAboutUs from "@/components/AboutUs/home-about-us";
 import HomeBlogSection from "@/components/Blogs/homeBlogs";
 import SliderItem from "@/components/carousal/sliderItem";
-// import { fetchFeatureBlogs } from "@/lib/fetchBlogs";
 
+import config from "@/config/config";
 
 export default async function Home() {
 
 
+  const myHeaders = new Headers();
+  myHeaders.append("x-api-key", config.subscriptionId);
+  
   const requestOptions = {
     method: "GET",
+    headers: myHeaders,
     redirect: "follow"
   };
 
-  const response = await fetch("http://localhost:3006/api/v1/service?pageNumber=1&pageSize=5", requestOptions);
+  const response = await fetch(`${config.apiBaseUrl}/service?pageNumber=1&pageSize=5`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch services');
   }
 
   const productResponse = await response.json();
 
-  const websiteResponse = await fetch("http://localhost:3006/api/v1/website", requestOptions);
+  const websiteResponse = await fetch(`${config.apiBaseUrl}/website`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch website Data');
   }
   const commonData = await websiteResponse.json();
 
-  // const featuredBlogsResponse = await fetchFeatureBlogs();
+
+  const featuredBLogResponse = await fetch(
+    `${config.apiBaseUrl}/blogs/featured?pageNumber=1&pageSize=6`,
+    requestOptions
+  );
+  if (!featuredBLogResponse.ok) {
+    throw new Error('Failed to fetch website Data');
+  }
+
+  const featuredData = await featuredBLogResponse.json();
 
 
+  const tResponse = await fetch(
+    `${config.apiBaseUrl}/testimonial?pageNumber=1&pageSize=6`,
+    requestOptions
+  );
+  if (!tResponse.ok) {
+    throw new Error('Failed to fetch website Data');
+  }
+
+  const testimonialData = await tResponse.json();
 
   return (
     <>
@@ -50,8 +72,8 @@ export default async function Home() {
         <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
         <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}></HeroSection>
         <FeaturedServices services={productResponse.service} />
-        <Testimonials></Testimonials>
-        {/* <HomeBlogSection posts={featuredBlogsResponse.blogs} ></HomeBlogSection> */}
+        <Testimonials data={testimonialData.testimonials} ></Testimonials>
+        <HomeBlogSection posts={featuredData.blogs} ></HomeBlogSection>
         <CallToAction></CallToAction>
         <script
           type="application/ld+json"

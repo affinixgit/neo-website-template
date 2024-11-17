@@ -22,7 +22,7 @@ export default async function ProductCategoriesPage({ params }) {
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/categories/services/${slug}`, requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/services/${slug}`, requestOptions);
     if (!response.ok) {
         if (response.status === 404) {
             notFound();

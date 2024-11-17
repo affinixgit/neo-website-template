@@ -1,16 +1,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
-import { trimText , getText } from "@/lib/common";
+import { trimText, getText } from "@/lib/common";
+import config from "@/config/config";
 
+const myHeaders = new Headers();
+myHeaders.append("x-api-key", config.subscriptionId);
 
 const requestOptions = {
   method: "GET",
+  headers: myHeaders,
   redirect: "follow"
 };
 
-const response = await fetch("http://localhost:3006/api/v1/service?pageNumber=1&pageSize=5", requestOptions);
+const response = await fetch(`${config.apiBaseUrl}/service?pageNumber=1&pageSize=5`, requestOptions);
+
+
 
 if (!response.ok) {
   throw new Error('Failed to fetch products');
@@ -18,8 +23,8 @@ if (!response.ok) {
 
 const productResponse = await response.json();
 
-async function ServiceList({products}) {
- 
+async function ServiceList({ products }) {
+
   return (
     <>
       {products.map((item, idx) =>
@@ -33,10 +38,7 @@ async function ServiceList({products}) {
                 src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
                 alt={`Image of ${item?.altText}`}
                 title={`Image of ${item?.productTitle}`}
-              />
-              <Link href={`/services/${item?.slug}`} className="btn">
-                Read More
-              </Link>
+              />            
             </div>
             <div className="info-bx">
               <h6>
@@ -61,7 +63,7 @@ const Services = () => {
     <div className="page-content">
       <div
         className="page-banner ovbl-dark"
-        style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+        // style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
       >
         <div className="container">
           <div className="page-banner-entry">
@@ -107,8 +109,8 @@ const Services = () => {
       </div>
 
 
-  {/* JSON-LD Script Tag */}
-  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      {/* JSON-LD Script Tag */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
     </div>
   );

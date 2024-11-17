@@ -50,7 +50,7 @@ export  default  function ContactPage() {
     };
   
     try {
-      const response = await fetch("http://localhost:3006/api/v1/NeoLeadAdmin", requestOptions);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/NeoLeadAdmin`, requestOptions);
       const result = await response.text();
       console.log("Submission Successful:", result);
       alert("Form submitted successfully!");

@@ -9,7 +9,7 @@ export default async function ProductDetailPage({ params }) {
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/products/${productSlug}`, requestOptions);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products/${productSlug}`, requestOptions);
 
     if (!response.ok) {
         throw new Error(`Failed to fetch product ${productSlug}`);

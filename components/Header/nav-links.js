@@ -10,7 +10,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const pathname = usePathname();
-
+   
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     const toggleContactModal = () => {
@@ -19,10 +19,6 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-    };
-
-    const toggleDropdown = (dropdownName) => {
-        setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
     };
 
     useEffect(() => {
@@ -44,13 +40,15 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
                 <ul className="nav-list">
                     {menuData.map((item, index) => (
-                        <li key={index} className={pathname === item.path ? 'active' : ''}>
+                        <li
+                            key={index}
+                            className={pathname === item.path ? 'active' : ''}
+                            onMouseEnter={() => setActiveDropdown(item.name)}
+                            onMouseLeave={() => setActiveDropdown(null)}
+                        >
                             {item.dropdown.length !== 0 ? (
                                 <div className={`nav-item-dropdown ${activeDropdown === item.name ? 'active' : ''}`}>
-                                    <button
-                                        className="dropdown-toggle"
-                                        onClick={() => toggleDropdown(item.name)}
-                                    >
+                                    <button className="dropdown-toggle">
                                         {item.name}
                                     </button>
                                     <ul className={`dropdown-menu ${activeDropdown === item.name ? 'show' : ''}`}>
@@ -68,24 +66,22 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                     ))}
                     {subMenu.showBookCallButton && (
                         <li className="nav-item">
-                            <button className=" rounded-btn" onClick={toggleContactModal}>
+                            <button className="rounded-btn" onClick={toggleContactModal}>
                                 {subMenu.bookCallTitle}
                             </button>
                         </li>
                     )}
                     {subMenu.showContactButton && (
                         <li className={'nav-item'}>
-                            <PhoneIcon contactNumber={businessInfo.contactNo} ></PhoneIcon>
+                            <PhoneIcon contactNumber={businessInfo.contactNo}></PhoneIcon>
                         </li>
                     )}
-
                 </ul>
                 {/* Contact Modal */}
                 <ContactModal
                     isOpen={isContactModalOpen}
                     onClose={() => setIsContactModalOpen(false)}
                 />
-
             </div>
         </>
     );

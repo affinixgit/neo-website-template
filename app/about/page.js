@@ -7,7 +7,7 @@ export default async function About() {
     redirect: "follow"
   };
 
-  const response = await fetch("http://localhost:3006/api/v1/about", requestOptions);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/about`, requestOptions);
   if (!response.ok) {
     throw new Error('Failed to fetch services');
   }

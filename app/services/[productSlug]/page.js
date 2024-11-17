@@ -1,63 +1,43 @@
 import Link from 'next/link';
 import ServiceDescription from '@/components/service/serviceDescription';
-
+import config from '@/config/config';
 
 
 export async function generateMetadata({params}) {
   
-
     const { productSlug } = await params;
     const requestOptions = {
         method: "GET",
         redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/Service/${productSlug}`, requestOptions);
+    const response = await fetch(`${config.apiBaseUrl}/Service/${productSlug}`, requestOptions);
     if (!response.ok) {
         throw new Error(`Failed to fetch product ${productSlug}`);
     }
     
     const serviceItem = await response.json();
+   return serviceItem.metadata;
    
-   // Extract metadata from the serviceItem
-   return {
-    title: serviceItem.metadata.title,
-    description: serviceItem.metadata.description,
-    keywords: serviceItem.metadata.keywords,
-    alternates: {
-        canonical: serviceItem.metadata.canonical,
-    },
-    openGraph: {
-        title: serviceItem.metadata.openGraph.title,
-        description: serviceItem.metadata.openGraph.description,
-        url: serviceItem.metadata.openGraph.url,
-        images: serviceItem.metadata.openGraph.images.map(image => ({
-            url: image.url,
-            alt: image.alt,
-        })),
-    },
-    twitter: {
-        card: serviceItem.metadata.twitterCard.card,
-        title: serviceItem.metadata.twitterCard.title,
-        description: serviceItem.metadata.twitterCard.description,
-        images: serviceItem.metadata.twitterCard.images,
-    },
-};
 }
 
 export default async function ServiceDetailPage({ params }) {
     const { productSlug } = await params;
+    const myHeaders = new Headers();
+    myHeaders.append("x-api-key", config.subscriptionId);
+    
     const requestOptions = {
-        method: "GET",
-        redirect: "follow"
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
     };
 
-    const response = await fetch(`http://localhost:3006/api/v1/Service/${productSlug}`, requestOptions);
+    const response = await fetch(`${config.apiBaseUrl}/Service/${productSlug}`, requestOptions);
     if (!response.ok) {
         throw new Error(`Failed to fetch product ${productSlug}`);
     }
     const serviceItem = await response.json();
-    const bannerImg = "/images/banner/banner2.jpg";
+    // const bannerImg = "/images/banner/banner2.jpg";
     const jsonLd = serviceItem.jsonLd ? serviceItem.jsonLd : '{}'; // Safeguard against undefined
 
 
@@ -67,7 +47,7 @@ export default async function ServiceDetailPage({ params }) {
                 {/* Banner Section */}
                 <div
                     className="page-banner ovbl-dark"
-                    style={{ backgroundImage: `url(${bannerImg})` }}
+                    // style={{ backgroundImage: `url(${bannerImg})` }}
                 >
                     <div className="container">
                         <div className="page-banner-entry">
