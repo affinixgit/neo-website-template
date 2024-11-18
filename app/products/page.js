@@ -3,14 +3,21 @@ import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import { trimText , getText } from "@/lib/common";
+import config from "@/config/config";
 
+const myHeaders = new Headers();
+myHeaders.append("x-api-key", config.subscriptionId);
 
 const requestOptions = {
   method: "GET",
-  redirect: "follow"
+  redirect: "follow",
+  headers: myHeaders,
 };
 
-const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?pageNumber=1&pageSize=5`, requestOptions);
+const response = await fetch(
+  `${config.apiBaseUrl}/products?pageNumber=1&pageSize=5`,
+  requestOptions
+);
 
 if (!response.ok) {
   throw new Error('Failed to fetch products');
