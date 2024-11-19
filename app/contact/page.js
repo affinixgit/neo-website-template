@@ -112,7 +112,7 @@ export default function ContactPage() {
             <div className="business-contact">
               <h4 className="demo-title">{businessInfo.businessName}</h4>
               <div className="demo-description">
-                {HTMLReactParser(businessInfo.businessDescription)}
+                {businessInfo.businessDescription ? HTMLReactParser(businessInfo.businessDescription) : "No description available"}
               </div>
               <p>
                 <strong>Address:</strong>{" "}
