@@ -28,7 +28,12 @@ const WhatsApp = () => {
           onClick={togglePopup}
         />
       </div>
-      {showPopup && <Popup togglePopup={togglePopup} />}
+
+      <Popup
+        showPopup={showPopup}
+        togglePopup={togglePopup}
+        setShowPopup={setShowPopup}
+      />
       <style jsx>{`
         .whatsapp-container {
           position: fixed;
