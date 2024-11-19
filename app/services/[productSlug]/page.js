@@ -51,7 +51,7 @@ export default async function ServiceDetailPage({ params }) {
     <>
       <div className="page-content">
         {/* Banner Section */}
-        <div
+        {/* <div
           className="page-banner ovbl-dark"
           // style={{ backgroundImage: `url(${bannerImg})` }}
         >
@@ -60,10 +60,10 @@ export default async function ServiceDetailPage({ params }) {
               <h1 className="text-white">{serviceItem.serviceTitle}</h1>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Breadcrumbs */}
-        <div className="breadcrumb-row">
+        {/* <div className="breadcrumb-row">
           <div className="container">
             <ul className="list-inline">
               <li>
@@ -75,7 +75,7 @@ export default async function ServiceDetailPage({ params }) {
               <li>{serviceItem.serviceTitle}</li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         <ServiceDescription serviceItem={serviceItem}></ServiceDescription>
 
@@ -101,6 +101,9 @@ export default async function ServiceDetailPage({ params }) {
             </div>
           </div>
         </div>
+
+        <br />
+        <br />
 
         {/* JSON-LD Script Tag */}
         <script

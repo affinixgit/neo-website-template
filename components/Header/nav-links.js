@@ -18,7 +18,9 @@ import {
   faExpandArrowsAlt,
   faHouse,
   faPhone,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { faServicestack, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const NavMenu = ({ menuData, businessInfo, subMenu }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -99,10 +101,26 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
           )}
         </ul>
         {/* Contact Modal */}
-        <ContactModal
-          isOpen={isContactModalOpen}
-          onClose={() => setIsContactModalOpen(false)}
-        />
+      </div>
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+      <div className={`mobile-nav-menu`}>
+        <ul className="nav-list">
+          {subMenu.showBookCallButton && (
+            <li className="nav-item">
+              <button className="rounded-btn" onClick={toggleContactModal}>
+                {subMenu.bookCallTitle}
+              </button>
+            </li>
+          )}
+          {/* {subMenu.showContactButton && (
+            <li className={"nav-item"}>
+              <PhoneIcon contactNumber={businessInfo.contactNo}></PhoneIcon>
+            </li>
+          )} */}
+        </ul>
       </div>
 
       {isMenuOpen && <div className="overlay-menubar "></div>}
@@ -110,6 +128,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
         className="nav-menu-bottom-list"
         style={{
           maxHeight: isMenuOpen ? "50vh" : "0",
+          padding: isMenuOpen ? "" : 0,
         }}
       >
         {menuData.map((item, index) => (
@@ -178,22 +197,19 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
           </div>
         </Link>{" "}
         <Link
-          href={"/about"}
-          className={`nav-links-tab ${pathname == "/about" ? "active" : ""}`}
+          href={"/services"}
+          className={`nav-links-tab ${pathname == "/services" ? "active" : ""}`}
         >
           <div className="tab">
             <div className="tab-icon">
-              <FontAwesomeIcon icon={faCircleQuestion} className="icon" />
+              <FontAwesomeIcon icon={faServicestack} className="icon" />
             </div>
             <div className="tab-label">
-              <span>About</span>
+              <span>Services</span>
             </div>
           </div>
         </Link>{" "}
-        <a
-          className={`nav-links-tab ${pathname == "/about" ? "active" : ""}`}
-          href={`tel:${businessInfo.contactNo}`}
-        >
+        <a className={`nav-links-tab`} href={`tel:${businessInfo.contactNo}`}>
           <div className="tab">
             <div className="phone-container">
               <button className="rounded-btn" aria-label="Toggle Phone Number">
@@ -202,9 +218,38 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             </div>
           </div>
         </a>{" "}
+        <a
+          className={`nav-links-tab `}
+          href={`#`}
+          onClick={(e) => {
+            e.preventDefault();
+            const element = document.querySelector(".popup-container");
+            // check if the element is visible
+            if (element?.classList.contains("show")) {
+              element?.classList.remove("show");
+            } else {
+              element?.classList.add("show");
+            }
+          }}
+        >
+          <div className="tab">
+            <div className="phone-container">
+              <button
+                className="rounded-btn"
+                style={{ padding: "8px 20px" }}
+                aria-label="Toggle Phone Number"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} style={{ height: 20 }} />
+              </button>
+            </div>
+          </div>
+        </a>{" "}
         <div className="tab" onClick={toggleMenu}>
           <div className="tab-icon">
-            <FontAwesomeIcon icon={faBars} className="icon" />
+            <FontAwesomeIcon
+              icon={isMenuOpen ? faXmark : faBars}
+              className="icon"
+            />
           </div>
 
           <div className="tab-label">Menu</div>

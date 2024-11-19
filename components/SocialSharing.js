@@ -16,6 +16,7 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         currentUrl
       )}&quote=${encodeURIComponent(description)}`,
+      color: "#286EB5",
     },
     {
       platform: "Twitter",
@@ -23,6 +24,7 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
       url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
         description
       )}&url=${encodeURIComponent(currentUrl)}`,
+      color: "#1C9DEB",
     },
     {
       platform: "LinkedIn",
@@ -32,6 +34,7 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
       )}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(
         description
       )}`,
+      color: "#0C60BE",
     },
     {
       platform: "WhatsApp",
@@ -39,6 +42,7 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
       url: `https://api.whatsapp.com/send?text=${encodeURIComponent(
         description + " " + currentUrl
       )}`,
+      color: "#4EC458",
     },
   ];
 
@@ -82,7 +86,8 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
                 type="button"
                 className="btn"
                 style={{
-                  backgroundColor: "var(--primary)",
+                  // backgroundColor: "var(--primary)",
+                  backgroundColor: link.color,
                   color: "#fff",
                   borderRadius: "4px",
                   display: "flex",

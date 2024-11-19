@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SocialShare from "@/components/SocialSharing";
 import Link from "next/link";
 import { fetchBusinessContact } from "@/lib/contact";
+import ContactBox from "@/components/ContactBox";
+import config from "@/config/config";
+import HTMLReactParser from "html-react-parser";
 
-export  default  function ContactPage() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
     contact: "",
@@ -13,8 +16,16 @@ export  default  function ContactPage() {
     selectedService: "",
     notes: "",
   });
+  const [businessInfo, setBusinessInfo] = useState({});
 
-  const businessInfo =  fetchBusinessContact();
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchBusinessContact();
+      setBusinessInfo(data);
+      console.log(data);
+    }
+    fetchData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,17 +34,17 @@ export  default  function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Front-end validation for required fields
     if (!formData.firstName.trim() || !formData.contact.trim()) {
       alert("Please fill out both the Name and Contact fields.");
       return;
     }
-  
+
     const myHeaders = new Headers();
     myHeaders.append("x-api-key", process.env.NEXT_PUBLIC_API_KEY);
     myHeaders.append("Accept", "text/plain");
-  
+
     const raw = JSON.stringify({
       fullName: formData.firstName,
       subject: formData.selectedService || "General Inquiry",
@@ -41,16 +52,19 @@ export  default  function ContactPage() {
       email: formData.email,
       leadMessage: formData.notes || "No additional notes provided.",
     });
-  
+
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-  
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/NeoLeadAdmin`, requestOptions);
+      const response = await fetch(
+        `${config.apiBaseUrl}/NeoLeadAdmin`,
+        requestOptions
+      );
       const result = await response.text();
       console.log("Submission Successful:", result);
       alert("Form submitted successfully!");
@@ -59,9 +73,19 @@ export  default  function ContactPage() {
       alert("Failed to submit the form. Please try again.");
     }
   };
-  
+
   return (
-    <main className="demo-page">
+    <main className="page-content">
+      <div
+        className="page-banner ovbl-dark"
+        // style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+      >
+        <div className="container">
+          <div className="page-banner-entry">
+            <h1 className="text-white">Contact Us</h1>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="breadcrumb-row">
           <div className="container">
@@ -69,22 +93,42 @@ export  default  function ContactPage() {
               <li>
                 <Link href="/">Home</Link>
               </li>
-              <li>blogs</li>
+              <li>Contact</li>
             </ul>
           </div>
         </div>
-        <div className="row align-items-center section-area section-sp5">
+
+        <br />
+        <br />
+        <ContactBox
+          phone={businessInfo.contactNo}
+          email={businessInfo.email}
+          businessName={businessInfo.businessName}
+        />
+
+        <div className="row section-area section-sp5">
           {/* Left Column: Description */}
           <div className="col-md-6">
-
             <div className="business-contact">
               <h4 className="demo-title">{businessInfo.businessName}</h4>
-              <p className="demo-description">{businessInfo.businessDescription}</p>
+              <div className="demo-description">
+                {HTMLReactParser(businessInfo.businessDescription)}
+              </div>
               <p>
-                <strong>Address:</strong> {businessInfo.address ? `${businessInfo.address.street}, ${businessInfo.address.city}, ${businessInfo.address.state} ${businessInfo.address.postalCode}, ${businessInfo.address.country}` : 'Not available'}
+                <strong>Address:</strong>{" "}
+                {businessInfo.address
+                  ? `${businessInfo.address.street}, ${businessInfo.address.city}, ${businessInfo.address.state} ${businessInfo.address.postalCode}, ${businessInfo.address.country}`
+                  : "Not available"}
               </p>
               <p>
-                <strong>Phone:</strong> <a href={`tel:${businessInfo.contactNo}`} style={{ color: 'var(--primary)' }}> {businessInfo.contactNo}</a>
+                <strong>Phone:</strong>{" "}
+                <a
+                  href={`tel:${businessInfo.contactNo}`}
+                  style={{ color: "var(--primary)" }}
+                >
+                  {" "}
+                  {businessInfo.contactNo}
+                </a>
               </p>
 
               <SocialShare
@@ -111,7 +155,6 @@ export  default  function ContactPage() {
                   Get Directions
                 </Link>
               </div>
-
             </div>
           </div>
 
@@ -214,6 +257,8 @@ export  default  function ContactPage() {
             ></iframe>
           </div>
         </div>
+
+        <br />
       </div>
     </main>
   );

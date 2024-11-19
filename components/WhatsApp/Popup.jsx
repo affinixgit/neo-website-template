@@ -3,7 +3,7 @@
 import config from "@/config/config";
 import React, { useState, useEffect } from "react";
 
-const Popup = ({ togglePopup }) => {
+const Popup = ({ togglePopup, showPopup, setShowPopup }) => {
   const [state, setState] = useState({
     fullName: "",
     mobileNumber: "",
@@ -20,11 +20,11 @@ const Popup = ({ togglePopup }) => {
     setState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
-  useEffect(() => {
-    setShowPopup(true);
-  }, []);
+  // useEffect(() => {
+  //   setShowPopup(true);
+  // }, []);
 
   const isNumeric = (value) => {
     return /^[0-9]*$/.test(value);

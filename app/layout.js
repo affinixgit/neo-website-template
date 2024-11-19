@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import "@/public/fonts/fontawesome-all.min.css";
 import "./globals.css";
 import "./custom.scss";
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Font Awesome CSS
