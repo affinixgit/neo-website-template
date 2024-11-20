@@ -78,7 +78,7 @@ export default async function PaginatedBlogs({ params }) {
                       className="img-fluid"
                     />
                     <h4 className="mt-3">
-                      <Link href={`/blog/${post.slug}`}>{post.blogTitle}</Link>
+                      <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
                     </h4>
                     <p>{post.description}</p>
                     <div className="blog-tags mt-2">

@@ -19,7 +19,7 @@ export const generateMetadata = async ({ params }) => {
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch metadata for slug: ${params.slug}`);
+    console.error(`Failed to fetch metadata for slug: ${params.slug}`);
   }
 
   // Return the metadata from the API as is
@@ -43,6 +43,7 @@ async function fetchBlogDetails(slug) {
   );
 
   if (!response.ok) {
+    console.error("Failed to fetch blog details", response.statusText);
     throw new Error("Failed to fetch blog details");
   }
 
@@ -87,6 +88,7 @@ export default async function BlogDetails({ params }) {
         </div> */}
 
         <BlogDescription blogItem={blog}></BlogDescription>
+        
       </div>
       {/* JSON-LD Script Tag */}
       <script
@@ -99,7 +101,7 @@ export default async function BlogDetails({ params }) {
 
 // ISR for blog details
 export async function generateStaticParams() {
-  const { blogs } = await fetchBlogs(1, 50); // Fetch the first 50 blogs for static generation
+  const { blogs } = await fetchBlogs(1, 10); // Fetch the first 50 blogs for static generation
 
   return blogs.map((blog) => ({
     slug: blog.slug,

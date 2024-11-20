@@ -7,6 +7,16 @@ import SocialShare from "../SocialSharing";
 import BlogTableOfContent from "./BlogTableOfContent";
 
 const BlogDescription = ({ blogItem }) => {
+
+
+  const tableOfContents = [
+    "How Does Amazon RDS Pricing Work?",
+    "So, How Much Does Amazon RDS Cost?",
+    "How To Understand And Control Amazon RDS Costs",
+    "Amazon RDS FAQ",
+  ];
+
+
   if (!blogItem) {
     return <p>Loading blog content...</p>;
   }
@@ -50,8 +60,8 @@ const BlogDescription = ({ blogItem }) => {
           </div>
 
           <Image
-            // src={`${blogItem?.blogImage.mediaBaseUrl}/${blogItem?.blogImage.fileSlug}`}
-            src={`${config.imageBaseUrl}/${blogItem?.blogImage.fileSlug}`}
+            src={`${blogItem?.blogImage.mediaBaseUrl}/${blogItem?.blogImage.fileSlug}`}
+            
             alt={blogItem.altText || "Default Blog Image"}
             width={800}
             height={450}
@@ -69,7 +79,7 @@ const BlogDescription = ({ blogItem }) => {
         <div className="section-area section-sp5">
           <div className="container">
             <div className="row ">
-              <BlogTableOfContent />
+              <BlogTableOfContent tableOfContents={tableOfContents} />
 
               <div className="col-lg-7 col-md-12">
                 {/* Full Blog Details */}

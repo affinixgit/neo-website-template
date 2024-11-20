@@ -13,7 +13,7 @@ export default function FeaturedSection({ blogs }) {
         <div className="featured-blog-content">
           <h2 className="featured-blog-title">{featuredBlog.title}</h2>
           <p className="featured-blog-description">{featuredBlog.description}</p>
-          <a href={`/blog/${featuredBlog.slug}`}>Read More →</a>
+          <a href={`/blogs/${featuredBlog.slug}`}>Read More →</a>
         </div>
       </div>
 

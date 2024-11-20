@@ -4,17 +4,12 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 
-const BlogTableOfContent = () => {
+const BlogTableOfContent = ({tableOfContents}) => {
   const [selectedHeading, setSelectedHeading] = useState(null);
   const [dropActive, setDropActive] = useState(false);
   const [tableElements, setTableElements] = useState();
 
-  const tableOfContents = [
-    "How Does Amazon RDS Pricing Work?",
-    "So, How Much Does Amazon RDS Cost?",
-    "How To Understand And Control Amazon RDS Costs",
-    "Amazon RDS FAQ",
-  ];
+
 
   const handleScrollToHeading = (index) => {
     // const item = tableOfContents[index];

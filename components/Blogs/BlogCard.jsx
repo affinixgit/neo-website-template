@@ -11,7 +11,7 @@ export default function BlogCard({ blog }) {
       <div className="blog-card-content">
         <h3 className="blog-card-title">{blog.BlogTitle}</h3>
         <p className="blog-card-desc">{blog.Description}</p>
-        <Link href={`/blog/${blog.Slug}`}>Read More</Link>
+        <Link href={`/blogs/${blog.Slug}`}>Read More</Link>
       </div>
     </div>
   );

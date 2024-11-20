@@ -62,7 +62,7 @@ export default async function Blogs() {
                         className="img-fluid"
                       />
                       <h3 className="mt-3">
-                        <Link href={`/blog/${featuredPost?.slug}`}>
+                        <Link href={`/blogs/${featuredPost?.slug}`}>
                           {featuredPost?.blogTitle}
                         </Link>
                       </h3>
@@ -86,7 +86,7 @@ export default async function Blogs() {
                         </div>
                         <div className="featured-blog-info ms-3">
                           <h5>
-                            <Link href={`/blog/${post.slug}`}>
+                            <Link href={`/blogs/${post.slug}`}>
                               {post.blogTitle}
                             </Link>
                           </h5>
@@ -113,7 +113,7 @@ export default async function Blogs() {
                       className="img-fluid"
                     />
                     <h4 className="mt-3">
-                      <Link href={`/blog/${post.slug}`}>{post.blogTitle}</Link>
+                      <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
                     </h4>
                     <div>{HTMLReactParser(post.description)}</div>
                     <div className="blog-tags mt-2">
