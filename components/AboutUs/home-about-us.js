@@ -1,3 +1,4 @@
+import HTMLReactParser from "html-react-parser";
 
 export default function HomeAboutUs({ aboutUs }) {
   return (
@@ -7,7 +8,7 @@ export default function HomeAboutUs({ aboutUs }) {
         <div className="text-center mb-5">
           <h2 className="fw-bold display-5">{aboutUs.title}</h2>
           <p className="text-muted mt-3">
-            {aboutUs.Description}
+            {aboutUs.description}
           </p>
         </div>
 
@@ -18,9 +19,10 @@ export default function HomeAboutUs({ aboutUs }) {
               
               {aboutUs.sectionOne}
             </p>
-            <p className="text-center">
-              {aboutUs.sectionTwo}
-            </p>
+            <div className="text-center">
+            {aboutUs.sectionTwo ? HTMLReactParser(aboutUs.sectionTwo) : null}
+          
+            </div>
             <div className="text-center">
               <a href={aboutUs.aboutUsLink} className="btn btn-primary mt-4">
                 {aboutUs.buttonTitle}

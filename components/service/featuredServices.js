@@ -17,11 +17,11 @@ function FeaturedServices({ services }) {
                     <div key={item.idServices} className="product-card">
                         <img
                             src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                            alt={item?.productTitle} className="product-image" />
-                        <h3 className="product-name">{item?.productTitle}</h3>
+                            alt={item?.serviceTitle} className="product-image" />
+                        <h3 className="product-name">{item?.serviceTitle}</h3>
                         <p className="product-description">{trimText(getText(item?.description))}</p>
 
-                        <Link href={`/products/${item?.slug}`} className="button">
+                        <Link href={`/services/${item?.slug}`} className="button">
                             Read More
                         </Link>
 

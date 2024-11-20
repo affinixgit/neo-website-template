@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HTMLReactParser from "html-react-parser";
 
 export default function HeroSection({ data,heroImage }) {
   
@@ -12,13 +13,13 @@ export default function HeroSection({ data,heroImage }) {
               {data.title}
             </h1>
             <p className="lead my-4">
-              {data.description}
+              {HTMLReactParser(data.description)}
             </p>
             <div>
-              <Link href={data.buttonOneLink} className="btn btn-primary btn-lg me-3">
+              <Link href={data.buttonOneLink} className="btn btn-primary me-3" >
                 {data.buttonOneTitle}
               </Link>
-              <Link href={data.buttonTwoLink} className="btn btn-primary btn-lg me-3">
+              <Link href={data.buttonTwoLink} className="btn btn-primary me-3" >
                 {data.buttonTwoTitle}
               </Link>
             </div>
