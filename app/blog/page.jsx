@@ -54,6 +54,7 @@ export default async function Blogs() {
                   <div className="col-lg-6 mb-4">
                     <div className="featured-blog">
                       <Image
+                        // src={`${featuredPost?.blogImage.mediaBaseUrl}/${featuredPost?.blogImage.fileSlug}`}
                         src={`${config.imageBaseUrl}/${featuredPost?.blogImage.fileSlug}`}
                         alt={featuredPost?.altText || "Blog Image"}
                         width={600}
@@ -75,6 +76,7 @@ export default async function Blogs() {
                       <div key={idx} className="featured-blog-row mb-4 d-flex">
                         <div className="featured-blog-image">
                           <Image
+                            // src={`${featuredPost?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
                             src={`${config.imageBaseUrl}/${post?.blogImage.fileSlug}`}
                             alt={post.altText || "Blog Image"}
                             width={150}
@@ -103,6 +105,7 @@ export default async function Blogs() {
                 <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div className="blog-card">
                     <Image
+                      // src={`${featuredPost?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
                       src={`${config.imageBaseUrl}/${post?.blogImage.fileSlug}`}
                       alt={post.altText || "Blog Image"}
                       width={400}
