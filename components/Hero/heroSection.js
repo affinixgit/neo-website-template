@@ -12,16 +12,16 @@ export default function HeroSection({ data,heroImage }) {
             <h1 className="display-4 fw-bold">
               {data.title}
             </h1>
-            <p className="lead my-4">
+            <div className="lead my-4">
               {HTMLReactParser(data.description)}
-            </p>
+            </div>
             <div>
               <Link href={data.buttonOneLink} className="btn btn-primary me-3" >
                 {data.buttonOneTitle}
               </Link>
-              <Link href={data.buttonTwoLink} className="btn btn-primary me-3" >
+              {/* <Link href={data.buttonTwoLink} className="btn btn-primary me-3" >
                 {data.buttonTwoTitle}
-              </Link>
+              </Link> */}
             </div>
           </div>
 
