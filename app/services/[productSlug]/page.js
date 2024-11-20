@@ -106,7 +106,7 @@ export default async function ServiceDetailPage({ params }) {
 
         <br />
         <br />
-        <Faq />
+        <Faq faqs={serviceItem.faq} />
 
         <br />
         <br />

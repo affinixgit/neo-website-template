@@ -29,7 +29,9 @@ export default function SliderItem({ item }) {
         <div className="container d-flex">
           <div className="content-inner">
             <h6 className="sub-title">{item.title || "Default Title"}</h6>
-            <h2 className="title">{item.description || "Default Description"}</h2>
+            <h2 className="title">
+              {item.description || "Default Description"}
+            </h2>
             <br />
             <br />
             {item.catLink && item.catButtonTitle && (
