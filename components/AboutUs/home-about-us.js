@@ -15,6 +15,7 @@ export default function HomeAboutUs({ aboutUs }) {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <p className="lead text-center">
+              
               {aboutUs.sectionOne}
             </p>
             <p className="text-center">
