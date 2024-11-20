@@ -87,7 +87,7 @@ export default async function Home() {
         ></HeroSection>
         <FeaturedServices services={productResponse.service} />
         {/* <Testimonials data={testimonialData.testimonials}></Testimonials> */}
-        <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>
+        {featuredData.blogs.length > 0 && <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>}
         <CallToAction   data={commonData.contactHero.websiteData}
           heroImage={commonData.contactHero.heroImage}></CallToAction>
         <script

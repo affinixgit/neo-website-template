@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import HTMLReactParser from "html-react-parser";
 
 const HomeBlogSection = ({ posts }) => {
   return (
@@ -20,18 +23,20 @@ const HomeBlogSection = ({ posts }) => {
               <div key={index} className="col-lg-4 col-md-6 mb-4">
                 <div className="card shadow-sm h-100">
                   {/* Blog Post Image */}
-                  <img
-                     src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-                     alt={post.altText || "Default Blog Image"}
+                  <Image
+                    src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+                    width={300}
+                    height={200}
+                    alt={post.altText || "Default Blog Image"}
                     className="card-img-top"
                   />
                   <div className="card-body d-flex flex-column">
                     {/* Blog Title */}
                     <h5 className="card-title">{post.blogTitle}</h5>
                     {/* Blog Excerpt */}
-                    <p className="card-text text-muted">
-                      {post.description || "An insightful article on the latest trends."}
-                    </p>
+                    <div className="card-text text-muted">
+                      {HTMLReactParser(post.description || "An insightful article on the latest trends.")}
+                    </div>
                     {/* Blog Tags */}
                     <div className="mt-auto">
                       {post.tags?.map((tag, idx) => (
@@ -47,7 +52,7 @@ const HomeBlogSection = ({ posts }) => {
                   {/* CTA Link */}
                   <div className="card-footer text-center">
                     <Link href={`/blogs/${post.slug}`}>
-                     Read More
+                      Read More
                     </Link>
                   </div>
                 </div>
@@ -59,8 +64,6 @@ const HomeBlogSection = ({ posts }) => {
             </div>
           )}
         </div>
-
-       
       </div>
     </section>
   );
