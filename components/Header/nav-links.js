@@ -21,6 +21,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faServicestack, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import Image from "next/image";
 
 const NavMenu = ({ menuData, businessInfo, subMenu }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -212,7 +213,14 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
         <a className={`nav-links-tab`} href={`tel:${businessInfo.contactNo}`}>
           <div className="tab">
             <div className="phone-container">
-              <button className="rounded-btn" aria-label="Toggle Phone Number">
+              <button
+                className="rounded-btn"
+                style={{
+                  background: "var(--primary)",
+                  color: "white",
+                }}
+                aria-label="Toggle Phone Number"
+              >
                 <FontAwesomeIcon icon={faPhone} />
               </button>
             </div>
@@ -234,13 +242,19 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
         >
           <div className="tab">
             <div className="phone-container">
-              <button
-                className="rounded-btn"
-                style={{ padding: "8px 20px" }}
-                aria-label="Toggle Phone Number"
-              >
-                <FontAwesomeIcon icon={faWhatsapp} style={{ height: 20 }} />
-              </button>
+              <Image
+                width={45}
+                height={45}
+                src="/images/WhatsApp.png"
+                alt="whatsapp icon"
+                title="whatsapp icon"
+                className="whatsapp-icon"
+                style={{
+                  backgroundColor: "white",
+
+                  borderRadius: "9999px",
+                }}
+              />
             </div>
           </div>
         </a>{" "}

@@ -50,6 +50,7 @@ const BlogDescription = ({ blogItem }) => {
           </div>
 
           <Image
+            // src={`${blogItem?.blogImage.mediaBaseUrl}/${blogItem?.blogImage.fileSlug}`}
             src={`${config.imageBaseUrl}/${blogItem?.blogImage.fileSlug}`}
             alt={blogItem.altText || "Default Blog Image"}
             width={800}

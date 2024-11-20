@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import ServiceDescription from '@/components/service/serviceDescription';
 import config from '@/config/config';
+import { Accordion } from "react-bootstrap";
+import Faq from "@/components/service/Faq";
 
 const myHeaders = new Headers();
 myHeaders.append("x-api-key", config.subscriptionId);
@@ -101,6 +103,10 @@ export default async function ServiceDetailPage({ params }) {
             </div>
           </div>
         </div>
+
+        <br />
+        <br />
+        <Faq />
 
         <br />
         <br />
