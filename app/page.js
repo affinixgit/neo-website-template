@@ -88,7 +88,8 @@ export default async function Home() {
         <FeaturedServices services={productResponse.service} />
         {/* <Testimonials data={testimonialData.testimonials}></Testimonials> */}
         <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>
-        <CallToAction></CallToAction>
+        <CallToAction   data={commonData.contactHero.websiteData}
+          heroImage={commonData.contactHero.heroImage}></CallToAction>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: commonData.jsonLd }}

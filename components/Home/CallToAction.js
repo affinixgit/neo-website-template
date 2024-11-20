@@ -1,33 +1,39 @@
 import Link from "next/link";
+import HTMLReactParser from "html-react-parser";
 
-export default function CallToAction() {
+export default function HeroSection({ data,heroImage }) {
+  
   return (
-    <section className="cta-section">
+    <section className="hero-section bg-light text-center py-5">
       <div className="container">
         <div className="row align-items-center">
-          {/* Image Section */}
-          <div className="col-lg-6 cta-image">
-            <img
-              src="https://tbs-website-live.s3.ap-south-1.amazonaws.com/a990fb30-7621-4cea-926a-b5ad5d6ea5ef/website/image/mastering-social-media-strategies:-accelerating-brand-growth"
-              alt="Teamwork illustration"
-              className="img-fluid"
-            />
+          {/* Left Column: Text */}
+          <div className="col-md-6 text-md-start">
+            <h1 className="display-4 fw-bold">
+              {data.title}
+            </h1>
+            <div className="lead my-4">
+              {HTMLReactParser(data.description)}
+            </div>
+            <div>
+              <Link href={data.buttonOneLink} className="btn btn-primary me-3" >
+                {data.buttonOneTitle}
+              </Link>
+              {/* {data.buttonTwoLink && data.buttonTwoTitle && (
+                <Link href={data.buttonTwoLink} className="btn btn-primary me-3" >
+                  {data.buttonTwoTitle}
+                </Link>
+              )} */}
+            </div>
           </div>
 
-          {/* Content Section */}
-          <div className="col-lg-6 cta-content">
-            <h2 className="cta-title">Take the Next Step with Us</h2>
-            <p className="cta-description">
-              We’re here to help you achieve your goals. Partner with our experts for tailored solutions that drive real results.
-            </p>
-            <div className="cta-buttons">
-              <Link href="/contact" className="cta-button primary">
-                Contact Us
-              </Link>
-              <Link href="/services" className="cta-button secondary">
-                Learn More
-              </Link>
-            </div>
+          {/* Right Column: Image */}
+          <div className="col-md-6 mt-4 mt-md-0">
+            <img
+              src={`${heroImage?.mediaBaseUrl}/${heroImage.fileSlug}`}
+              alt={heroImage.title}
+              className="img-fluid rounded shadow"
+            />
           </div>
         </div>
       </div>
