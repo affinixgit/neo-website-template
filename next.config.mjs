@@ -7,6 +7,7 @@ const nextConfig = {
       "bucket-chat-classhub.s3.ap-south-1.amazonaws.com",
       "affinix-website-dev.s3.ap-south-1.amazonaws.com",
       "static-us-west-2.similarcdn.com",
+      "affiinx-website-live.s3.ap-south-1.amazonaws.com"
       
     ],
   },
