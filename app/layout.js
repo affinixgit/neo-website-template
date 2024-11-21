@@ -49,9 +49,11 @@ export const metadata = {
   alternates: {
     canonical: headerData.businessInfo.websiteUrl,
   },
-  icons: {
-    icon: "https://affinix-website-dev.s3.ap-south-1.amazonaws.com/a990fb30-7621-4cea-926a-b5ad5d6ea5ef/website/business/neo-main-favicon",
-  },
+  icons: [{
+    rel: "icon",
+    type: "image/png",
+    url:  `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`
+  },]
 };
 
 export default function RootLayout({ children }) {
