@@ -1,15 +1,25 @@
-// components/MainHeader.js
+import React, { memo } from "react";
 import Link from "next/link";
-import NavMenu from "./nav-links";
-import Image  from "next/image";
-const MainHeader = ({headerData}) => {
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
-const logo =`${headerData?.businessInfo.logo.mediaBaseUrl}/${headerData?.businessInfo.logo.fileSlug}`
+// Dynamically import NavMenu if it's a large component
+const NavMenu = dynamic(() => import("./nav-links"), { ssr: true });
+
+const MainHeader = ({ headerData = {} }) => {
+  const { businessInfo, banner, navMenu, subMenu } = headerData;
+
+  // Construct logo URL and fallback alt text
+  const logoUrl = businessInfo?.logo?.mediaBaseUrl
+    ? `${businessInfo.logo.mediaBaseUrl}/${businessInfo.logo.fileSlug}`
+    : "/default-logo.png"; // Fallback for logo
+  const logoAlt = businessInfo?.altText || "Site Logo";
+
   return (
     <>
-      {headerData.banner.bannerEnabled && (
+      {banner?.bannerEnabled && banner.bannerText && (
         <div className="offer-banner">
-          <p>{headerData.banner.bannerText}</p>
+          <p>{banner.bannerText}</p>
         </div>
       )}
 
@@ -19,22 +29,25 @@ const logo =`${headerData?.businessInfo.logo.mediaBaseUrl}/${headerData?.busines
             <div className="logo">
               <Link href="/">
                 <Image
-                  src={logo}
-                  alt={headerData.businessInfo.altText}
+                  src={logoUrl}
+                  alt={logoAlt}
                   width={150}
                   height={50}
+                  priority // Ensure the logo loads quickly
                 />
               </Link>
             </div>
-            <NavMenu subMenu ={headerData.subMenu} businessInfo={headerData.businessInfo} menuData={headerData.navMenu}></NavMenu>
+            <NavMenu
+              subMenu={subMenu}
+              businessInfo={businessInfo}
+              menuData={navMenu}
+            />
           </div>
         </nav>
       </header>
-
-
-
     </>
   );
 };
 
-export default MainHeader;
+// Use React.memo to prevent unnecessary re-renders
+export default memo(MainHeader);
