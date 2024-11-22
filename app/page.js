@@ -49,15 +49,15 @@ export default async function Home() {
 
   const featuredData = await featuredBLogResponse.json();
 
-  // const tResponse = await fetch(
-  //   `${config.apiBaseUrl}/testimonial?pageNumber=1&pageSize=6`,
-  //   requestOptions
-  // );
-  // if (!tResponse.ok) {
-  //   throw new Error('Failed to fetch website Data');
-  // }
+  const tResponse = await fetch(
+    `${config.apiBaseUrl}/testimonial?pageNumber=1&pageSize=6`,
+    requestOptions
+  );
+  if (!tResponse.ok) {
+    throw new Error('Failed to fetch website Data');
+  }
 
-  // const testimonialData = await tResponse.json();
+  const testimonialData = await tResponse.json();
 
   return (
     <>
@@ -86,10 +86,11 @@ export default async function Home() {
           heroImage={commonData.hero.heroImage}
         ></HeroSection>
         <FeaturedServices services={productResponse.service} />
-        {/* <Testimonials data={testimonialData.testimonials}></Testimonials> */}
+        <Testimonials data={testimonialData.testimonials}></Testimonials>
         {featuredData.blogs.length > 0 && <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>}
-        <CallToAction   data={commonData.contactHero.websiteData}
-          heroImage={commonData.contactHero.heroImage}></CallToAction>
+       
+       {commonData.contactHero!=null? ( <CallToAction   data={commonData.contactHero.websiteData}
+          heroImage={commonData.contactHero.heroImage}></CallToAction>):null}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: commonData.jsonLd }}

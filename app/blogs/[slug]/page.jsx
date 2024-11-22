@@ -60,35 +60,10 @@ export default async function BlogDetails({ params }) {
   return (
     <>
       <div className="page-content">
-        {/* Banner Section */}
-        {/* <div
-          className="page-banner ovbl-dark"
-          style={{ backgroundImage: `url(${bannerImg})` }}
-        >
-          <div className="container">
-            <div className="page-banner-entry">
-              <h1 className="text-white">{blog.blogTitle}</h1>
-            </div>
-          </div>
-        </div> */}
-
-        {/* Breadcrumbs */}
-        {/* <div className="breadcrumb-row">
-          <div className="container">
-            <ul className="list-inline">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/blog">blogs</Link>
-              </li>
-              <li>{blog.blogTitle}</li>
-            </ul>
-          </div>
-        </div> */}
 
         <BlogDescription blogItem={blog}></BlogDescription>
-        
+       
+
       </div>
       {/* JSON-LD Script Tag */}
       <script

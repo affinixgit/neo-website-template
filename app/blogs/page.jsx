@@ -96,16 +96,18 @@ export default async function Blogs() {
                     ))}
                   </div>
                 </div>
+                <hr className="my-4" />
+                <h3> Blogs </h3>
               </>
             )}
-            <h3> Blogs </h3>
+          
             {/* All Blogs Section */}
             <div className="row">
               {allPosts.map((post, idx) => (
                 <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div className="blog-card">
                     <Image
-                       src={`${featuredPost?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+                       src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
                      
                       alt={post.altText || "Blog Image"}
                       width={400}
