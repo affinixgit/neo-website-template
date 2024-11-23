@@ -9,6 +9,7 @@ import Footer from "@/components/Footer/main-footer";
 import WhatsApp from "@/components/WhatsApp/WhatsApp";
 import config from "@/config/config";
 import CookieConsent from "@/components/CookieConsent";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,11 +50,13 @@ export const metadata = {
   alternates: {
     canonical: headerData.businessInfo.websiteUrl,
   },
-  icons: [{
-    rel: "icon",
-    type: "image/png",
-    url:  `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`
-  },]
+  icons: [
+    {
+      rel: "icon",
+      type: "image/png",
+      url: `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`,
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -71,6 +74,7 @@ export default function RootLayout({ children }) {
       }}
     >
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextTopLoader color={primaryColor} />
         <MainHeader headerData={headerData} />
         <main>{children}</main>
         <WhatsApp />

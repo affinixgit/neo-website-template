@@ -25,17 +25,18 @@ const CookieConsent = () => {
           position: "fixed",
           bottom: "0",
           width: "100%",
-          background: "#222",
-          color: "#fff",
+          background: "lightgray",
           padding: "15px",
           textAlign: "center",
           zIndex: 1000,
+          borderTop: "1px solid #ddd",
+          fontWeight: "bold",
         }}
       >
         <p>
           This website uses cookies to enhance the user experience. By using
           this site, you agree to our{" "}
-          <a href="/privacy-policy" style={{ color: "#4caf50" }}>
+          <a href="/privacy-policy" style={{ color: "var(--primary)" }}>
             Privacy Policy
           </a>
           .
@@ -43,7 +44,7 @@ const CookieConsent = () => {
         <button
           onClick={acceptCookies}
           style={{
-            background: "#4caf50",
+            background: "var(--primary)",
             color: "#fff",
             border: "none",
             padding: "10px 20px",

@@ -29,6 +29,8 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
   const pathname = usePathname();
 
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [dropItems, setDropItems] = useState([]);
+  const [contactTag, setContactTag] = useState("");
 
   const toggleContactModal = () => {
     setIsContactModalOpen(!isContactModalOpen);
@@ -61,8 +63,14 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             <li
               key={index}
               className={pathname === item.path ? "active" : ""}
-              onMouseEnter={() => setActiveDropdown(item.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
+              onMouseEnter={() => {
+                setActiveDropdown(item.name);
+
+                setDropItems(item.dropdown);
+              }}
+              onMouseLeave={() => {
+                setActiveDropdown(null);
+              }}
             >
               {item.dropdown.length !== 0 ? (
                 <div
@@ -71,7 +79,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                   }`}
                 >
                   <button className="dropdown-toggle">{item.name}</button>
-                  <ul
+                  {/* <ul
                     className={`dropdown-menu ${
                       activeDropdown === item.name ? "show" : ""
                     }`}
@@ -81,16 +89,55 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                         <Link href={subItem.path}>{subItem.name}</Link>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
                 </div>
               ) : (
                 <Link href={item.path}>{item.name}</Link>
               )}
             </li>
           ))}
+
+          <div
+            onMouseLeave={() => {
+              setActiveDropdown(null);
+              setDropItems([]);
+            }}
+            className={`my-drop-down ${dropItems?.length > 0 ? "show" : ""}`}
+          >
+            <div className="row">
+              <div className="col-8 sub">
+                {dropItems.map((item, index) => (
+                  <Link href={item.path} className="drop-item" key={index}>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="col-4 sub side-info">
+                <h2>Need a Hand</h2>
+                <p>
+                  Hopefully these links will help, but get in touch if we've
+                  missed something.
+                </p>
+
+                <ul>
+                  <li>
+                    <Link href="/contact">Contact Us</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {subMenu.showBookCallButton && (
             <li className="nav-item">
-              <button className="rounded-btn" onClick={toggleContactModal}>
+              <button
+                className="rounded-btn"
+                onClick={() => {
+                  toggleContactModal();
+                  setContactTag(subMenu.bookCallTitle);
+                }}
+              >
                 {subMenu.bookCallTitle}
               </button>
             </li>
@@ -101,11 +148,13 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             </li>
           )}
         </ul>
+
         {/* Contact Modal */}
       </div>
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+        contactTag={contactTag}
       />
       <div className={`mobile-nav-menu`}>
         <ul className="nav-list">
@@ -193,7 +242,9 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
               <FontAwesomeIcon icon={faHouse} className="icon" />
             </div>
             <div className="tab-label">
-              <span>Home</span>
+              <span>
+                {menuData.find((item) => item.path === "/")?.name || "Home"}
+              </span>
             </div>
           </div>
         </Link>{" "}
@@ -206,7 +257,10 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
               <FontAwesomeIcon icon={faServicestack} className="icon" />
             </div>
             <div className="tab-label">
-              <span>Services</span>
+              <span>
+                {menuData.find((item) => item.path === "/services")?.name ||
+                  "Services"}
+              </span>
             </div>
           </div>
         </Link>{" "}
@@ -231,13 +285,15 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
           href={`#`}
           onClick={(e) => {
             e.preventDefault();
-            const element = document.querySelector(".popup-container");
-            // check if the element is visible
-            if (element?.classList.contains("show")) {
-              element?.classList.remove("show");
-            } else {
-              element?.classList.add("show");
-            }
+            // const element = document.querySelector(".popup-container");
+            // // check if the element is visible
+            // if (element?.classList.contains("show")) {
+            //   element?.classList.remove("show");
+            // } else {
+            //   element?.classList.add("show");
+            // }
+            toggleContactModal();
+            setContactTag("Whatsapp");
           }}
         >
           <div className="tab">

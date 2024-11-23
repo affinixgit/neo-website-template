@@ -92,6 +92,7 @@ export default async function ServiceDetailPage({ params }) {
                       <Link
                         href={`/tags/${tag.slug}/${serviceItem.slug}`}
                         className="tag-link"
+                        style={{ color: "var(--primary)" }}
                       >
                         {tag.tagName}
                       </Link>
