@@ -9,14 +9,13 @@ export default function HeroSection({ data,heroImage }) {
         <div className="row align-items-center">
           {/* Left Column: Text */}
           <div className="col-md-6 text-md-start">
-            <h1 className="display-4 fw-bold">
-              {data.title}
-            </h1>
-            <div className="lead my-4">
-              {HTMLReactParser(data.description)}
-            </div>
+            <h1 className="display-4 fw-bold">{data.title}</h1>
+            <div className="lead my-4">{HTMLReactParser(data.description)}</div>
             <div>
-              <Link href={data.buttonOneLink} className="btn btn-primary me-3" >
+              <Link
+                href={data.buttonOneLink}
+                className="btn btn-primary me-3 mb-4"
+              >
                 {data.buttonOneTitle}
               </Link>
               {/* <Link href={data.buttonTwoLink} className="btn btn-primary me-3" >

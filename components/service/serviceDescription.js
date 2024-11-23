@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ServiceSocialShare from "./ServiceSocialSharing";
 import SocialShare from "../SocialSharing";
+import config from "@/config/config";
 
 const ServiceDescription = ({ serviceItem }) => {
   return (
@@ -23,7 +24,9 @@ const ServiceDescription = ({ serviceItem }) => {
           </div>
 
           <Image
-            src={`${serviceItem?.media.mediaBaseUrl}/${serviceItem?.media.fileSlug}`}
+            src={`${serviceItem?.media.mediaBaseUrl || config.imageBaseUrl}/${
+              serviceItem?.media.fileSlug
+            }`}
             alt={serviceItem.altText}
             width={800}
             height={450}

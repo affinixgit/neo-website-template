@@ -91,16 +91,21 @@ const Services = () => {
                   <ServiceList products={productResponse.service}></ServiceList>
                 </div>
                 <h3>Filter Services</h3>
-                <div className="product-tags" >
-                  {productResponse.tags
-                    .map((tag, tagIdx, arr) => (
-                      <span key={tagIdx}>
-                        <Link href={`services/tag/${tag.slug}`} className="tag-link">
-                          {tag.tagName}
-                        </Link>
-                        {tagIdx < arr.length - 1 && " | "}
-                      </span>
-                    ))}
+                <div className="product-tags">
+                  {productResponse.tags.map((tag, tagIdx, arr) => (
+                    <span key={tagIdx}>
+                      <Link
+                        href={`services/tag/${tag.slug}`}
+                        className="tag-link"
+                        style={{
+                          color: "var(--primary)",
+                        }}
+                      >
+                        {tag.tagName}
+                      </Link>
+                      {tagIdx < arr.length - 1 && " | "}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -108,10 +113,11 @@ const Services = () => {
         </div>
       </div>
 
-
       {/* JSON-LD Script Tag */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
     </div>
   );
 };

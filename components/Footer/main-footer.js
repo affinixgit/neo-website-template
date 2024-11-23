@@ -20,31 +20,33 @@ export default function Footer({ footerData }) {
 
   return (
     <footer className="bg-dark text-light py-5">
-      <div className="container">
+      <div className="container" style={{ paddingBottom: 35 }}>
         {/* Footer Columns */}
         <div className="row">
           {/* Contact and Business Details Column */}
           <div className="col-md-3 mb-3">
             <h5 className="mb-3">Contact & Business Details</h5>
             <ul className="list-unstyled">
+              <li>Name: {businessInfo.businessName}</li>
               <li>
-                Name: {businessInfo.businessName}
-              </li>
-              <li>
-                Email:{' '}
-                <a href={`mailto:${businessInfo.email}`} className="text-light text-decoration-none">
+                Email:{" "}
+                <a
+                  href={`mailto:${businessInfo.email}`}
+                  className="text-light text-decoration-none"
+                >
                   {businessInfo.email}
                 </a>
               </li>
               <li>
-                Phone:{' '}
-                <a href={`tel:${businessInfo.contactNo}`} className="text-light text-decoration-none">
+                Phone:{" "}
+                <a
+                  href={`tel:${businessInfo.contactNo}`}
+                  className="text-light text-decoration-none"
+                >
                   {businessInfo.contactNo}
                 </a>
               </li>
-              <li>
-                Working Hours: {businessInfo.openingHours}
-              </li>
+              <li>Working Hours: {businessInfo.openingHours}</li>
             </ul>
           </div>
 
@@ -55,7 +57,10 @@ export default function Footer({ footerData }) {
               <ul className="list-unstyled">
                 {column.items.map((item) => (
                   <li key={item.id}>
-                    <Link href={item.path} className="text-light text-decoration-none">
+                    <Link
+                      href={item.path}
+                      className="text-light text-decoration-none"
+                    >
                       {item.name}
                     </Link>
                   </li>
@@ -68,7 +73,8 @@ export default function Footer({ footerData }) {
         {/* Footer Bottom Section */}
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4">
           <p className="mb-2 mb-md-0">
-            &copy; {new Date().getFullYear()} {businessInfo.businessName}. All Rights Reserved.
+            &copy; {new Date().getFullYear()} {businessInfo.businessName}. All
+            Rights Reserved.
           </p>
 
           <ul className="list-unstyled d-flex flex-wrap mb-0">
