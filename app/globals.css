@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --primary: #1a3966;
+  --primary: #005bb5;
   /* --- darker shade of primary--- */
   --sc-primary: #030a16;
   --secondary: #96b33e;
@@ -11169,7 +11169,7 @@ button.back-to-top:hover {
   gap: 5px;                   /* Space between tags */
   margin-top: 10px;           /* Space above the tags section */
   font-size: 0.9rem;          /* Smaller font size for tags */
-  color: #333;                /* Text color for the tag wrapper */
+  color: var(--primary);                /* Text color for the tag wrapper */
 }
 
 
@@ -11184,7 +11184,7 @@ button.back-to-top:hover {
 
 /* CSS for the category-link with border and padding */
 .category-link {
-  color: #0070f3;
+  color: var(--primary);
   text-decoration: none;
   padding: 0.5rem 1rem;
   background-color: #f9f9f9;
@@ -11297,6 +11297,7 @@ button.back-to-top:hover {
 .logo img {
   max-height: 50px;
   width: auto;
+  max-width: 133px;
 }
 
 .nav-menu {
@@ -11533,7 +11534,7 @@ button.back-to-top:hover {
 .product-name {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--primary);
 }
 
 .product-description {
@@ -11771,7 +11772,7 @@ button.back-to-top:hover {
 
 .featured-blog a {
   font-weight: bold;
-  color: #007bff;
+  color: var(--primary);
 }
 
 .featured-blogs-row {
@@ -12167,3 +12168,39 @@ button.back-to-top:hover {
   width: 40px;
   height: 40px;
 }
+
+
+.image-divider {
+  height: 2px;
+  background-color: #ccc; /* Adjust color */
+  width: 100%; /* Adjust width */
+  margin: 10px 0; /* Add spacing around the divider */
+}
+
+.blog-card {
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Add some padding inside the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #fff; /* White background for contrast */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation for hover effect */
+}
+
+.blog-card:hover {
+  transform: scale(1.03); /* Slight zoom-in on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.blog-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #333; /* Darker text color */
+}
+
+.blog-card .blog-tags .badge {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+

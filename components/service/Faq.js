@@ -15,8 +15,7 @@ const Faq = ({ faqs }) => {
               <h2 style={{ textAlign: "center" }}>FAQ&apos;s</h2>
               <p>
                 <span>
-                  Here are answers to some questions about flutter app
-                  developers, which our clients frequently ask.
+                  Here are answers to some questions frequently asked.
                   <br />
                 </span>
               </p>

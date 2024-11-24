@@ -8,14 +8,16 @@ const myHeaders = new Headers();
 myHeaders.append("x-api-key", config.subscriptionId);
 
 export async function generateMetadata({ params }) {
-  const { productSlug } = await params;
+  const { slug } = await params;
+  const productSlug= slug[0]
+  const locationSlug = slug[1]
+
   const requestOptions = {
     method: "GET",
     redirect: "follow",
     headers: myHeaders,
   };
 
-  console.log(`${config.apiBaseUrl}/service/${productSlug}`);
 
   const response = await fetch(
     `${config.apiBaseUrl}/service/${productSlug}`,
@@ -26,11 +28,17 @@ export async function generateMetadata({ params }) {
   }
 
   const serviceItem = await response.json();
+  const metaData = serviceItem.metaData;
+  // metaData.metaTitle = locationSlug.replace(/-/g, ' ');
+
   return serviceItem.metadata;
 }
 
 export default async function ServiceDetailPage({ params }) {
-  const { productSlug } = await params;
+  const { slug } = await params;
+  const productSlug= slug[0]
+  const locationSlug = slug[1]
+  const locationTitle = locationSlug.replace(/-/g, ' ')
 
   const requestOptions = {
     method: "GET",
@@ -48,7 +56,7 @@ export default async function ServiceDetailPage({ params }) {
   const serviceItem = await response.json();
   // const bannerImg = "/images/banner/banner2.jpg";
   const jsonLd = serviceItem.jsonLd ? serviceItem.jsonLd : "{}"; // Safeguard against undefined
-
+  serviceItem.serviceTitle =`${serviceItem.serviceTitle} in  ${locationTitle}`;
   return (
     <>
       <div className="page-content">
@@ -74,7 +82,7 @@ export default async function ServiceDetailPage({ params }) {
               <li>
                 <Link href="/services">Services</Link>
               </li>
-              <li>{serviceItem.serviceTitle}</li>
+              <li>{locationTitle}</li>
             </ul>
           </div>
         </div>

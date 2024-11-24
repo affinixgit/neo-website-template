@@ -20,24 +20,16 @@ export default async function Home() {
     redirect: "follow",
   };
 
+ 
+
   const response = await fetch(
-    `${config.apiBaseUrl}/service?pageNumber=1&pageSize=5`,
-    requestOptions
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch services");
-  }
-
-  const productResponse = await response.json();
-
-  const websiteResponse = await fetch(
     `${config.apiBaseUrl}/website`,
     requestOptions
   );
   if (!response.ok) {
     throw new Error("Failed to fetch website Data");
   }
-  const commonData = await websiteResponse.json();
+  const commonData = await response.json();
 
   const featuredBLogResponse = await fetch(
     `${config.apiBaseUrl}/blogs/featured?pageNumber=1&pageSize=6`,
@@ -85,7 +77,7 @@ export default async function Home() {
           data={commonData.hero.websiteData}
           heroImage={commonData.hero.heroImage}
         ></HeroSection>
-        <FeaturedServices services={productResponse.service} />
+        <FeaturedServices services={commonData.featuredServices} />
         <Testimonials data={testimonialData.testimonials}></Testimonials>
         {featuredData.blogs.length > 0 && <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>}
        
