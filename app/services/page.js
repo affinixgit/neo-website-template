@@ -27,30 +27,26 @@ async function ServiceList({ products }) {
 
   return (
     <>
-      {products.map((item, idx) =>
-        <div className="col-md-6 col-lg-4 col-sm-6 m-b30" key={idx}>
-          <div className="cours-bx">
-            <div className="action-box course-imgbox">
-              <Image
-                className="img-fluid"
-                width={450}
-                height={300}
-                src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                alt={`Image of ${item?.altText}`}
-                title={`Image of ${item?.productTitle}`}
-              />            
+           
+           
+
+            <div className="grid">
+                {products.map((item) => (
+                    <div key={item.idServices} className="product-card">
+                        <img
+                            src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
+                            alt={item?.serviceTitle} className="product-image" />
+                        <div className="image-divider"></div> {/* Divider under image */}
+                        <h3 className="product-name">
+                            <Link href={`/services/${item?.slug}`} className="button">
+                                {item?.serviceTitle}
+                            </Link>
+                        </h3>
+                        <p className="product-description">{trimText(getText(item?.description))}</p>
+                    </div>
+                ))}
             </div>
-            <div className="info-bx">
-              <h6>
-                <Link href={`/services/${item?.slug}`}>
-                  {item?.productTitle}
-                </Link>
-              </h6>
-              <span>{trimText(getText(item?.description))}</span>
-            </div>
-          </div>
-        </div>
-      )}
+        
     </>
   );
 }
@@ -90,8 +86,8 @@ const Services = () => {
                 <div className="row">
                   <ServiceList products={productResponse.service}></ServiceList>
                 </div>
-                <h3>Filter Services</h3>
-                <div className="product-tags">
+                {/* <h3>Filter Tags</h3> */}
+                {/* <div className="product-tags">
                   {productResponse.tags.map((tag, tagIdx, arr) => (
                     <span key={tagIdx}>
                       <Link
@@ -106,7 +102,7 @@ const Services = () => {
                       {tagIdx < arr.length - 1 && " | "}
                     </span>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
