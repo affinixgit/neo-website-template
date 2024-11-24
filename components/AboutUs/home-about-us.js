@@ -15,10 +15,10 @@ export default function HomeAboutUs({ aboutUs }) {
         {/* Text Content */}
         <div className="row justify-content-center">
           <div className="col-lg-8">
-            <p className="lead text-center">
+            {/* <p className="lead text-center">
               
               {aboutUs.sectionOne}
-            </p>
+            </p> */}
             <div className="text-center">
             {aboutUs.sectionTwo ? HTMLReactParser(aboutUs.sectionTwo) : null}
           
