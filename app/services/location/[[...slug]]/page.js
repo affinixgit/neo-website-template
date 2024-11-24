@@ -9,8 +9,8 @@ myHeaders.append("x-api-key", config.subscriptionId);
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const productSlug= slug[1]
-  const tagSlug = slug[0]
+  const productSlug= slug[0]
+  const locationSlug = slug[1]
 
   const requestOptions = {
     method: "GET",
@@ -29,16 +29,16 @@ export async function generateMetadata({ params }) {
 
   const serviceItem = await response.json();
   const metaData = serviceItem.metaData;
-  // metaData.metaTitle = tagSlug.replace(/-/g, ' ');
+  // metaData.metaTitle = locationSlug.replace(/-/g, ' ');
 
   return serviceItem.metadata;
 }
 
 export default async function ServiceDetailPage({ params }) {
   const { slug } = await params;
-  const productSlug= slug[1]
-  const tagSlug = slug[0]
-  const tagTitle = tagSlug.replace(/-/g, ' ')
+  const productSlug= slug[0]
+  const locationSlug = slug[1]
+  const locationTitle = locationSlug.replace(/-/g, ' ')
 
   const requestOptions = {
     method: "GET",
@@ -56,7 +56,7 @@ export default async function ServiceDetailPage({ params }) {
   const serviceItem = await response.json();
   // const bannerImg = "/images/banner/banner2.jpg";
   const jsonLd = serviceItem.jsonLd ? serviceItem.jsonLd : "{}"; // Safeguard against undefined
-  serviceItem.serviceTitle = tagTitle;
+  serviceItem.serviceTitle =`${serviceItem.serviceTitle} in  ${locationTitle}`;
   return (
     <>
       <div className="page-content">
@@ -82,7 +82,7 @@ export default async function ServiceDetailPage({ params }) {
               <li>
                 <Link href="/services">Services</Link>
               </li>
-              <li>{tagTitle}</li>
+              <li>{locationTitle}</li>
             </ul>
           </div>
         </div>
