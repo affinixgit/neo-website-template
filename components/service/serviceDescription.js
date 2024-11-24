@@ -24,7 +24,7 @@ const ServiceDescription = ({ serviceItem }) => {
           </div>
 
           <Image
-            src={`${serviceItem?.media.mediaBaseUrl || config.imageBaseUrl}/${
+            src={`${serviceItem?.media.mediaBaseUrl}/${
               serviceItem?.media.fileSlug
             }`}
             alt={serviceItem.altText}
@@ -47,7 +47,7 @@ const ServiceDescription = ({ serviceItem }) => {
               <div className="row d-flex flex-row">
                 {/* Product Details */}
                 <div className="product-details">
-                  <h3>Service Details</h3>
+                  
                   {HTMLReactParser(serviceItem.serviceDetails)}
                 </div>
               </div>
