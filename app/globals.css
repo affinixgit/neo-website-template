@@ -11771,7 +11771,7 @@ button.back-to-top:hover {
 
 .featured-blog a {
   font-weight: bold;
-  color: #007bff;
+  color: var(--primary);
 }
 
 .featured-blogs-row {
@@ -12175,3 +12175,31 @@ button.back-to-top:hover {
   width: 100%; /* Adjust width */
   margin: 10px 0; /* Add spacing around the divider */
 }
+
+.blog-card {
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Add some padding inside the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #fff; /* White background for contrast */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation for hover effect */
+}
+
+.blog-card:hover {
+  transform: scale(1.03); /* Slight zoom-in on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.blog-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #333; /* Darker text color */
+}
+
+.blog-card .blog-tags .badge {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+

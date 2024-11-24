@@ -54,8 +54,8 @@ export default async function Blogs() {
                   <div className="col-lg-6 mb-4">
                     <div className="featured-blog">
                       <Image
-                         src={`${featuredPost?.blogImage.mediaBaseUrl}/${featuredPost?.blogImage.fileSlug}`}
-                      
+                        src={`${featuredPost?.blogImage.mediaBaseUrl}/${featuredPost?.blogImage.fileSlug}`}
+
                         alt={featuredPost?.altText || "Blog Image"}
                         width={600}
                         height={400}
@@ -77,7 +77,7 @@ export default async function Blogs() {
                         <div className="featured-blog-image">
                           <Image
                             src={`${featuredPost?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-                      
+
                             alt={post.altText || "Blog Image"}
                             width={150}
                             height={100}
@@ -100,16 +100,15 @@ export default async function Blogs() {
                 <h3> Blogs </h3>
               </>
             )}
-          
+
             {/* All Blogs Section */}
             <div className="row">
               {allPosts.map((post, idx) => (
                 <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div className="blog-card">
                     <Image
-                       src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-                     
-                      alt={post.altText || "Blog Image"}
+                      src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+                      alt={post.altText || 'Blog Image'}
                       width={400}
                       height={300}
                       className="img-fluid"

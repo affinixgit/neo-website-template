@@ -3,6 +3,7 @@ import Link from 'next/link';
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import Image from 'next/image';
 import Pagination from '@/components/Pagination';
+import HTMLReactParser from 'html-react-parser';
 
 export const generateMetadata = async ({ params }) => {
   const param =await params;
@@ -67,32 +68,32 @@ export default async function PaginatedBlogs({ params }) {
             <h3> Blogs</h3>
             {/* All Blogs Section */}
             <div className="row">
-              {allPosts.map((post, idx) => (
-                <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
-                  <div className="blog-card">
-                    <Image
-                      src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-                      alt={post.altText || 'Blog Image'}
-                      width={400}
-                      height={300}
-                      className="img-fluid"
-                    />
-                    <h4 className="mt-3">
-                      <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
-                    </h4>
-                    <p>{post.description}</p>
-                    <div className="blog-tags mt-2">
-                      {post.tags.map((tag, tagIdx) => (
-                        <span key={tagIdx} className="badge bg-secondary me-2">
-                          {tag.tagName}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+  {allPosts.map((post, idx) => (
+    <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div className="blog-card">
+        <Image
+          src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+          alt={post.altText || 'Blog Image'}
+          width={400}
+          height={300}
+          className="img-fluid"
+        />
+        <h4 className="mt-3">
+          <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
+        </h4>
+        <div>{HTMLReactParser(post.description)}</div>
+        <div className="blog-tags mt-2">
+          {post.tags.map((tag, tagIdx) => (
+            <span key={tagIdx} className="badge bg-secondary me-2">
+              {tag.tagName}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
 
-            </div>
           </div>
         </div>
       </div>
