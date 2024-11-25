@@ -8,7 +8,7 @@ import BlogTableOfContent from "./BlogTableOfContent";
 
 const BlogDescription = ({ blogItem }) => {
 
-  
+
 
 
   if (!blogItem) {
@@ -20,15 +20,7 @@ const BlogDescription = ({ blogItem }) => {
       <div className="post-hero">
         <div className="container">
           <div className="post-hero__info">
-            <div className="post-meta">
-              <div className="post-meta__tags">
-                {blogItem.tags.map((tag, i) => (
-                  <div className="post-tags" key={tag.i}>
-                    {tag.tagName}
-                  </div>
-                ))}
-              </div>
-            </div>
+
             <div className="post-meta__date">
               <span>
                 {blogItem.blogDate &&
@@ -51,11 +43,22 @@ const BlogDescription = ({ blogItem }) => {
               socialCta={"Share this post:"}
               type2={true}
             />
+            <div className="post-meta">
+              <div className="post-meta__tags">
+                {blogItem.tags.map((tag, i) => (
+                  <div className="post-tags" key={i}>
+                    {tag.tagName}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+
           </div>
 
           <Image
             src={`${blogItem?.blogImage.mediaBaseUrl}/${blogItem?.blogImage.fileSlug}`}
-            
+
             alt={blogItem.altText || "Default Blog Image"}
             width={800}
             height={450}
@@ -73,10 +76,10 @@ const BlogDescription = ({ blogItem }) => {
         <div className="section-area section-sp5">
           <div className="container">
             <div className="row ">
-              
-             
-             
-             {blogItem.tableOfContents.length!=0?<BlogTableOfContent tableOfContents={blogItem.tableOfContents} />:""} 
+
+
+
+              {blogItem.tableOfContents.length != 0 ? <BlogTableOfContent tableOfContents={blogItem.tableOfContents} /> : ""}
 
               <div className="col-lg-7 col-md-12">
                 {/* Full Blog Details */}

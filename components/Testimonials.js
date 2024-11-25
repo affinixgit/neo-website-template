@@ -33,7 +33,7 @@ export default function Testimonials({ data }) {
               >
                 <div className="d-flex flex-column align-items-center text-center">
                   <img
-                    src={`${testimonial.profileImage.mediaBaseUrl}${testimonial.profileImage.fileSlug}`}
+                    src={`${testimonial.profileImage.mediaBaseUrl}/${testimonial.profileImage.fileSlug}`}
                     alt={testimonial.altText || `Testimonial from ${testimonial.name}`}
                     className="rounded-circle mb-4 shadow-sm"
                     width="100"
@@ -41,7 +41,7 @@ export default function Testimonials({ data }) {
                   />
                   <h5 className="fw-bold">{testimonial.name}</h5>
                   <p className="text-muted px-4">
-                    {trimDescription(testimonial.description, 150)}
+                    {trimDescription(testimonial.description, 1500)}
                   </p>
                   <div className="mt-2">
                     {testimonial.rating
@@ -57,7 +57,7 @@ export default function Testimonials({ data }) {
 
           {/* Carousel Controls */}
           <button
-            className="carousel-control-prev"
+            className="carousel-control-prev custom-carousel-control"
             type="button"
             data-bs-target="#testimonialsCarousel"
             data-bs-slide="prev"
@@ -66,7 +66,7 @@ export default function Testimonials({ data }) {
             <span className="visually-hidden">Previous</span>
           </button>
           <button
-            className="carousel-control-next"
+            className="carousel-control-next custom-carousel-control"
             type="button"
             data-bs-target="#testimonialsCarousel"
             data-bs-slide="next"

@@ -150,20 +150,34 @@
     gap: clamp(1rem, 11.56px + 0.89vw, 1.5rem);
 
     .post-meta__tags {
-      -webkit-margin-after: 0;
-      margin-block-end: 0;
-
-      .post-tags {
-        text-decoration: none;
-        transition: color 0.15s ease;
-        padding-inline: 8px;
-        background-color: rgba(194, 191, 190, 0.589);
-        color: var(--primary);
-        display: inline-block;
-        font-size: 500;
-        margin-left: 7px;
-      }
+      margin-block-end: 0; /* Removes default bottom margin */
+      display: flex; /* Align tags in a row */
+      flex-wrap: wrap; /* Allow tags to wrap to the next row if necessary */
+      gap: 8px; /* Add consistent spacing between tags */
     }
+    
+    .post-tags {
+      text-decoration: none;
+      transition: color 0.15s ease, background-color 0.15s ease; /* Smooth transition for hover effects */
+      padding: 4px 12px; /* Adjust padding for better appearance */
+      background-color: rgba(194, 191, 190, 0.589); /* Subtle background for tags */
+      color: var(--primary); /* Uses primary color */
+      display: inline-block;
+      font-size: 14px; /* Sets a readable font size */
+      font-weight: 500; /* Ensures the font weight is applied correctly */
+      border-radius: 4px; /* Adds rounded corners for a modern look */
+      margin-left: 0; /* Reset margin to avoid extra left space */
+    }
+    
+    .post-tags:not(:first-child) {
+      margin-left: 8px; /* Add space only between subsequent tags */
+    }
+    
+    .post-tags:hover {
+      background-color: var(--primary); /* Change background color on hover */
+      color: #fff; /* Text turns white for contrast */
+    }
+    
 
     .post-meta__date {
       color: #414141;

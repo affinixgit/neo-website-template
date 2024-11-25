@@ -32,29 +32,18 @@ const HomeBlogSection = ({ posts }) => {
                   />
                   <div className="card-body d-flex flex-column">
                     {/* Blog Title */}
-                    <h5 className="card-title">{post.blogTitle}</h5>
+
+                    <Link href={`/blogs/${post.slug}`}>
+                      {post.blogTitle}
+                    </Link>
+                    <div className="image-divider"></div> {/* Divider under image */}
                     {/* Blog Excerpt */}
                     <div className="card-text text-muted">
-                      {HTMLReactParser(post.description || "An insightful article on the latest trends.")}
+                      {HTMLReactParser(post.description || "")}
                     </div>
-                    {/* Blog Tags */}
-                    <div className="mt-auto">
-                      {post.tags?.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="badge bg-secondary me-1"
-                        >
-                          {tag.tagName}
-                        </span>
-                      ))}
-                    </div>
+
                   </div>
-                  {/* CTA Link */}
-                  <div className="card-footer text-center">
-                    <Link href={`/blogs/${post.slug}`}>
-                      Read More
-                    </Link>
-                  </div>
+
                 </div>
               </div>
             ))

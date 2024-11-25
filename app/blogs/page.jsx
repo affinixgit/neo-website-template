@@ -113,7 +113,7 @@ export default async function Blogs() {
                       height={300}
                       className="img-fluid"
                     />
-                    <h4 className="mt-3">
+                    <h4 className="mt-3 form-support">
                       <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
                     </h4>
                     <div>{HTMLReactParser(post.description)}</div>

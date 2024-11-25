@@ -17,7 +17,7 @@ export default function HomeAboutUs({ aboutUs }) {
           <div className="col-lg-8">
             {/* <p className="lead text-center">
               
-              {aboutUs.sectionOne}
+              {aboutUs.sectionOne}Locations
             </p> */}
             <div className="text-center">
             {aboutUs.sectionTwo ? HTMLReactParser(aboutUs.sectionTwo) : null}
@@ -28,7 +28,7 @@ export default function HomeAboutUs({ aboutUs }) {
                 {aboutUs.buttonTitle}
               </a>
             </div>
-          </div>
+          </div>N
         </div>
       </div>
     </section>

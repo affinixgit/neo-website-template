@@ -60,10 +60,7 @@ export default async function BlogDetails({ params }) {
   return (
     <>
       <div className="page-content">
-
         <BlogDescription blogItem={blog}></BlogDescription>
-       
-
       </div>
       {/* JSON-LD Script Tag */}
       <script

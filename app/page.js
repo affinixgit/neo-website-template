@@ -73,15 +73,11 @@ export default async function Home() {
           ></SliderItem>
         )}
         <HomeAboutUs aboutUs={commonData.aboutUs.websiteData}></HomeAboutUs>
-        <HeroSection
-          data={commonData.hero.websiteData}
-          heroImage={commonData.hero.heroImage}
-        ></HeroSection>
+        <HeroSection data={commonData.hero.websiteData} heroImage={commonData.hero.heroImage}> </HeroSection>
         <FeaturedServices services={commonData.featuredServices} />
         <Testimonials data={testimonialData.testimonials}></Testimonials>
-        {featuredData.blogs.length > 0 && <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>}
-       
-       {commonData.contactHero!=null? ( <CallToAction   data={commonData.contactHero.websiteData}
+        {featuredData.blogs.length > 0 && <HomeBlogSection posts={featuredData.blogs}></HomeBlogSection>}       
+        {commonData.contactHero!=null? ( <CallToAction   data={commonData.contactHero.websiteData}
           heroImage={commonData.contactHero.heroImage}></CallToAction>):null}
         <script
           type="application/ld+json"
