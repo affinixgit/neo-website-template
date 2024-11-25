@@ -8,13 +8,7 @@ import BlogTableOfContent from "./BlogTableOfContent";
 
 const BlogDescription = ({ blogItem }) => {
 
-
-  const tableOfContents = [
-    "How Does Amazon RDS Pricing Work?",
-    "So, How Much Does Amazon RDS Cost?",
-    "How To Understand And Control Amazon RDS Costs",
-    "Amazon RDS FAQ",
-  ];
+  
 
 
   if (!blogItem) {
@@ -48,7 +42,7 @@ const BlogDescription = ({ blogItem }) => {
             <div className="post-meta__author">
               <span>By: </span>
               <span>
-                <u>{blogItem.author?.[0]?.authorName || "Unknown"}</u>
+                <u>{blogItem.author?.[0]?.authorName || ""}</u>
               </span>
             </div>
             <SocialShare
@@ -79,7 +73,10 @@ const BlogDescription = ({ blogItem }) => {
         <div className="section-area section-sp5">
           <div className="container">
             <div className="row ">
-              <BlogTableOfContent tableOfContents={tableOfContents} />
+              
+             
+             
+             {blogItem.tableOfContents.length!=0?<BlogTableOfContent tableOfContents={blogItem.tableOfContents} />:""} 
 
               <div className="col-lg-7 col-md-12">
                 {/* Full Blog Details */}
