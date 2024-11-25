@@ -101,14 +101,13 @@ export default async function Blogs() {
               </>
             )}
 
-            {/* All Blogs Section */}
             <div className="row">
               {allPosts.map((post, idx) => (
                 <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div className="blog-card">
                     <Image
                       src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-                      alt={post.altText || 'Blog Image'}
+                      alt={post.altText || "Blog Image"}
                       width={400}
                       height={300}
                       className="img-fluid"
@@ -117,17 +116,12 @@ export default async function Blogs() {
                       <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
                     </h4>
                     <div>{HTMLReactParser(post.description)}</div>
-                    <div className="blog-tags mt-2">
-                      {post.tags.map((tag, tagIdx) => (
-                        <span key={tagIdx} className="badge bg-secondary me-2">
-                          {tag.tagName}
-                        </span>
-                      ))}
-                    </div>
+                    
                   </div>
                 </div>
               ))}
             </div>
+
             {/* Pagination */}
             <div className="container">
               <div className="d-flex justify-content-center mt-4 pagination-sp1">

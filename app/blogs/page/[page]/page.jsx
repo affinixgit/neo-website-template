@@ -6,7 +6,7 @@ import Pagination from '@/components/Pagination';
 import HTMLReactParser from 'html-react-parser';
 
 export const generateMetadata = async ({ params }) => {
-  const param =await params;
+  const param = await params;
   const page = parseInt(param.page, 10) || 1;
 
   return {
@@ -66,41 +66,35 @@ export default async function PaginatedBlogs({ params }) {
         <div className="section-area section-sp5">
           <div className="container">
             <h3> Blogs</h3>
-            {/* All Blogs Section */}
             <div className="row">
-  {allPosts.map((post, idx) => (
-    <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
-      <div className="blog-card">
-        <Image
-          src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
-          alt={post.altText || 'Blog Image'}
-          width={400}
-          height={300}
-          className="img-fluid"
-        />
-        <h4 className="mt-3">
-          <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
-        </h4>
-        <div>{HTMLReactParser(post.description)}</div>
-        <div className="blog-tags mt-2">
-          {post.tags.map((tag, tagIdx) => (
-            <span key={tagIdx} className="badge bg-secondary me-2">
-              {tag.tagName}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
+              {allPosts.map((post, idx) => (
+                <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div className="blog-card">
+                    <Image
+                      src={`${post?.blogImage.mediaBaseUrl}/${post?.blogImage.fileSlug}`}
+                      alt={post.altText || "Blog Image"}
+                      width={400}
+                      height={300}
+                      className="img-fluid"
+                    />
+                    <h4 className="mt-3 form-support">
+                      <Link href={`/blogs/${post.slug}`}>{post.blogTitle}</Link>
+                    </h4>
+                    <div>{HTMLReactParser(post.description)}</div>
+                    
+                  </div>
+                </div>
+              ))}
+            </div>
+
 
           </div>
         </div>
       </div>
-     {/* Pagination */}
-     <div className="container">
+      {/* Pagination */}
+      <div className="container">
         <div className="d-flex justify-content-center mt-4 pagination-sp1">
-        <Pagination currentPage={currentPage} totalPages={totalPages}></Pagination>
+          <Pagination currentPage={currentPage} totalPages={totalPages}></Pagination>
         </div>
       </div>
     </div>

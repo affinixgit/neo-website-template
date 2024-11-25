@@ -12229,3 +12229,47 @@ button.back-to-top:hover {
 .carousel-control-next {
   right: -30px; /* Move the right arrow outside the content area */
 }
+
+
+
+
+.blog-card {
+  border: 2px solid #ddd; /* Add a light border */
+  border-radius: 8px; /* Add rounded corners */
+  padding: 16px; /* Add padding inside the card */
+  background-color: #fff; /* Set a white background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+.blog-card:hover {
+  transform: translateY(-5px); /* Slightly lift the card on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.blog-card img {
+  border-radius: 8px; /* Match the rounded corners of the card */
+  margin-bottom: 12px; /* Add space below the image */
+}
+
+.blog-card h4 {
+  font-size: 1.5rem; /* Make the title bigger */
+  margin-bottom: 8px; /* Add spacing below the title */
+  color: #333; /* Set a darker text color for readability */
+}
+
+.blog-card .blog-tags {
+  margin-top: 12px; /* Add space above the tags */
+}
+
+.blog-card .badge {
+  font-size: 0.85rem; /* Adjust badge size */
+  padding: 6px 12px; /* Add padding to badges */
+  border-radius: 16px; /* Rounded badges */
+}
+
+.blog-card p {
+  color: #555; /* Subtle text color */
+  font-size: 1rem; /* Adjust paragraph font size */
+  margin-bottom: 12px; /* Add spacing below paragraphs */
+}
