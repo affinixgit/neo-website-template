@@ -3,12 +3,13 @@
 import { useState } from "react";
 import config from "@/config/config";
 
-const ContactModal = ({ isOpen, onClose, contactTag }) => {
+const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
   const [name, setName] = useState(""); // Added state for name
   const [contactNumber, setContactNumber] = useState("");
   const [note, setNote] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const subscriptionId = config.subscriptionId;
+  const subscriptionId =config.subscriptionId;
+  const LEAD_SOURCE =3;
 
   const handleSave = async () => {
     setIsSubmitting(true);
@@ -21,7 +22,8 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
       fullName: name, // Use the name from the state
       mobileNumber: contactNumber,
       leadMessage: note,
-      leadSource:2,
+      leadSource:LEAD_SOURCE,
+      PageLink:pdf.pdfLink
     });
 
     const requestOptions = {
@@ -43,6 +45,10 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
       setContactNumber("");
       setNote("");
       onClose();
+       // Open the PDF in a new tab if the pdf.pdfLink is available
+       if (pdf && pdf.pdfLink) {
+        window.open(pdf.pdfLink, "_blank", "noopener,noreferrer");
+      }
     } catch (error) {
       console.error("Error submitting details:", error);
       alert("Failed to submit details. Please try again.");
@@ -56,7 +62,7 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
   return (
     <div className="contact-modal">
       <div className="modal-content">
-        <h3>Contact Us</h3>
+        <h3>{contactTag}</h3>
         <form>
           <label htmlFor="name">Name:</label>
           <input
@@ -103,4 +109,4 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
   );
 };
 
-export default ContactModal;
+export default PdfDownloadDialog;

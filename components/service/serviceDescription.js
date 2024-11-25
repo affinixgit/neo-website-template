@@ -2,9 +2,7 @@ import React from "react";
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
-import ServiceSocialShare from "./ServiceSocialSharing";
 import SocialShare from "../SocialSharing";
-import config from "@/config/config";
 
 const ServiceDescription = ({ serviceItem }) => {
   return (
@@ -12,21 +10,25 @@ const ServiceDescription = ({ serviceItem }) => {
       <div className="post-hero">
         <div className="container">
           <div className="post-hero__info">
-            <h1 className="post-title">{serviceItem.serviceTitle}</h1>
+            <h2 className="post-title">{serviceItem.serviceTitle}</h2>
             <div className="post-excerpt">{serviceItem.description}</div>
-
+            
+            {/* Social Sharing */}
             <SocialShare
               title={serviceItem.title}
               description={serviceItem.description}
               socialCta={"Share this post:"}
               type2={true}
+              pdf={serviceItem.pdf}
             />
+
+
           </div>
 
+          {/* Image Section */}
           <Image
-            src={`${serviceItem?.media.mediaBaseUrl}/${
-              serviceItem?.media.fileSlug
-            }`}
+            src={`${serviceItem?.media.mediaBaseUrl}/${serviceItem?.media.fileSlug
+              }`}
             alt={serviceItem.altText}
             width={800}
             height={450}
@@ -47,7 +49,6 @@ const ServiceDescription = ({ serviceItem }) => {
               <div className="row d-flex flex-row">
                 {/* Product Details */}
                 <div className="product-details">
-                  
                   {HTMLReactParser(serviceItem.serviceDetails)}
                 </div>
               </div>

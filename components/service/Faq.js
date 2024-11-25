@@ -9,9 +9,7 @@ const Faq = ({ faqs }) => {
         <div className="row justify-content-center">
           <div className="col-lg-7 col-12">
             <div className="section-heading text-center" data-aos="fade-up">
-              <h4 style={{ textAlign: "center" }} className="h5 text-primary">
-                {" "}
-              </h4>
+            
               <h2 style={{ textAlign: "center" }}>FAQ&apos;s</h2>
               <p>
                 <span>

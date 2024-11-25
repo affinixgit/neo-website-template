@@ -1,13 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import PdfDownloadDialog from './PdfDownloadModal';
 
-const SocialShare = ({ title, description, socialCta, type2 }) => {
+const SocialShare = ({ title, description, socialCta, type2, pdf }) => {
   const router = useRouter();
-  const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`; // Construct the full URL dynamically
+  const [currentUrl, setCurrentUrl] = useState("");
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+
+  const toggleContactModal = () => {
+    setIsContactModalOpen(!isContactModalOpen);
+  };
+
+
+  useEffect(() => {
+    // Dynamically construct the current URL on the client
+    setCurrentUrl(`${window.location.origin}${router.asPath}`);
+  }, [router.asPath]);
 
   const shareLinks = [
     {
@@ -59,14 +72,41 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
               <li key={idx}>
                 <a
                   target="_blank"
-                  aria-label="Share post on LinkedIn (opens in a new tab)"
+                  aria-label={`Share post on ${link.platform} (opens in a new tab)`}
                   href={link.url}
                 >
                   <FontAwesomeIcon icon={link.icon} />
                 </a>
               </li>
             ))}
+
+            {pdf && pdf.pdfLink && (
+              <li key={0}>
+
+                <button
+                  type="button"
+                  className="btn"
+                  style={{
+                    backgroundColor: "var(--primary)",
+                    color: "#fff",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "10px 15px",
+                  }}
+                  onClick={() => {
+                    toggleContactModal();                   
+                  }}
+                  aria-label={`Download`}
+                >
+
+                  {pdf.buttonTitle}
+                </button>
+
+              </li>
+            )}
           </ul>
+
         </div>
       ) : (
         <div className="social-share">
@@ -86,8 +126,7 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
                 type="button"
                 className="btn"
                 style={{
-                  // backgroundColor: "var(--primary)",
-                  backgroundColor: link.color,
+                  backgroundColor: "var(--primary)",
                   color: "#fff",
                   borderRadius: "4px",
                   display: "flex",
@@ -101,9 +140,17 @@ const SocialShare = ({ title, description, socialCta, type2 }) => {
                 {link.platform}
               </button>
             ))}
+
           </div>
         </div>
       )}
+
+      <PdfDownloadDialog
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        contactTag={pdf.buttonTitle}
+        pdf={pdf}
+      />
     </>
   );
 };

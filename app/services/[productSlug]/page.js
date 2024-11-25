@@ -15,18 +15,17 @@ export async function generateMetadata({ params }) {
     headers: myHeaders,
   };
 
-  console.log(`${config.apiBaseUrl}/service/${productSlug}`);
 
   const response = await fetch(
-    `${config.apiBaseUrl}/service/${productSlug}`,
+    `${config.apiBaseUrl}/service/metadata/${productSlug}`,
     requestOptions
   );
   if (!response.ok) {
     throw new Error(`Failed to fetch product ${productSlug}`);
   }
 
-  const serviceItem = await response.json();
-  return serviceItem.metadata;
+  const metadata = await response.json();
+  return metadata;
 }
 
 export default async function ServiceDetailPage({ params }) {
@@ -53,16 +52,16 @@ export default async function ServiceDetailPage({ params }) {
     <>
       <div className="page-content">
         {/* Banner Section */}
-        {/* <div
+        <div
           className="page-banner ovbl-dark"
-          // style={{ backgroundImage: `url(${bannerImg})` }}
+        // style={{ backgroundImage: `url(${bannerImg})` }}
         >
           <div className="container">
             <div className="page-banner-entry">
               <h1 className="text-white">{serviceItem.serviceTitle}</h1>
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Breadcrumbs */}
         <div className="breadcrumb-row">
