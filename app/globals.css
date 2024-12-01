@@ -12273,3 +12273,8 @@ button.back-to-top:hover {
   font-size: 1rem; /* Adjust paragraph font size */
   margin-bottom: 12px; /* Add spacing below paragraphs */
 }
+
+
+.dropdown-menu li{
+  width: max-content;
+}

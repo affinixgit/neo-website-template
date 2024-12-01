@@ -47,14 +47,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
 
   return (
     <>
-      {/* <button
-                className={`mobile-toggle ${isMenuOpen ? 'active' : ''}`}
-                onClick={toggleMenu}
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button> */}
+    
 
       {/* <div className={`nav-menu ${isMenuOpen ? "active" : ""}`}> */}
       <div className={`nav-menu`}>
@@ -79,7 +72,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                   }`}
                 >
                   <button className="dropdown-toggle">{item.name}</button>
-                  {/* <ul
+                  <ul
                     className={`dropdown-menu ${
                       activeDropdown === item.name ? "show" : ""
                     }`}
@@ -89,7 +82,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                         <Link href={subItem.path}>{subItem.name}</Link>
                       </li>
                     ))}
-                  </ul> */}
+                  </ul>
                 </div>
               ) : (
                 <Link href={item.path}>{item.name}</Link>
@@ -97,37 +90,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             </li>
           ))}
 
-          <div
-            onMouseLeave={() => {
-              setActiveDropdown(null);
-              setDropItems([]);
-            }}
-            className={`my-drop-down ${dropItems?.length > 0 ? "show" : ""}`}
-          >
-            <div className="row">
-              <div className="col-8 sub">
-                {dropItems.map((item, index) => (
-                  <Link href={item.path} className="drop-item" key={index}>
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="col-4 sub side-info">
-                <h2>Need a Hand</h2>
-                <p>
-                  Hopefully these links will help, but get in touch if we've
-                  missed something.
-                </p>
-
-                <ul>
-                  <li>
-                    <Link href="/contact">Contact Us</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+         
 
           {subMenu.showBookCallButton && (
             <li className="nav-item">
