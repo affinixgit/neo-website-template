@@ -78,7 +78,7 @@ export default async function ContactPage() {
                   rel="noopener noreferrer"
                   className="redirect-link"
                 >
-                  View on Google Maps
+                  View on Google Maps 
                 </Link>
                 <Link
                   href={`https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${businessInfo.geoLocationLat},${businessInfo.geoLocationLong}`}

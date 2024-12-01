@@ -1,6 +1,8 @@
 import Link from 'next/link'; // Import Next.js Link
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Font Awesome component
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone, faClock } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Footer({ footerData }) {
   const { businessInfo, footer, footerColumn } = footerData;
@@ -27,18 +29,20 @@ export default function Footer({ footerData }) {
           <div className="col-md-3 mb-3">
             <h5 className="mb-3">Contact & Business Details</h5>
             <ul className="list-unstyled">
-              <li>Name: {businessInfo.businessName}</li>
               <li>
-                Email:{" "}
+                <FontAwesomeIcon icon={faFacebook} /> {businessInfo.businessName}
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faEnvelope} />{" "}
                 <a
                   href={`mailto:${businessInfo.email}`}
-                  className="text-light text-decoration-none"
+                  className="text-light "
                 >
                   {businessInfo.email}
                 </a>
               </li>
               <li>
-                Phone:{" "}
+                <FontAwesomeIcon icon={faPhone} />{" "}
                 <a
                   href={`tel:${businessInfo.contactNo}`}
                   className="text-light text-decoration-none"
@@ -46,7 +50,7 @@ export default function Footer({ footerData }) {
                   {businessInfo.contactNo}
                 </a>
               </li>
-              <li>Working Hours: {businessInfo.openingHours}</li>
+              <li><FontAwesomeIcon icon={faClock} /> Working Hours: {businessInfo.openingHours}</li>
             </ul>
           </div>
 

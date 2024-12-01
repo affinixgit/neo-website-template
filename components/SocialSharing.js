@@ -74,13 +74,14 @@ const SocialShare = ({ title, description, socialCta, type2, pdf }) => {
                   target="_blank"
                   aria-label={`Share post on ${link.platform} (opens in a new tab)`}
                   href={link.url}
+                  style={{ color: link.color }}
                 >
                   <FontAwesomeIcon icon={link.icon} />
                 </a>
               </li>
             ))}
 
-            {pdf && pdf.pdfLink && (
+            {pdf  && (
               <li key={0}>
 
                 <button
@@ -126,31 +127,32 @@ const SocialShare = ({ title, description, socialCta, type2, pdf }) => {
                 type="button"
                 className="btn"
                 style={{
-                  backgroundColor: "var(--primary)",
+                  backgroundColor:link.color,
                   color: "#fff",
                   borderRadius: "4px",
                   display: "flex",
                   alignItems: "center",
-                  padding: "10px 15px",
+                  padding: "10px",
                 }}
                 onClick={() => handleShareClick(link.url)}
                 aria-label={`Share on ${link.platform}`}
               >
-                <FontAwesomeIcon icon={link.icon} className="me-2" />
-                {link.platform}
+                <FontAwesomeIcon icon={link.icon}  />
+              
               </button>
             ))}
 
           </div>
         </div>
       )}
-
-      <PdfDownloadDialog
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        contactTag={pdf.buttonTitle}
-        pdf={pdf}
-      />
+      {pdf && (
+        <PdfDownloadDialog
+          isOpen={isContactModalOpen}
+          onClose={() => setIsContactModalOpen(false)}
+          contactTag={pdf.buttonTitle}
+          pdf={pdf}
+        />
+      )}
     </>
   );
 };

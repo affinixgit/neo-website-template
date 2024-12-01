@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import config from "@/config/config";
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ const ContactForm = () => {
     }
 
     const myHeaders = new Headers();
-    myHeaders.append("x-api-key", process.env.NEXT_PUBLIC_API_KEY);
+    myHeaders.append("x-api-key", config.subscriptionId);
     myHeaders.append("Accept", "text/plain");
 
     const raw = JSON.stringify({
@@ -51,7 +53,14 @@ const ContactForm = () => {
       );
       const result = await response.text();
       console.log("Submission Successful:", result);
-      alert("Form submitted successfully!");
+      alert("Your form has been submitted successfully. We will get back to you shortly.");
+      setFormData({
+        firstName: "",
+        contact: "",
+        email: "",
+        selectedService: "",
+        notes: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to submit the form. Please try again.");
@@ -77,18 +86,20 @@ const ContactForm = () => {
         <div className="form-group">
           <label htmlFor="contact">Contact</label>
           <input
-            type="text"
+            type="tel"
             id="contact"
             name="contact"
             placeholder="Contact"
             value={formData.contact}
+            title="Please enter a valid mobile number"
             onChange={handleChange}
             required
+            pattern="[0-9]*"
             className="form-control"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Work Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -97,29 +108,11 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Please enter a valid email address"
             className="form-control"
           />
         </div>
-        {/* <div className="form-group">
-        <label htmlFor="selectedService">Select a Service</label>
-        <select
-          id="selectedService"
-          name="selectedService"
-          value={formData.selectedService}
-          onChange={handleChange}
-          required
-          className="form-control"
-        >
-          <option value="" disabled>
-            -- Select a Service --
-          </option>
-          {services.map((service) => (
-            <option key={service.id} value={service.serviceTitle}>
-              {service.serviceTitle}
-            </option>
-          ))}
-        </select>
-      </div> */}
         <div className="form-group">
           <label htmlFor="notes">Notes</label>
           <textarea

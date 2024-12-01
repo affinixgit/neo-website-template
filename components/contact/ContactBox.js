@@ -84,7 +84,7 @@ const ContactBox = ({ email, phone, businessName }) => {
                     <h5>Email Us</h5>
                     <p>
                       Simple drop us an email at <strong>{email} </strong>.
-                      You&apos;ll receive a reply within 24 hours
+                     
                     </p>
                   </div>
                   <a
