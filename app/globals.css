@@ -11295,9 +11295,9 @@ button.back-to-top:hover {
 
 
 .logo img {
-  max-height: 50px;
+  max-height: 100px;
   width: auto;
-  max-width: 133px;
+  max-width: 200px;
 }
 
 .nav-menu {
