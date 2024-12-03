@@ -12278,3 +12278,101 @@ button.back-to-top:hover {
 .dropdown-menu li{
   width: max-content;
 }
+
+
+/* Footer Styling */
+footer {
+  background-color: #333; /* Dark background for the footer */
+  color: #f8f9fa; /* Light text for readability */
+  padding: 2rem 0; /* Top and bottom padding */
+}
+
+footer h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem; /* Space below headings */
+  color: #f8f9fa;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+footer ul li a {
+  color: #f8f9fa; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer ul li a:hover {
+  color: #adb5bd; /* Lighter shade on hover */
+}
+
+footer .social-media-icons a {
+  color: #f8f9fa; /* Default icon color */
+  margin: 0 0.5rem; /* Spacing between icons */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer .social-media-icons a:hover {
+  color: #ffc107; /* Yellow color on hover */
+}
+
+/* Footer Bottom Section */
+footer .footer-bottom {
+  border-top: 1px solid #495057; /* Light border for separation */
+  padding-top: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer .footer-bottom a {
+  color: #f8f9fa; /* Link color */
+  text-decoration: none;
+  margin-right: 1rem; /* Spacing between links */
+  transition: color 0.3s ease;
+}
+
+footer .footer-bottom a:hover {
+  color: #adb5bd; /* Lighter shade on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  footer .footer-bottom {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  footer .footer-bottom ul {
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  footer .footer-bottom ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  footer .social-media-icons a {
+    margin: 0 0.4rem;
+  }
+}
+
+/* Footer-specific container widths */
+@media (min-width: 1400px) {
+  .footer-container {
+    max-width: 1320px;
+  }
+}
+@media (min-width: 1200px) {
+  .footer-container {
+    max-width: 1140px;
+  }
+}
+

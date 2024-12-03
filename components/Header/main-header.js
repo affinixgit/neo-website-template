@@ -34,8 +34,8 @@ const MainHeader = ({ headerData = {} }) => {
                 <Image
                   src={logoUrl}
                   alt={logoAlt}
-                  width={200}
-                  height={100}
+                  width={150}
+                  height={50}
                   priority // Ensure the logo loads quickly
                 />
               </Link>
