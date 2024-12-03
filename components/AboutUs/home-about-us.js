@@ -1,34 +1,36 @@
 import HTMLReactParser from "html-react-parser";
+import Link from "next/link";
 
 export default function HomeAboutUs({ aboutUs }) {
   return (
-    <section className="about-us-section  py-5">
+    <section className="about-us-section py-5">
       <div className="container">
         {/* Section Title */}
-        <div className="text-center mb-5">
-          <h2 className="fw-bold display-5">{aboutUs.title}</h2>
-          <p className="text-muted mt-3">
-            {aboutUs.description}
-          </p>
+        <div className="text-center mb-3">
+          <h2 className="fw-bold display-6">{aboutUs.title}</h2>
+          <p className="text-muted">{aboutUs.description}</p>
         </div>
 
-        {/* Text Content */}
+        {/* Content */}
         <div className="row justify-content-center">
-          <div className="col-lg-8">
-            {/* <p className="lead text-center">
-              
-              {aboutUs.sectionOne}Locations
-            </p> */}
-            <div className="text-center">
-            {aboutUs.sectionTwo ? HTMLReactParser(aboutUs.sectionTwo) : null}
-          
-            </div>
-            <div className="text-center">
-              <a href={aboutUs.aboutUsLink} className="btn btn-primary mt-4">
+          <div className="col-lg-8 text-center">
+            {aboutUs.sectionTwo && (
+              <div className="mb-3">{HTMLReactParser(aboutUs.sectionTwo)}</div>
+            )}
+            {aboutUs.buttonTitle && aboutUs.buttonLink && (
+              <Link
+                className="btn"
+                href={aboutUs.buttonLink}
+                style={{
+                  background: "var(--primary)",
+                  color: "white",
+                  padding: "10px 20px",
+                }}
+              >
                 {aboutUs.buttonTitle}
-              </a>
-            </div>
-          </div>N
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </section>

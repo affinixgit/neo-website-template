@@ -10,9 +10,9 @@ const HomeBlogSection = ({ posts }) => {
       <div className="container">
         {/* Section Heading */}
         <div className="text-center mb-5">
-          <h2 className="fw-bold display-5">Insights & Tips</h2>
+          <h3 className="fw-bold display-5">Featured Blogs</h3>
           <p className="text-muted mt-3">
-            Stay updated with the latest trends and tips in your industry.
+            Stay updated with the latest trends.
           </p>
         </div>
 
