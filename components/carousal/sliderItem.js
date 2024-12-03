@@ -14,12 +14,10 @@ export default function SliderItem({ item }) {
         {item.image && (
           <Image
             src={item.image}
-            alt={item.alt || "Default Alt Text"}
-            fill
-            style={{
-              objectFit: "cover", // Ensure the image covers the entire area
-              objectPosition: "center",
-            }}
+            alt={item.alt || ""}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
           />
         )}
       </div>
@@ -28,16 +26,16 @@ export default function SliderItem({ item }) {
       <div className="slider-content text-white">
         <div className="container d-flex">
           <div className="content-inner">
-            <h6 className="sub-title">{item.title || "Default Title"}</h6>
+            <h6 className="sub-title">{item.title || ""}</h6>
             <h2 className="title">
-              {item.description || "Default Description"}
+              {item.description || ""}
             </h2>
-            <br />
-            <br />
+         
             {item.catLink && item.catButtonTitle && (
               <Link
                 className="btn radius-xl m-b50 m-r15 button-md white"
                 href={item.catLink}
+                style={{ background: "var(--primary)", color: "white" }}
               >
                 {item.catButtonTitle}
               </Link>

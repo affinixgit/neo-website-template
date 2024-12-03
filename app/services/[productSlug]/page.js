@@ -80,53 +80,57 @@ export default async function ServiceDetailPage({ params }) {
 
         <ServiceDescription serviceItem={serviceItem}></ServiceDescription>
 
-        <div className="content-block">
-          <div className="section-area section-sp5">
-            <div className="container">
-              <div className="row d-flex flex-row">
-                <h4>Filter Tags</h4>
-                <div className="product-tags">
-                  {serviceItem.tags.map((tag, tagIdx, arr) => (
-                    <span key={tagIdx}>
-                      <Link
-                        href={`/tags/${tag.slug}/${serviceItem.slug}`}
-                        className="tag-link"
-                        style={{ color: "var(--primary)" }}
-                      >
-                        {tag.tagName}
-                      </Link>
-                      {tagIdx < arr.length - 1 && " | "}
-                    </span>
-                  ))}
+        {serviceItem.tags.length > 0 && (
+          <div className="content-block">
+            <div className="section-area section-sp5">
+              <div className="container">
+                <div className="row d-flex flex-row">
+                  <h4>Tags</h4>
+                  <div className="product-tags">
+                    {serviceItem.tags.map((tag, tagIdx, arr) => (
+                      <span key={tagIdx}>
+                        <Link
+                          href={`/tags/${tag.slug}/${serviceItem.slug}`}
+                          className="tag-link"
+                          style={{ color: "var(--primary)" }}
+                        >
+                          {tag.tagName}
+                        </Link>
+                        {tagIdx < arr.length - 1 && " | "}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="content-block">
-          <div className="section-area section-sp5">
-            <div className="container">
-              <div className="row d-flex flex-row">
-                <h4>Locations</h4>
-                <div className="product-tags">
-                  {serviceItem.locations.map((location, tagIdx, arr) => (
-                    <span key={tagIdx}>
-                      <Link
-                        href={`/services/location/${serviceItem.slug}/${location.slug}`}
-                        className="tag-link"
-                        style={{ color: "var(--primary)" }}
-                      >
-                        {location.locationName}
-                      </Link>
-                      {tagIdx < arr.length - 1 && " | "}
-                    </span>
-                  ))}
+        {serviceItem.locations.length > 0 && (
+          <div className="content-block">
+            <div className="section-area section-sp5">
+              <div className="container">
+                <div className="row d-flex flex-row">
+                  <h4>Locations</h4>
+                  <div className="product-tags">
+                    {serviceItem.locations.map((location, tagIdx, arr) => (
+                      <span key={tagIdx}>
+                        <Link
+                          href={`/services/location/${serviceItem.slug}/${location.slug}`}
+                          className="tag-link"
+                          style={{ color: "var(--primary)" }}
+                        >
+                          {location.locationName}
+                        </Link>
+                        {tagIdx < arr.length - 1 && " | "}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         <br />
         <br />

@@ -439,14 +439,7 @@
   font-weight: 600;
 }
 
-@media (min-width: 992px) {
-  .container,
-  .container-lg,
-  .container-md,
-  .container-sm {
-    max-width: 990px !important;
-  }
-}
+
 
 .not-found {
   @import url("https://fonts.googleapis.com/css?family=Nunito+Sans");

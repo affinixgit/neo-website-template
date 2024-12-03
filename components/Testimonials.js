@@ -17,7 +17,7 @@ export default function Testimonials({ data }) {
   return (
     <section className="testimonials-section bg-light py-5">
       <div className="container">
-        <h2 className="text-center fw-bold mb-5">What Our Clients Say</h2>
+        <h3 className="text-center fw-bold mb-5">What Our Clients Say</h3>
 
         <div
           id="testimonialsCarousel"

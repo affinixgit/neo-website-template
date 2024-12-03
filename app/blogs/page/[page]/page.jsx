@@ -1,4 +1,5 @@
-import { fetchBlogs } from '@/lib/fetchBlogs';
+import { fetchBlogs  } from "@/lib/fetchBlogs";
+import { fetchBackgroundImage  } from "@/lib/backgroundImage";
 import Link from 'next/link';
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import Image from 'next/image';
@@ -27,7 +28,7 @@ export default async function PaginatedBlogs({ params }) {
   const currentPage = pageDetails.page;
   const page = parseInt(currentPage, 10) || 1;
   const pageSize = 12;
-
+  const backgroundImageSrc = await fetchBackgroundImage();
   // Fetch blogs from API
   const data = await fetchBlogs(page, pageSize);
   const allPosts = data.blogs;
@@ -36,9 +37,9 @@ export default async function PaginatedBlogs({ params }) {
   return (
 
     <div className="page-content">
-      <div
+ <div
         className="page-banner ovbl-dark"
-        style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+        style={{ backgroundImage: `url(${backgroundImageSrc ? backgroundImageSrc : bannerImg.src})` }}
       >
         <div className="container">
           <div className="page-banner-entry">

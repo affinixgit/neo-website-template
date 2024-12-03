@@ -2,6 +2,8 @@ import React, { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Dynamically import NavMenu if it's a large component
 const NavMenu = dynamic(() => import("./nav-links"), { ssr: true });
@@ -17,9 +19,10 @@ const MainHeader = ({ headerData = {} }) => {
 
   return (
     <>
-      {banner?.bannerEnabled && banner.bannerText && (
-        <div className="offer-banner">
-          <p>{banner.bannerText}</p>
+      {banner.bannerEnabled && (
+        <div className="offer-banner" style={{ backgroundColor: banner.bannerColour }}>
+          <p>{banner.title} |&nbsp;
+          {banner.link && <Link href={banner.link}>Know more <FontAwesomeIcon icon={faExternalLink} aria-hidden="true" /></Link>}</p>
         </div>
       )}
 

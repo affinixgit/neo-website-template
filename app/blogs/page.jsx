@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import { fetchBlogs } from "@/lib/fetchBlogs";
+import { fetchBackgroundImage  } from "@/lib/backgroundImage";
 import Pagination from "@/components/Pagination";
-import config from "@/config/config";
 import HTMLReactParser from "html-react-parser";
 
 export default async function Blogs() {
@@ -18,12 +18,12 @@ export default async function Blogs() {
     .slice(1, 4); // Get up to 3 objects
   const allPosts = blogs; // Exclude the main featured post
   const totalPages = Math.ceil(data.totalCount / pageSize);
-
+const backgroundImageSrc = await fetchBackgroundImage();
   return (
     <div className="page-content">
       <div
         className="page-banner ovbl-dark"
-        style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+        style={{ backgroundImage: `url(${backgroundImageSrc ? backgroundImageSrc : bannerImg.src})` }}
       >
         <div className="container">
           <div className="page-banner-entry">
