@@ -93,7 +93,7 @@ const Popup = ({ togglePopup, showPopup, setShowPopup }) => {
     <div className={`popup-container ${showPopup ? "show" : ""}`}>
       <button onClick={togglePopup} className="close-button"></button>
       <div className="popup-header">
-        <h1 className="popup-title">Contact us</h1>
+        <h4 className="popup-title">Contact us</h4>
       </div>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}

@@ -7,7 +7,7 @@ export default function HomeAboutUs({ aboutUs }) {
       <div className="container">
         {/* Section Title */}
         <div className="text-center mb-3">
-          <h2 className="fw-bold display-6">{aboutUs.title}</h2>
+          <h1 className="fw-bold display-6">{aboutUs.title}</h1>
           <p className="text-muted">{aboutUs.description}</p>
         </div>
 

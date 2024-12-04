@@ -4,7 +4,7 @@ import HTMLReactParser from "html-react-parser";
 export default function HeroSection({ data,heroImage }) {
   
   return (
-    <section className="hero-section bg-light text-center py-5">
+    <section className="hero-section  py-5">
       <div className="container">
         <div className="row align-items-center">
           {/* Left Column: Text */}
@@ -12,14 +12,24 @@ export default function HeroSection({ data,heroImage }) {
             <h3 className="display-4 fw-bold">
               {data.title}
             </h3>
-            <div className="lead my-4">
+            <div className="mb-4">
               {HTMLReactParser(data.description)}
             </div>
             <div>
-              <Link href={data.buttonOneLink} className="btn btn-primary me-3" >
+
+            <Link
+                className="btn"
+                href={data.buttonOneLink}
+                style={{
+                  background: "var(--primary)",
+                  color: "white",
+                  padding: "10px 20px",
+                }}
+              >
                 {data.buttonOneTitle}
               </Link>
-          
+
+           
             </div>
           </div>
 
