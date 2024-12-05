@@ -8,19 +8,14 @@ import ContactModal from '../ContactModal';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
   faBars,
   faChevronDown,
   faChevronUp,
-  faCircleQuestion,
-  faExpand,
-  faExpandAlt,
-  faExpandArrowsAlt,
   faHouse,
   faPhone,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faServicestack, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faServicestack } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 
 const NavMenu = ({ menuData, businessInfo, subMenu }) => {
@@ -58,7 +53,6 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
               className={pathname === item.path ? "active" : ""}
               onMouseEnter={() => {
                 setActiveDropdown(item.name);
-
                 setDropItems(item.dropdown);
               }}
               onMouseLeave={() => {
@@ -85,7 +79,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
                   </ul>
                 </div>
               ) : (
-                <Link href={item.path}>{item.name}</Link>
+                <Link className={`main-menu ${pathname === item.path ? "main-menu-active" : ""}`} href={item.path}>{item.name}</Link>
               )}
             </li>
           ))}

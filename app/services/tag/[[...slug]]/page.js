@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import ServiceDescription from '@/components/service/serviceDescription';
 import config from '@/config/config';
-import { Accordion } from "react-bootstrap";
+import { fetchBackgroundImage } from '@/lib/backgroundImage';
+import { MODULE_SERVICES } from '@/constants/constant';
 import Faq from "@/components/service/Faq";
 
 const myHeaders = new Headers();
@@ -28,10 +29,12 @@ export async function generateMetadata({ params }) {
   }
 
   const serviceItem = await response.json();
-  const metaData = serviceItem.metaData;
-  // metaData.metaTitle = tagSlug.replace(/-/g, ' ');
+  const metaData = serviceItem.metadata;
+  const tagTitle = tagSlug.replace(/-/g, ' ')
 
-  return serviceItem.metadata;
+  metaData.title = `${serviceItem.serviceTitle} | ${tagTitle}`;
+
+  return metaData;
 }
 
 export default async function ServiceDetailPage({ params }) {
@@ -57,6 +60,7 @@ export default async function ServiceDetailPage({ params }) {
   // const bannerImg = "/images/banner/banner2.jpg";
   const jsonLd = serviceItem.jsonLd ? serviceItem.jsonLd : "{}"; // Safeguard against undefined
   serviceItem.serviceTitle = tagTitle;
+  const navData = await fetchBackgroundImage(MODULE_SERVICES);
   return (
     <>
       <div className="page-content">
@@ -80,7 +84,7 @@ export default async function ServiceDetailPage({ params }) {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/services">Services</Link>
+                <Link href={navData.path}>Services</Link>
               </li>
               <li>{tagTitle}</li>
             </ul>
@@ -98,7 +102,7 @@ export default async function ServiceDetailPage({ params }) {
                   {serviceItem.tags.map((tag, tagIdx, arr) => (
                     <span key={tagIdx}>
                       <Link
-                        href={`/tags/${tag.slug}/${serviceItem.slug}`}
+                        href={`${navData.path}/tag/${tag.slug}/${serviceItem.slug}`}
                         className="tag-link"
                         style={{ color: "var(--primary)" }}
                       >
@@ -122,7 +126,7 @@ export default async function ServiceDetailPage({ params }) {
                   {serviceItem.locations.map((location, tagIdx, arr) => (
                     <span key={tagIdx}>
                       <Link
-                        href={`/services/location/${serviceItem.slug}/${location.slug}`}
+                        href={`${navData.path}/location/${serviceItem.slug}/${location.slug}`}
                         className="tag-link"
                         style={{ color: "var(--primary)" }}
                       >

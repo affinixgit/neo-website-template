@@ -125,8 +125,8 @@ const ContactForm = () => {
             rows="4"
           />
         </div>
-        <button type="submit" className="btn btn-primary w-100">
-          Talk to us
+        <button type="submit" className="btn w-100" style={{ backgroundColor: 'var(--primary) !important', color: 'white !important' }}>
+          contact us
         </button>
       </form>
     </div>

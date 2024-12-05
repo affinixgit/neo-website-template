@@ -12376,6 +12376,14 @@ footer .footer-bottom a:hover {
   }
 }
 
-a{
+/* a{
 color: var(--primary) !important;
+} */
+
+.main-menu{
+  color: #000 !important;
+}
+
+.main-menu-active{
+  color: var(--primary) !important;
 }

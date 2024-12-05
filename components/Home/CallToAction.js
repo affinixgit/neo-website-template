@@ -21,8 +21,8 @@ export default function HeroSection({ data,heroImage }) {
                 className="btn"
                 href={data.buttonOneLink}
                 style={{
-                  background: "var(--primary)",
-                  color: "white",
+                  background: "var(--primary) !important",
+                  color: "white !important",
                   padding: "10px 20px",
                 }}
               >

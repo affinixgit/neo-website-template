@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import ServiceDescription from '@/components/service/serviceDescription';
 import config from '@/config/config';
-import { Accordion } from "react-bootstrap";
+import { fetchBackgroundImage } from '@/lib/backgroundImage';
 import Faq from "@/components/service/Faq";
-
+import { MODULE_SERVICES } from '@/constants/constant';
 const myHeaders = new Headers();
 myHeaders.append("x-api-key", config.subscriptionId);
 
@@ -28,10 +28,14 @@ export async function generateMetadata({ params }) {
   }
 
   const serviceItem = await response.json();
-  const metaData = serviceItem.metaData;
-  // metaData.metaTitle = locationSlug.replace(/-/g, ' ');
+  const metaData = serviceItem.metadata;
+  const locationTitle = locationSlug.replace(/-/g, ' ')
+  // const locationTitle = locationSlug.replace(/-/g, ' ')
+  metaData.title = `${serviceItem.serviceTitle} in  ${locationTitle}`;
 
-  return serviceItem.metadata;
+
+
+  return metaData;
 }
 
 export default async function ServiceDetailPage({ params }) {
@@ -39,6 +43,8 @@ export default async function ServiceDetailPage({ params }) {
   const productSlug= slug[0]
   const locationSlug = slug[1]
   const locationTitle = locationSlug.replace(/-/g, ' ')
+
+  const navData = await fetchBackgroundImage(MODULE_SERVICES);
 
   const requestOptions = {
     method: "GET",
@@ -80,7 +86,7 @@ export default async function ServiceDetailPage({ params }) {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/services">Services</Link>
+                <Link href={navData.path}>Services</Link>
               </li>
               <li>{locationTitle}</li>
             </ul>
@@ -97,13 +103,13 @@ export default async function ServiceDetailPage({ params }) {
                 <div className="product-tags">
                   {serviceItem.tags.map((tag, tagIdx, arr) => (
                     <span key={tagIdx}>
-                      <Link
-                        href={`/tags/${tag.slug}/${serviceItem.slug}`}
-                        className="tag-link"
-                        style={{ color: "var(--primary)" }}
-                      >
-                        {tag.tagName}
-                      </Link>
+                       <Link
+                          href={`${navData.path}/tag/${tag.slug}/${serviceItem.slug}`}
+                          className="tag-link"
+                          style={{ color: "var(--primary)" }}
+                        >
+                          {tag.tagName}
+                        </Link>
                       {tagIdx < arr.length - 1 && " | "}
                     </span>
                   ))}
@@ -122,7 +128,7 @@ export default async function ServiceDetailPage({ params }) {
                   {serviceItem.locations.map((location, tagIdx, arr) => (
                     <span key={tagIdx}>
                       <Link
-                        href={`/services/location/${serviceItem.slug}/${location.slug}`}
+                        href={`${navData.path}/location/${serviceItem.slug}/${location.slug}`}
                         className="tag-link"
                         style={{ color: "var(--primary)" }}
                       >

@@ -16,8 +16,8 @@ export default function HeroSection({ data, heroImage }) {
                 className="btn "
                 href={data.buttonOneLink}
                 style={{
-                  background: "var(--primary)",
-                  color: "white",
+                  background: "var(--primary) !important",
+                  color: "white !important",
                   margin: "2px",               
                 }}
               >
@@ -28,10 +28,9 @@ export default function HeroSection({ data, heroImage }) {
                 className="btn "
                 href={data.buttonTwoLink}
                 style={{
-                  background: "var(--primary)",
-                  color: "white",
+                  background: "var(--primary) !important",
+                  color: "white !important",
                   margin: "2px",  
-                  
                 }}
               >
                 {data.buttonTwoTitle}

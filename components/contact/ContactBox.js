@@ -91,7 +91,8 @@ const ContactBox = ({ email, phone, businessName }) => {
                     target=""
                     rel="noreferrer"
                     href={`mailto:${email}`}
-                    className="btn btn-primary mt-auto"
+                    className="btn mt-auto"
+                    style={{ color: 'white !important', backgroundColor: 'var(--primary) !important' }}
                   >
                     Email Us
                   </a>

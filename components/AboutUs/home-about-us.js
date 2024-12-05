@@ -22,8 +22,8 @@ export default function HomeAboutUs({ aboutUs }) {
                 className="btn"
                 href={aboutUs.buttonLink}
                 style={{
-                  background: "var(--primary)",
-                  color: "white",
+                  background: "var(--primary) !important",
+                  color: "white !important",
                   padding: "10px 20px",
                 }}
               >
