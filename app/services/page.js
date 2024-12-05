@@ -27,9 +27,6 @@ async function ServiceList({ products }) {
 
   return (
     <>
-           
-           
-
             <div className="grid">
                 {products.map((item) => (
                     <div key={item.idServices} className="product-card">

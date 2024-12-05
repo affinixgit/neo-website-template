@@ -3,6 +3,8 @@ import ServiceDescription from '@/components/service/serviceDescription';
 import config from '@/config/config';
 import { Accordion } from "react-bootstrap";
 import Faq from "@/components/service/Faq";
+import { fetchBackgroundImage } from '@/lib/backgroundImage';
+import { MODULE_SERVICES } from '@/constants/constant';
 
 const myHeaders = new Headers();
 myHeaders.append("x-api-key", config.subscriptionId);
@@ -31,6 +33,8 @@ export async function generateMetadata({ params }) {
 export default async function ServiceDetailPage({ params }) {
   const { productSlug } = await params;
 
+  const navData = await fetchBackgroundImage(MODULE_SERVICES);
+
   const requestOptions = {
     method: "GET",
     headers: myHeaders,
@@ -54,7 +58,7 @@ export default async function ServiceDetailPage({ params }) {
         {/* Banner Section */}
         <div
           className="page-banner ovbl-dark"
-        // style={{ backgroundImage: `url(${bannerImg})` }}
+         style={{ backgroundImage: `url(${navData.backgroundImage})` }}
         >
           <div className="container">
             <div className="page-banner-entry">
@@ -90,7 +94,7 @@ export default async function ServiceDetailPage({ params }) {
                     {serviceItem.tags.map((tag, tagIdx, arr) => (
                       <span key={tagIdx}>
                         <Link
-                          href={`/tags/${tag.slug}/${serviceItem.slug}`}
+                          href={`/tag/${tag.slug}/${serviceItem.slug}`}
                           className="tag-link"
                           style={{ color: "var(--primary)" }}
                         >
