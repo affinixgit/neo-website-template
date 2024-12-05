@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from "next/link";
 import { useState, useEffect } from 'react'; // Adjust the import path as necessary
 import PhoneIcon from '../PhoneIcon';
-import ContactModal from '../ContactModal';
+import MobileContactModal from '../WhatsApp/mobileContactModal';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -108,7 +108,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
 
         {/* Contact Modal */}
       </div>
-      <ContactModal
+      <MobileContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
         contactTag={contactTag}
@@ -242,13 +242,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
           href={`#`}
           onClick={(e) => {
             e.preventDefault();
-            // const element = document.querySelector(".popup-container");
-            // // check if the element is visible
-            // if (element?.classList.contains("show")) {
-            //   element?.classList.remove("show");
-            // } else {
-            //   element?.classList.add("show");
-            // }
+           
             toggleContactModal();
             setContactTag("Whatsapp");
           }}
@@ -258,13 +252,12 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
               <Image
                 width={45}
                 height={45}
-                src="/images/WhatsApp.png"
+                src="/images/WhatsApp_icon.png"
                 alt="whatsapp icon"
                 title="whatsapp icon"
                 className="whatsapp-icon"
                 style={{
                   backgroundColor: "white",
-
                   borderRadius: "9999px",
                 }}
               />

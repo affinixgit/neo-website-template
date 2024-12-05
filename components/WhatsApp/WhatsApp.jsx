@@ -1,22 +1,22 @@
 'use client'
 import React, { useState } from "react";
-import Popup from "./Popup";
+import MobileContactModal from "./mobileContactModal";
+import Image from "next/image";
 
 const WhatsApp = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const togglePopup = () => {
-    console.log("clicked");
-    setShowPopup(!showPopup);
+    setIsContactModalOpen(!isContactModalOpen);
   };
 
   return (
     <>
       <div className="whatsapp-container">
-        <img
+        <Image
           width={64}
           height={64}
-          src="/images/WhatsApp.png"
+          src="/images/WhatsApp_icon.png"
           alt="whatsapp icon"
           title="whatsapp icon"
           className="whatsapp-icon"
@@ -29,10 +29,10 @@ const WhatsApp = () => {
         />
       </div>
 
-      <Popup
-        showPopup={showPopup}
-        togglePopup={togglePopup}
-        setShowPopup={setShowPopup}
+      <MobileContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        contactTag={""}
       />
       <style jsx>{`
         .whatsapp-container {

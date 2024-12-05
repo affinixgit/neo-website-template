@@ -66,13 +66,7 @@ const Popup = ({ togglePopup, showPopup, setShowPopup }) => {
 
       if (res.ok) {
         setSuccessMessage("Your message has been sent successfully");
-        setTimeout(() => {
-          window.open(
-            `https://wa.me/919371044427?text=${description}`,
-            "_blank"
-          );
-          setShowPopup(false);
-        }, 1000);
+    
         setState({
           fullName: "",
           mobileNumber: "",
@@ -80,6 +74,13 @@ const Popup = ({ togglePopup, showPopup, setShowPopup }) => {
           description: "",
           courseName: "",
         });
+        setTimeout(() => {
+          window.open(
+            `https://wa.me/${res.WhatsappContactNo}?text=${description}`,
+            "_blank"
+          );
+          setShowPopup(false);
+        }, 1000);
       } else {
         setErrorMessage("Something went wrong");
       }
