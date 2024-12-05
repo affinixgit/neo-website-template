@@ -21,7 +21,7 @@ export default function NotFoundPage() {
       <div className="row w-100">
         <div className="col-md-6 mx-auto">
           <h1 className="display-1">404</h1>
-          <h2 className="mt-3">UH OH! You're lost.</h2>
+          <h2 className="mt-3">UH OH! You&apos;re lost.</h2>
           <p className="mt-2">
             The page you are looking for does not exist. How you got here is a
             mystery. But you can click the button below to go back to the
