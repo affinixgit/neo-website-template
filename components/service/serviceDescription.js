@@ -48,7 +48,7 @@ const ServiceDescription = ({ serviceItem }) => {
             <div className="section-area section-sp5">
               <div className="row d-flex flex-row">
                 {/* Product Details */}
-                <div className="product-details">
+                <div >
                   {HTMLReactParser(serviceItem.serviceDetails)}
                 </div>
               </div>

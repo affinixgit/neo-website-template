@@ -18,12 +18,12 @@ export default async function Blogs() {
     .slice(1, 4); // Get up to 3 objects
   const allPosts = blogs; // Exclude the main featured post
   const totalPages = Math.ceil(data.totalCount / pageSize);
-const backgroundImageSrc = await fetchBackgroundImage();
+const navBar = await fetchBackgroundImage();
   return (
     <div className="page-content">
       <div
         className="page-banner ovbl-dark"
-        style={{ backgroundImage: `url(${backgroundImageSrc ? backgroundImageSrc : bannerImg.src})` }}
+        style={{ backgroundImage: `url(${navBar ? navBar.backgroundImage : bannerImg.src})` }}
       >
         <div className="container">
           <div className="page-banner-entry">

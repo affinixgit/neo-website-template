@@ -27,24 +27,23 @@ async function ServiceList({ products }) {
 
   return (
     <>
-
-      <div className="grid">
-        {products.map((item) => (
-          <div key={item.idServices} className="product-card">
-            <img
-              src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-              alt={item?.serviceTitle} className="product-image" />
-            <div className="image-divider"></div> {/* Divider under image */}
-            <h3 className="product-name">
-              <Link href={`/services/${item?.slug}`} className="button">
-                {item?.serviceTitle}
-              </Link>
-            </h3>
-            <p className="product-description">{trimText(getText(item?.description))}</p>
-          </div>
-        ))}
-      </div>
-
+            <div className="grid">
+                {products.map((item) => (
+                    <div key={item.idServices} className="product-card">
+                        <img
+                            src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
+                            alt={item?.serviceTitle} className="product-image" />
+                        <div className="image-divider"></div> {/* Divider under image */}
+                        <h3 className="product-name">
+                            <Link href={`/services/${item?.slug}`} className="button">
+                                {item?.serviceTitle}
+                            </Link>
+                        </h3>
+                        <p className="product-description">{trimText(getText(item?.description))}</p>
+                    </div>
+                ))}
+            </div>
+        
     </>
   );
 }

@@ -1,32 +1,44 @@
 import Link from "next/link";
 import HTMLReactParser from "html-react-parser";
 
-export default function HeroSection({ data,heroImage }) {
-  
+export default function HeroSection({ data, heroImage }) {
+
   return (
-    <section className="hero-section bg-light text-center py-5">
+    <section className="hero-section  text-center py-5">
       <div className="container">
         <div className="row align-items-center">
           {/* Left Column: Text */}
           <div className="col-md-6 text-md-start">
             <h3 className="display-4 fw-bold">{data.title}</h3>
-            <div className="lead my-4">{HTMLReactParser(data.description)}</div>
-            <div>
+            <div className=" mb-4">{HTMLReactParser(data.description)}</div>
+            <div className="d-flex justify-content-left">
               <Link
+                className="btn "
                 href={data.buttonOneLink}
-                className="btn btn-primary me-3 mb-3"
+                style={{
+                  background: "var(--primary)",
+                  color: "white",
+                  margin: "2px",               
+                }}
               >
                 {data.buttonOneTitle}
               </Link>
 
               <Link
+                className="btn "
                 href={data.buttonTwoLink}
-                className="btn btn-primary me-3 mb-3"
+                style={{
+                  background: "var(--primary)",
+                  color: "white",
+                  margin: "2px",  
+                  
+                }}
               >
                 {data.buttonTwoTitle}
               </Link>
 
-           
+            
+
             </div>
           </div>
 

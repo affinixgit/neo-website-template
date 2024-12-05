@@ -29,7 +29,7 @@ export default function Footer({ footerData }) {
             <h5 className="mb-3">Contact & Business Details</h5>
             <ul className="list-unstyled">
               <li>
-                <FontAwesomeIcon icon={faFacebook} /> {businessInfo.businessName}
+                {businessInfo.businessName}
               </li>
               <li>
                 <FontAwesomeIcon icon={faEnvelope} />{' '}
