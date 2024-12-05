@@ -1,7 +1,6 @@
 import React from "react";
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
-import Link from "next/link";
 import SocialShare from "../SocialSharing";
 
 const ServiceDescription = ({ serviceItem }) => {

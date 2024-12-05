@@ -1,62 +1,62 @@
 
 import Link from "next/link";
-import Image from "next/image";
 import { trimText, getText } from "@/lib/common";
 import config from "@/config/config";
-
-const myHeaders = new Headers();
-myHeaders.append("x-api-key", config.subscriptionId);
-
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow"
-};
-
-const response = await fetch(`${config.apiBaseUrl}/service?pageNumber=1&pageSize=5`, requestOptions);
+import { MODULE_SERVICES } from '@/constants/constant'
+import { fetchBackgroundImage } from '@/lib/backgroundImage';
 
 
-
-if (!response.ok) {
-  throw new Error('Failed to fetch products');
-}
-
-const productResponse = await response.json();
-
-async function ServiceList({ products }) {
+async function ServiceList({ products ,navData }) {
 
   return (
     <>
-            <div className="grid">
-                {products.map((item) => (
-                    <div key={item.idServices} className="product-card">
-                        <img
-                            src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
-                            alt={item?.serviceTitle} className="product-image" />
-                        <div className="image-divider"></div> {/* Divider under image */}
-                        <h3 className="product-name">
-                            <Link href={`/services/${item?.slug}`} className="button">
-                                {item?.serviceTitle}
-                            </Link>
-                        </h3>
-                        <p className="product-description">{trimText(getText(item?.description))}</p>
-                    </div>
-                ))}
-            </div>
-        
+      <div className="grid">
+        {products.map((item) => (
+          <div key={item.idServices} className="product-card">
+            <img
+              src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
+              alt={item?.serviceTitle} className="product-image" />
+            <div className="image-divider"></div> {/* Divider under image */}
+            <h3 className="product-name">
+              <Link href={`${navData.path}/${item?.slug}`} className="button">
+                {item?.serviceTitle}
+              </Link>
+            </h3>
+            <p className="product-description">{trimText(getText(item?.description))}</p>
+          </div>
+        ))}
+      </div>
+
     </>
   );
 }
 
-const Services = () => {
-  const jsonLd = productResponse.jsonLd ? productResponse.jsonLd : '{}'; // Safeguard against undefined
+const Services = async () => {
 
+  const myHeaders = new Headers();
+  myHeaders.append("x-api-key", config.subscriptionId);
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  const response = await fetch(`${config.apiBaseUrl}/service?pageNumber=1&pageSize=50`, requestOptions);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+
+  const productResponse = await response.json();
+  const jsonLd = productResponse.jsonLd ? productResponse.jsonLd : '{}'; // Safeguard against undefined
+  const navData = await fetchBackgroundImage(MODULE_SERVICES);
 
   return (
     <div className="page-content">
       <div
         className="page-banner ovbl-dark"
-      // style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+      style={{ backgroundImage: `url(${navData.backgroundImage})` }} // Using imported image
       >
         <div className="container">
           <div className="page-banner-entry">
@@ -81,25 +81,9 @@ const Services = () => {
             <div className="row">
               <div className="col">
                 <div className="row">
-                  <ServiceList products={productResponse.service}></ServiceList>
+                  <ServiceList products={productResponse.service} navData={navData}></ServiceList>
                 </div>
-                {/* <h3>Filter Tags</h3> */}
-                {/* <div className="product-tags">
-                  {productResponse.tags.map((tag, tagIdx, arr) => (
-                    <span key={tagIdx}>
-                      <Link
-                        href={`services/tag/${tag.slug}`}
-                        className="tag-link"
-                        style={{
-                          color: "var(--primary)",
-                        }}
-                      >
-                        {tag.tagName}
-                      </Link>
-                      {tagIdx < arr.length - 1 && " | "}
-                    </span>
-                  ))}
-                </div> */}
+              
               </div>
             </div>
           </div>

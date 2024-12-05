@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import ServiceDescription from '@/components/service/serviceDescription';
 import config from '@/config/config';
-import { Accordion } from "react-bootstrap";
 import Faq from "@/components/service/Faq";
 import { fetchBackgroundImage } from '@/lib/backgroundImage';
 import { MODULE_SERVICES } from '@/constants/constant';
@@ -62,7 +61,7 @@ export default async function ServiceDetailPage({ params }) {
         >
           <div className="container">
             <div className="page-banner-entry">
-              <h1 className="text-white">{serviceItem.serviceTitle}</h1>
+              <h1 className="text-white">{serviceItem.metaTitle}</h1>
             </div>
           </div>
         </div>

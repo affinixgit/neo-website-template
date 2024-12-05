@@ -3,13 +3,13 @@
 import { useState } from "react";
 import config from "@/config/config";
 
-const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
+const PdfDownloadDialog = ({ isOpen, onClose, contactTag, pdf }) => {
   const [name, setName] = useState(""); // Added state for name
   const [contactNumber, setContactNumber] = useState("");
-  const [note, setNote] = useState("");
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const subscriptionId =config.subscriptionId;
-  const LEAD_SOURCE =3;
+  const subscriptionId = config.subscriptionId;
+  const LEAD_SOURCE = 3;
 
   const handleSave = async () => {
     setIsSubmitting(true);
@@ -21,9 +21,10 @@ const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
     const raw = JSON.stringify({
       fullName: name, // Use the name from the state
       mobileNumber: contactNumber,
-      leadMessage: note,
-      leadSource:LEAD_SOURCE,
-      PageLink:pdf.pdfLink
+      email: email,
+      leadMessage:pdf.pdfLink,
+      leadSource: LEAD_SOURCE,
+      PageLink: pdf.pdfLink
     });
 
     const requestOptions = {
@@ -32,21 +33,18 @@ const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
       body: raw,
       redirect: "follow",
     };
-
+    const apiUrl = `${config.apiBaseUrl}/NeoLeadAdmin`;
     try {
-      const response = await fetch(
-        config.apiBaseUrl,
-        requestOptions
-      );
-      const result = await response.text();
-      console.log(result);
-      alert("Details submitted successfully!");
+      const response = await fetch(apiUrl, requestOptions);
+      await response.text();
+
+
       setName(""); // Reset the name field
       setContactNumber("");
-      setNote("");
+      setEmail("");
       onClose();
-       // Open the PDF in a new tab if the pdf.pdfLink is available
-       if (pdf && pdf.pdfLink) {
+      // Open the PDF in a new tab if the pdf.pdfLink is available
+      if (pdf && pdf.pdfLink) {
         window.open(pdf.pdfLink, "_blank", "noopener,noreferrer");
       }
     } catch (error) {
@@ -64,7 +62,7 @@ const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
       <div className="modal-content">
         <h3>{contactTag}</h3>
         <form>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name  <span style={{ color: 'red' }}>*</span></label>
           <input
             type="text"
             id="name"
@@ -73,23 +71,35 @@ const PdfDownloadDialog = ({ isOpen, onClose, contactTag,pdf }) => {
             placeholder="Enter your full name"
             required
           />
-          <label htmlFor="contactNumber">Contact Number:</label>
+          <label htmlFor="contactNumber">Mobile Number <span style={{ color: 'red' }}>*</span></label>
           <input
-            type="text"
+            type="number"
             id="contactNumber"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
             placeholder="Enter your contact number"
             required
+            minLength="10"
+            maxLength="10"
+            onInvalid={(e) => e.target.setCustomValidity("Please enter a valid 10-digit contact number")}
+            onInput={(e) => e.target.setCustomValidity("")}
           />
-          <label htmlFor="note">Note:</label>
-          <textarea
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // Update name state
+            placeholder="Enter your email"
+
+          />
+          {/* <textarea
             id="note"
             value={note}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your note"
             required
-          />
+          /> */}
           <div className="modal-actions">
             <button
               type="button"
