@@ -11261,7 +11261,7 @@ button.back-to-top:hover {
   padding: 10px; /* Padding for buttons */
   font-size: 16px; /* Font size for buttons */
   color: #fff; /* Text color */
-  background-color: #007bff; /* Blue background for buttons */
+  background-color: var(--primary); /* Blue background for buttons */
   border: none; /* No border */
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
@@ -12021,7 +12021,7 @@ button.back-to-top:hover {
 }
 
 .save-btn {
-  background-color: #007bff;
+  background-color: var(--primary);
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -12029,9 +12029,7 @@ button.back-to-top:hover {
   cursor: pointer;
 }
 
-.save-btn:hover {
-  background-color: #0056b3;
-}
+
 
 .cancel-btn {
   background-color: #6c757d;

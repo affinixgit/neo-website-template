@@ -9,8 +9,8 @@ const ContactForm = () => {
     firstName: "",
     contact: "",
     email: "",
-    selectedService: "",
     notes: "",
+    leadSource:2,
   });
 
   const handleChange = (e) => {
@@ -26,18 +26,19 @@ const ContactForm = () => {
       alert("Please fill out both the Name and Contact fields.");
       return;
     }
-
     const myHeaders = new Headers();
     myHeaders.append("x-api-key", config.subscriptionId);
     myHeaders.append("Accept", "text/plain");
+    myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      fullName: formData.firstName,
-      subject: formData.selectedService || "General Inquiry",
+      fullName: formData.firstName,     
       mobileNumber: formData.contact,
       email: formData.email,
       leadMessage: formData.notes || "No additional notes provided.",
+      leadSource:2,
     });
+
 
     const requestOptions = {
       method: "POST",
@@ -45,6 +46,9 @@ const ContactForm = () => {
       body: raw,
       redirect: "follow",
     };
+    
+
+
 
     try {
       const response = await fetch(
@@ -52,14 +56,15 @@ const ContactForm = () => {
         requestOptions
       );
       const result = await response.text();
+      debugger
       console.log("Submission Successful:", result);
-      alert("Your form has been submitted successfully. We will get back to you shortly.");
+      alert("Thank you for reaching out to us. Your message has been successfully submitted. Our team will get back to you as soon as possible.");
       setFormData({
         firstName: "",
         contact: "",
         email: "",
-        selectedService: "",
         notes: "",
+        leadSource:2,
       });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -104,7 +109,7 @@ const ContactForm = () => {
             type="email"
             id="email"
             name="email"
-            placeholder="Work Email"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -114,19 +119,19 @@ const ContactForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="notes">Notes</label>
+          <label htmlFor="notes">Message</label>
           <textarea
             id="notes"
             name="notes"
-            placeholder="Enter any additional notes here..."
+            placeholder="Enter your message"
             value={formData.notes}
             onChange={handleChange}
             className="form-control"
             rows="4"
           />
         </div>
-        <button type="submit" className="btn w-100" style={{ backgroundColor: 'var(--primary) !important', color: 'white !important' }}>
-          contact us
+        <button type="submit" className="save-btn w-100">
+          Talk to us
         </button>
       </form>
     </div>

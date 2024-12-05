@@ -30,10 +30,10 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
       body: raw,
       redirect: "follow",
     };
-
+    const apiUrl = `${config.apiBaseUrl}/NeoLeadAdmin`;
     try {
       const response = await fetch(
-        config.apiBaseUrl,
+        apiUrl,
         requestOptions
       );
       const result = await response.text();
@@ -76,12 +76,12 @@ const ContactModal = ({ isOpen, onClose, contactTag }) => {
             placeholder="Enter your contact number"
             required
           />
-          <label htmlFor="note">Note:</label>
+          <label htmlFor="note">Message:</label>
           <textarea
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="Enter your note"
+            placeholder="Enter your message"
             required
           />
           <div className="modal-actions">
