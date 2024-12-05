@@ -3,10 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+ 
+
+ 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Dynamically import NavMenu if it's a large component
 const NavMenu = dynamic(() => import("./nav-links"), { ssr: true });
+
+
+                  
 
 const MainHeader = ({ headerData = {} }) => {
   const { businessInfo, banner, navMenu, subMenu } = headerData;

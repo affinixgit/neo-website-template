@@ -56,7 +56,7 @@ const Services = () => {
     <div className="page-content">
       <div
         className="page-banner ovbl-dark"
-        // style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
+      // style={{ backgroundImage: `url(${bannerImg.src})` }} // Using imported image
       >
         <div className="container">
           <div className="page-banner-entry">
