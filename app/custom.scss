@@ -98,7 +98,7 @@
       list-style-type: none;
 
       a {
-        color: #222;
+        color: (var(--primary));
         display: flex;
         align-items: center;
         gap: 20px;

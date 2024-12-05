@@ -58,7 +58,7 @@ export default async function ServiceDetailPage({ params }) {
         {/* Banner Section */}
         <div
           className="page-banner ovbl-dark"
-         style={{ backgroundImage: `url(${navData.backgroundImage})` }}
+          style={{ backgroundImage: `url(${navData.backgroundImage})` }}
         >
           <div className="container">
             <div className="page-banner-entry">
@@ -94,7 +94,7 @@ export default async function ServiceDetailPage({ params }) {
                     {serviceItem.tags.map((tag, tagIdx, arr) => (
                       <span key={tagIdx}>
                         <Link
-                          href={`/tag/${tag.slug}/${serviceItem.slug}`}
+                          href={`${navData.path}/tag/${tag.slug}/${serviceItem.slug}`}
                           className="tag-link"
                           style={{ color: "var(--primary)" }}
                         >
@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({ params }) {
                     {serviceItem.locations.map((location, tagIdx, arr) => (
                       <span key={tagIdx}>
                         <Link
-                          href={`/services/location/${serviceItem.slug}/${location.slug}`}
+                          href={`${navData.path}/location/${serviceItem.slug}/${location.slug}`}
                           className="tag-link"
                           style={{ color: "var(--primary)" }}
                         >

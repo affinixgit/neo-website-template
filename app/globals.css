@@ -11723,7 +11723,7 @@ button.back-to-top:hover {
 }
 
 .form-support a {
-  color: #007bff;
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -12376,3 +12376,6 @@ footer .footer-bottom a:hover {
   }
 }
 
+a{
+color: var(--primary);
+}
