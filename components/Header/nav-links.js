@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from 'react'; // Adjust the import path as necessary
 import PhoneIcon from '../PhoneIcon';
 import MobileContactModal from '../WhatsApp/mobileContactModal';
+import ContactModal from '../ContactModal';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,11 +25,16 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
   const pathname = usePathname();
 
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isWhatsAppContactOpen, setIsWhatsAppContactOpen] = useState(false);
   const [dropItems, setDropItems] = useState([]);
   const [contactTag, setContactTag] = useState("");
 
   const toggleContactModal = () => {
     setIsContactModalOpen(!isContactModalOpen);
+  };
+
+  const toggleWhatsAppContactModal = () => {
+    setIsWhatsAppContactOpen(!isWhatsAppContactOpen);
   };
 
   const toggleMenu = () => {
@@ -42,7 +48,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
 
   return (
     <>
-    
+
 
       {/* <div className={`nav-menu ${isMenuOpen ? "active" : ""}`}> */}
       <div className={`nav-menu`}>
@@ -61,15 +67,13 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             >
               {item.dropdown.length !== 0 ? (
                 <div
-                  className={`nav-item-dropdown ${
-                    activeDropdown === item.name ? "active" : ""
-                  }`}
+                  className={`nav-item-dropdown ${activeDropdown === item.name ? "active" : ""
+                    }`}
                 >
                   <button className="dropdown-toggle">{item.name}</button>
                   <ul
-                    className={`dropdown-menu ${
-                      activeDropdown === item.name ? "show" : ""
-                    }`}
+                    className={`dropdown-menu ${activeDropdown === item.name ? "show" : ""
+                      }`}
                   >
                     {item.dropdown.map((subItem, subIndex) => (
                       <li key={subIndex}>
@@ -84,7 +88,7 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
             </li>
           ))}
 
-         
+
 
           {subMenu.showBookCallButton && (
             <li className="nav-item">
@@ -109,10 +113,18 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
         {/* Contact Modal */}
       </div>
       <MobileContactModal
+        isOpen={isWhatsAppContactOpen}
+        onClose={() => setIsWhatsAppContactOpen(false)}
+        contactTag={contactTag}
+      />
+
+      <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
         contactTag={contactTag}
       />
+
+
       <div className={`mobile-nav-menu`}>
         <ul className="nav-list">
           {subMenu.showBookCallButton && (
@@ -242,8 +254,8 @@ const NavMenu = ({ menuData, businessInfo, subMenu }) => {
           href={`#`}
           onClick={(e) => {
             e.preventDefault();
-           
-            toggleContactModal();
+
+            toggleWhatsAppContactModal();
             setContactTag("Whatsapp");
           }}
         >

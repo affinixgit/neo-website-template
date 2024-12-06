@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import HTMLReactParser from "html-react-parser";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import Breadcrumbs from '@/components/Breadcrumbs/breadcrumbs';
 import { generateBreadcrumbSchema } from '@/lib/common';
@@ -40,7 +39,7 @@ export default async function ProductCategoriesPage({ params }) {
   }
 
   const categoryItem = await response.json();
-  const services = categoryItem.service;
+  const services = categoryItem?.service || []; // Added null management for services
 
   function trimText(text) {
     if (text && text.length > 200) {
@@ -50,7 +49,7 @@ export default async function ProductCategoriesPage({ params }) {
   }
 
   function getText(text) {
-    return text?.replace(/<[^>]+>/g, "") || "";
+    return text?.replace(/<[^>]+>/g, "") || ""; // Added null management for text
   }
 
   return (
@@ -81,7 +80,7 @@ export default async function ProductCategoriesPage({ params }) {
                             className="img-fluid"
                             width={450}
                             height={300}
-                            src={`${item?.media.mediaBaseUrl}/${item?.media.fileSlug}`}
+                            src={`${item?.media?.mediaBaseUrl}/${item?.media?.fileSlug}`}
                             alt={item?.serviceTitle}
                           />
                           <Link

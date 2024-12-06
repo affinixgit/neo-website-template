@@ -19,13 +19,8 @@ export default function HomeAboutUs({ aboutUs }) {
             )}
             {aboutUs.buttonTitle && aboutUs.buttonLink && (
               <Link
-                className="btn"
-                href={aboutUs.buttonLink}
-                style={{
-                  background: "var(--primary) !important",
-                  color: "white !important",
-                  padding: "10px 20px",
-                }}
+                className="homepage-btn"
+                href={aboutUs.buttonLink}             
               >
                 {aboutUs.buttonTitle}
               </Link>

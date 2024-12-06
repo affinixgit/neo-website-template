@@ -1,5 +1,4 @@
 import Slider1 from "@/components/carousal/slider";
-import ServiceSlider from "@/components/service/serviceSlider";
 import CallToAction from "@/components/Home/CallToAction";
 import FeaturedServices from "@/components/service/featuredServices";
 import HeroSection from "@/components/Hero/heroSection";

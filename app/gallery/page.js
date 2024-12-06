@@ -3,10 +3,14 @@ import Image from "next/image";
 import bannerImg from "@/public/images/banner/banner3.jpg"; // Update image import
 import { fetchGallery } from "@/lib/gallery";
 
-export default async function Blogs() {
+export default async function Gallery() {
 
   const data = await fetchGallery();
-  const galleries = data.galleries;
+  const galleries = data?.galleries || [];
+
+  if (galleries.length === 0) {
+    return <div>No content available</div>;
+  }
 
   return (
     <div className="page-content">
@@ -39,8 +43,8 @@ export default async function Blogs() {
                 <div key={idx} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div className="blog-card">
                     <Image
-                      src={`${post?.galleryMedia.mediaBaseUrl}/${post?.galleryMedia.fileSlug}`}
-                      alt={post.altText || 'Gallery Image'}
+                      src={`${post?.galleryMedia?.mediaBaseUrl}/${post?.galleryMedia?.fileSlug}`}
+                      alt={post?.altText || 'Gallery Image'}
                       width={400}
                       height={300}
                       className="img-fluid"
@@ -57,4 +61,3 @@ export default async function Blogs() {
     </div>
   );
 };
-

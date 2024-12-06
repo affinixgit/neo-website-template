@@ -13,31 +13,18 @@ export default function HeroSection({ data, heroImage }) {
             <div className=" mb-4">{HTMLReactParser(data.description)}</div>
             <div className="d-flex justify-content-left">
               <Link
-                className="btn "
-                href={data.buttonOneLink}
-                style={{
-                  background: "var(--primary) !important",
-                  color: "white !important",
-                  margin: "2px",               
-                }}
+                className="homepage-btn "
+                href={data.buttonOneLink}                
               >
                 {data.buttonOneTitle}
               </Link>
 
               <Link
-                className="btn "
-                href={data.buttonTwoLink}
-                style={{
-                  background: "var(--primary) !important",
-                  color: "white !important",
-                  margin: "2px",  
-                }}
+                className="homepage-btn "
+                href={data.buttonTwoLink}              
               >
                 {data.buttonTwoTitle}
               </Link>
-
-            
-
             </div>
           </div>
 

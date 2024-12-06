@@ -496,68 +496,7 @@
 
 }
 
-.my-drop-down{
-  position: absolute;
-  background: #fff;
-  width: 70%;
-  top: 75px;
-  left: 10%;
-  border-radius: 10px;
-  opacity: 0;
-
-  &.show{
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-  }
-
- .sub{
-  padding: 20px 30px;
-  display: flex;
-  flex-direction: column;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-
-  .drop-item{
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    &:hover{
-      color: var(--primary);
-    }
-  }
-
-  a{
-    color: #000;
-    font-size: 18px;
-    font-weight: 500;
-
-    &:hover{
-      color: var(--primary);
-    }
-  }
 
 
-}
-.side-info{
-  background-color: #F7F8FE;
-
-  h2{
-    color:var(--primary);
-    font-weight: 600;
-    font-size: 25px;
-  }
-
-  a{
-    color: #000;
-    font-size: 18px;
-    font-weight: 500;
-
-    &:hover{
-      color: var(--primary);
-    }
-  }
-}
-}
 
 

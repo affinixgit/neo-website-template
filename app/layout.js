@@ -42,22 +42,22 @@ if (!response.ok) {
 
 const headerData = await response.json();
 
-export const metadata = {
-  title: headerData.businessInfo.businessName,
-  description: headerData.businessInfo.metaDescription,
-  keywords: headerData.businessInfo.metaKeywords,
-  ogTitle: headerData.businessInfo.businessName,
-  alternates: {
-    canonical: headerData.businessInfo.websiteUrl,
-  },
-  icons: [
-    {
-      rel: "icon",
-      type: "image/png",
-      url: `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`,
-    },
-  ],
-};
+// export const metadata = {
+//   title: headerData.businessInfo.businessName,
+//   description: headerData.businessInfo.metaDescription,
+//   keywords: headerData.businessInfo.metaKeywords,
+//   ogTitle: headerData.businessInfo.businessName,
+//   alternates: {
+//     canonical: headerData.businessInfo.websiteUrl,
+//   },
+//   icons: [
+//     {
+//       rel: "icon",
+//       type: "image/png",
+//       url: `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`,
+//     },
+//   ],
+// };
 
 export default function RootLayout({ children }) {
   const primaryColor =

@@ -38,16 +38,6 @@ export default async function CategoriesPage() {
           </div>
         </div>
       </div>
-      {/* <div className="breadcrumb-row">
-                <div className="container">
-                    <ul className="list-inline">
-                        <li className="list-inline-item">
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li className="list-inline-item">Categories</li>
-                    </ul>
-                </div>
-            </div> */}
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="content-block">
         <div className="section-area section-sp5">

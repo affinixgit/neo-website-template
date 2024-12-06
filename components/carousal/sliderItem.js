@@ -33,9 +33,9 @@ export default function SliderItem({ item }) {
          
             {item.catLink && item.catButtonTitle && (
               <Link
-                className="btn radius-xl m-b50 m-r15 button-md white"
+                className="homepage-btn"
                 href={item.catLink}
-                style={{ background: "var(--primary) !important", color: "white !important" }}
+               
               >
                 {item.catButtonTitle}
               </Link>
