@@ -61,9 +61,9 @@ const headerData = await response.json();
 
 export default function RootLayout({ children }) {
   const primaryColor =
-    headerData.businessInfo.colors?.headerColour || "#007bff";
+    headerData.businessInfo?.headerColour || "#007bff";
   const secondaryColor =
-    headerData.businessInfo.colors?.headerColour || "#6c757d";
+    headerData.businessInfo.colors?.secondaryColor || "#6c757d";
 
   return (
     <html

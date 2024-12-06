@@ -45,3 +45,5 @@ sudo mkdir -p /var/www/demo.affinixdigital.com/public_html
 sudo chown -R $USER:$USER /var/www/demo.affinixdigital.com/public_html
 
 ```
+
+pm2 start yarn --name "satyam-website" -- start 
