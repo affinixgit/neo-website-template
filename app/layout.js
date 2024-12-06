@@ -74,7 +74,7 @@ export default async function RootLayout({ children }) {
         <MainHeader headerData={headerData} />
         <main>{children}</main>
         <WhatsApp />
-        <CookieConsent />
+        {/* <CookieConsent /> */}
         <Footer footerData={headerData} />
       </body>
     </html>
