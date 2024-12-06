@@ -54,10 +54,8 @@ export default async function RootLayout({ children }) {
         "--primary": primaryColor,
         "--secondary": secondaryColor,
       }}
-
-      
     >
-       <head>
+           <head>
         {/* Google Tag Manager Script for Head */}
         <script
           id="google-tag-manager"
@@ -72,23 +70,12 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-         {/* Google Tag Manager noscript for Body */}
-         <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-P945FSGH"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
         <NextTopLoader color={primaryColor} />
         <MainHeader headerData={headerData} />
         <main>{children}</main>
         <WhatsApp />
         <CookieConsent />
         <Footer footerData={headerData} />
-       
-       
       </body>
     </html>
   );
