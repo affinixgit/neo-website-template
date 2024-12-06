@@ -93,7 +93,7 @@ export default async function ServiceDetailPage({ params }) {
 
         <ServiceDescription serviceItem={serviceItem}></ServiceDescription>
 
-        <div className="content-block">
+        {/* <div className="content-block">
           <div className="section-area section-sp5">
             <div className="container">
               <div className="row d-flex flex-row">
@@ -115,9 +115,9 @@ export default async function ServiceDetailPage({ params }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="content-block">
+        {/* <div className="content-block">
           <div className="section-area section-sp5">
             <div className="container">
               <div className="row d-flex flex-row">
@@ -139,7 +139,7 @@ export default async function ServiceDetailPage({ params }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <br />
         <br />
