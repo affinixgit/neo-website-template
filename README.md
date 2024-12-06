@@ -46,4 +46,4 @@ sudo chown -R $USER:$USER /var/www/demo.affinixdigital.com/public_html
 
 ```
 
-pm2 start yarn --name "satyam-website" -- start 
+pm2 start yarn --name "affinix-website" -- start 
