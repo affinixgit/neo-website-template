@@ -11,6 +11,7 @@ import config from "@/config/config";
 import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 
+// Load custom fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -22,48 +23,29 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const myHeaders = new Headers();
-myHeaders.append("x-api-key", config.subscriptionId);
+// Async function to fetch header data
+async function fetchHeaderData() {
+  const myHeaders = new Headers();
+  myHeaders.append("x-api-key", config.subscriptionId);
 
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow",
-};
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
 
-const response = await fetch(
-  `${config.apiBaseUrl}/website/nav`,
-  requestOptions
-);
-
-if (!response.ok) {
-  throw new Error("Failed to fetch services");
+  const response = await fetch(`${config.apiBaseUrl}/website/nav`, requestOptions);
+  if (!response.ok) {
+    throw new Error("Failed to fetch services");
+  }
+  return await response.json();
 }
 
-const headerData = await response.json();
+export default async function RootLayout({ children }) {
+  const headerData = await fetchHeaderData(); // Fetch header data dynamically
 
-// export const metadata = {
-//   title: headerData.businessInfo.businessName,
-//   description: headerData.businessInfo.metaDescription,
-//   keywords: headerData.businessInfo.metaKeywords,
-//   ogTitle: headerData.businessInfo.businessName,
-//   alternates: {
-//     canonical: headerData.businessInfo.websiteUrl,
-//   },
-//   icons: [
-//     {
-//       rel: "icon",
-//       type: "image/png",
-//       url: `${headerData.businessInfo.faviconImage.mediaBaseUrl}/${headerData.businessInfo.faviconImage.fileSlug}`,
-//     },
-//   ],
-// };
-
-export default function RootLayout({ children }) {
-  const primaryColor =
-    headerData.businessInfo?.headerColour || "#007bff";
-  const secondaryColor =
-    headerData.businessInfo.colors?.secondaryColor || "#6c757d";
+  const primaryColor = headerData.businessInfo?.headerColour || "#007bff";
+  const secondaryColor = headerData.businessInfo.colors?.secondaryColor || "#6c757d";
 
   return (
     <html
@@ -72,14 +54,41 @@ export default function RootLayout({ children }) {
         "--primary": primaryColor,
         "--secondary": secondaryColor,
       }}
+
+      
     >
+       <head>
+        {/* Google Tag Manager Script for Head */}
+        <script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-P945FSGH');`,
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+         {/* Google Tag Manager noscript for Body */}
+         <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-P945FSGH"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <NextTopLoader color={primaryColor} />
         <MainHeader headerData={headerData} />
         <main>{children}</main>
         <WhatsApp />
-        <CookieConsent></CookieConsent>
-        <Footer footerData={headerData} /> {/* Footer with data */}
+        <CookieConsent />
+        <Footer footerData={headerData} />
+       
+       
       </body>
     </html>
   );
