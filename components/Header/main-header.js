@@ -59,4 +59,4 @@ const MainHeader = ({ headerData = {} }) => {
 };
 
 // Use React.memo to prevent unnecessary re-renders
-export default memo(MainHeader);
+export default MainHeader;
