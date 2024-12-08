@@ -1,26 +1,32 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import PdfDownloadDialog from './PdfDownloadModal';
+import { usePathname, useSearchParams } from "next/navigation";
 
 const SocialShare = ({ title, description, socialCta, type2, pdf }) => {
-  const router = useRouter();
+  
   const [currentUrl, setCurrentUrl] = useState("");
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const toggleContactModal = () => {
     setIsContactModalOpen(!isContactModalOpen);
   };
 
 
+
+
   useEffect(() => {
-    // Dynamically construct the current URL on the client
-    setCurrentUrl(`${window.location.origin}${router.asPath}`);
-  }, [router.asPath]);
+    const url = `${window.location.origin}${pathname}${searchParams.toString() ? `?${searchParams}` : ""}`;
+    setCurrentUrl(url);
+      
+  }, [pathname, searchParams]);
+  
 
   const shareLinks = [
     {
