@@ -11,13 +11,13 @@ const nextConfig = {
     ],
   },
   rewrites: async () => [
-    { source: '/courses', destination: '/services' },   // New rewrite for services to courses
+    { source: '/treatments', destination: '/services' },   // New rewrite for services to treatments
     {
-      source: '/courses/:slug',
+      source: '/treatments/:slug',
       destination: '/services/:slug',
     },
-    { source: '/courses/location/:slug*', destination: '/services/location/:slug*' },
-    { source: '/courses/tag/:slug*', destination: '/services/tag/:slug*' },
+    { source: '/treatments/location/:slug*', destination: '/services/location/:slug*' },
+    { source: '/treatments/tag/:slug*', destination: '/services/tag/:slug*' },
   ],
 };
 
