@@ -32,7 +32,7 @@ export default function HeroSection({ data, heroImage }) {
           <div className="col-md-6 mt-4 mt-md-0">
             <img
               src={`${heroImage?.mediaBaseUrl}/${heroImage.fileSlug}`}
-              alt={heroImage.title}
+              alt={data.title}
               className="img-fluid rounded shadow"
             />
           </div>

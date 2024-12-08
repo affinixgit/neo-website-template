@@ -74,7 +74,7 @@ export default async function ServiceDetailPage({ params }) {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/services">Services</Link>
+                <Link href={`${navData.path}`}>Services</Link>
               </li>
               <li>{serviceItem.serviceTitle}</li>
             </ul>
