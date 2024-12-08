@@ -31,7 +31,7 @@ const MainHeader = ({ headerData = {} }) => {
             {banner.title} |&nbsp;
             {banner.link && (
               <Link href={banner.link}>
-                <span style={{ color: banner.linkColour }}>
+                <span style={{ color: `${banner.linkColour} !important`, fontWeight: 'bold' }}>
                   Know more <FontAwesomeIcon icon={faExternalLink} aria-hidden="true" />
                 </span>
               </Link>

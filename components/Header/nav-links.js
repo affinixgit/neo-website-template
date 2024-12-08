@@ -4,6 +4,7 @@ import NavMenuItems from "./NavMenuItems";
 import NavBottomMenu from "./NavBottomMenu";
 
 const NavMenu = ({ menuData, businessInfo, subMenu }) => {
+  console.log(menuData)
   return (
     <>
       {/* Main Navigation Menu */}
