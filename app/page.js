@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
       url: businessInfo.websiteUrl,
       images: [
         {
-          url: `${businessInfo.logo.mediaBaseUrl}/${businessInfo.logo.fileSlug}`,
+          url: `${businessInfo.socialMediaSharing.mediaBaseUrl}/${businessInfo.socialMediaSharing.fileSlug}`,
           width: 1200,
           height: 630,
           alt: businessInfo.altText || "",
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
       title: businessInfo.businessName,
       description: businessInfo.metaDescription,
       images: [
-        `${businessInfo.logo.mediaBaseUrl}/${businessInfo.logo.fileSlug}`,
+        `${businessInfo.socialMediaSharing.mediaBaseUrl}/${businessInfo.socialMediaSharing.fileSlug}`,
       ],
     },
     icons: {
