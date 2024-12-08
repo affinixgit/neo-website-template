@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MobileContactModal from "../WhatsApp/mobileContactModal";
 import ContactModal from "../ContactModal";
 import NavMenuItems from "./NavMenuItems";

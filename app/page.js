@@ -9,6 +9,70 @@ import SliderItem from "@/components/carousal/sliderItem";
 
 import config from "@/config/config";
 
+
+async function getCommonData() {
+  const myHeaders = new Headers();
+  myHeaders.append("x-api-key", config.subscriptionId);
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  const response = await fetch(
+    `${config.apiBaseUrl}/website`,
+    requestOptions
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch website Data");
+  }
+  return  await response.json();
+}
+
+
+
+export async function generateMetadata({ params }) {
+  const website = await getCommonData();
+  const businessInfo = website.businessInfo;
+
+  return {
+    title: businessInfo.businessName || "",
+    description: businessInfo.metaDescription || "",
+    keywords: businessInfo.metaKeywords || "",
+    openGraph: {
+      title: businessInfo.businessName,
+      description: businessInfo.metaDescription,
+      url: businessInfo.websiteUrl,
+      images: [
+        {
+          url: `${businessInfo.logo.mediaBaseUrl}/${businessInfo.logo.fileSlug}`,
+          width: 1200,
+          height: 630,
+          alt: businessInfo.altText || "",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: businessInfo.businessName,
+      description: businessInfo.metaDescription,
+      images: [
+        `${businessInfo.logo.mediaBaseUrl}/${businessInfo.logo.fileSlug}`,
+      ],
+    },
+    icons: {
+      icon: `${businessInfo.faviconImage.mediaBaseUrl}/${businessInfo.faviconImage.fileSlug}`,
+      shortcut: `${businessInfo.faviconImage.mediaBaseUrl}/${businessInfo.faviconImage.fileSlug}`,
+    },
+    alternates: {
+      canonical: businessInfo.websiteUrl,
+    },
+  };
+}
+
+
+
 export default async function Home() {
   const myHeaders = new Headers();
   myHeaders.append("x-api-key", config.subscriptionId);
@@ -19,16 +83,7 @@ export default async function Home() {
     redirect: "follow",
   };
 
- 
-
-  const response = await fetch(
-    `${config.apiBaseUrl}/website`,
-    requestOptions
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch website Data");
-  }
-  const commonData = await response.json();
+  const commonData = await getCommonData();
 
   const featuredBLogResponse = await fetch(
     `${config.apiBaseUrl}/blogs/featured?pageNumber=1&pageSize=6`,
