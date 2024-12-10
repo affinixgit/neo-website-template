@@ -10,15 +10,18 @@ const nextConfig = {
       "affiinx-website-live.s3.ap-south-1.amazonaws.com",
     ],
   },
-  rewrites: async () => [
-    { source: '/courses', destination: '/services' },   // New rewrite for services to treatments
-    {
-      source: '/courses/:slug',
-      destination: '/services/:slug',
-    },
-    { source: '/courses/location/:slug*', destination: '/services/location/:slug*' },
-    { source: '/courses/tag/:slug*', destination: '/services/tag/:slug*' },
-  ],
+  rewrites: async () => {
+    // Get the default path from environment variables
+    const defaultPath = process.env.NEXT_PUBLIC_DEFAULT_PATH || "services";
+
+    // Dynamically generate rewrites
+    return [
+      { source: `/${defaultPath}`, destination: `/services` },
+      { source: `/${defaultPath}/:slug`, destination: `/services/:slug` },
+      { source: `/${defaultPath}/location/:slug*`, destination: `/services/location/:slug*` },
+      { source: `/${defaultPath}/tag/:slug*`, destination: `/services/tag/:slug*` },
+    ];
+  },
 };
 
 export default nextConfig;
