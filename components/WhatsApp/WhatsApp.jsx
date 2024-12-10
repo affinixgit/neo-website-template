@@ -1,37 +1,31 @@
-'use client';
-
-import React, { useState, useCallback } from "react";
+'use client'
+import React, { useState } from "react";
 import MobileContactModal from "./mobileContactModal";
 import Image from "next/image";
-
 
 const WhatsApp = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const togglePopup = useCallback(() => {
-    setIsContactModalOpen((prev) => !prev);
-  }, []);
+  const togglePopup = () => {
+    setIsContactModalOpen(!isContactModalOpen);
+  };
 
   return (
     <>
-      <div
-        className="whatsappContainer"
-        role="button"
-
-        tabIndex={0}
-        aria-label="Open WhatsApp contact modal"
-        onClick={togglePopup}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") togglePopup();
-        }}
-      >
+      <div className="whatsapp-container">
         <Image
           width={64}
           height={64}
           src="/images/WhatsApp_icon.png"
-          alt="WhatsApp icon"
-          title="WhatsApp icon"
-          className="whatsappIcon"
+          alt="whatsapp icon"
+          title="whatsapp icon"
+          className="whatsapp-icon"
+          style={{
+            backgroundColor: "white",
+            width: "4rem",
+            borderRadius: "9999px",
+          }}
+          onClick={togglePopup}
         />
       </div>
 
@@ -40,6 +34,7 @@ const WhatsApp = () => {
         onClose={() => setIsContactModalOpen(false)}
         contactTag={""}
       />
+    
     </>
   );
 };

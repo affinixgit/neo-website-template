@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from 'next/navigation';
 import Link from "next/link";
+import { useState, useEffect } from 'react'; // Adjust the import path as necessary
+import PhoneIcon from '../PhoneIcon';
+import MobileContactModal from '../WhatsApp/mobileContactModal';
+import ContactModal from '../ContactModal';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
-  faChevronUp,
   faChevronDown,
+  faChevronUp,
   faHouse,
   faPhone,
   faXmark,
@@ -15,26 +19,119 @@ import {
 import { faServicestack } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 
-const NavBottomMenu = ({ menuData, businessInfo ,subMenu}) => {
-  const pathname = usePathname();
+const NavMenu = ({ menuData, businessInfo, subMenu }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const pathname = usePathname();
+
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isWhatsAppContactOpen, setIsWhatsAppContactOpen] = useState(false);
+  const [dropItems, setDropItems] = useState([]);
+  const [contactTag, setContactTag] = useState("");
+
+  const toggleContactModal = () => {
+    setIsContactModalOpen(!isContactModalOpen);
+  };
+
+  const toggleWhatsAppContactModal = () => {
+    setIsWhatsAppContactOpen(!isWhatsAppContactOpen);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
+
   return (
-   <>
-   
-   <div className={`mobile-nav-menu`}>
+    <>
+
+
+      {/* <div className={`nav-menu ${isMenuOpen ? "active" : ""}`}> */}
+      <div className={`nav-menu`}>
         <ul className="nav-list">
-          {/* {subMenu.showBookCallButton && (
+          {menuData.map((item, index) => (
+            <li
+              key={index}
+              className={pathname === item.path ? "active" : ""}
+              onMouseEnter={() => {
+                setActiveDropdown(item.name);
+                setDropItems(item.dropdown);
+              }}
+              onMouseLeave={() => {
+                setActiveDropdown(null);
+              }}
+            >
+              {item.dropdown.length !== 0 ? (
+                <div
+                  className={`nav-item-dropdown ${activeDropdown === item.name ? "active" : ""
+                    }`}
+                >
+                  <button className="dropdown-toggle">{item.name}</button>
+                  <ul
+                    className={`dropdown-menu ${activeDropdown === item.name ? "show" : ""
+                      }`}
+                  >
+                    {item.dropdown.map((subItem, subIndex) => (
+                      <li key={subIndex}>
+                        <Link href={subItem.path}>{subItem.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <Link className={`main-menu ${pathname === item.path ? "main-menu-active" : ""}`} href={item.path}>{item.name}</Link>
+              )}
+            </li>
+          ))}
+
+
+
+          {subMenu.showBookCallButton && (
+            <li className="nav-item">
+              <button
+                className="rounded-btn"
+                onClick={() => {
+                  toggleContactModal();
+                  setContactTag(subMenu.bookCallTitle);
+                }}
+              >
+                {subMenu.bookCallTitle}
+              </button>
+            </li>
+          )}
+          {subMenu.showContactButton && (
+            <li className={"nav-item"}>
+              <PhoneIcon contactNumber={businessInfo.contactNo}></PhoneIcon>
+            </li>
+          )}
+        </ul>        
+      </div>
+      <MobileContactModal
+        isOpen={isWhatsAppContactOpen}
+        onClose={() => setIsWhatsAppContactOpen(false)}
+        contactTag={contactTag}
+      />
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        contactTag={contactTag}
+      />
+
+
+      <div className={`mobile-nav-menu`}>
+        <ul className="nav-list">
+          {subMenu.showBookCallButton && (
             <li className="nav-item">
               <button className="rounded-btn" onClick={toggleContactModal}>
                 {subMenu.bookCallTitle}
               </button>
             </li>
-          )} */}
+          )}
           {/* {subMenu.showContactButton && (
             <li className={"nav-item"}>
               <PhoneIcon contactNumber={businessInfo.contactNo}></PhoneIcon>
@@ -187,10 +284,8 @@ const NavBottomMenu = ({ menuData, businessInfo ,subMenu}) => {
           <div className="tab-label">Menu</div>
         </div>
       </div>
-
-
-   </>
+    </>
   );
 };
 
-export default NavBottomMenu;
+export default NavMenu;
