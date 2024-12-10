@@ -12,7 +12,7 @@ const nextConfig = {
   },
   rewrites: async () => {
     // Get the default path from environment variables
-    const defaultPath = process.env.NEXT_PUBLIC_DEFAULT_PATH || "services";
+    const defaultPath = process.env.NEXT_PUBLIC_DEFAULT_SERVICE_PATH || "services";
 
     // Dynamically generate rewrites
     return [
